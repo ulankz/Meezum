@@ -1,16 +1,20 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEditor;
-enum Complexity {
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
+
+public enum Complexity {
 	One = 3,
 	Two = 3,
 	Three = 4,
 	Four = 5,
 	Five = 6
 };
-enum GameState{
+public enum GameState{
 	DEFAULT,
 	STARTED,
 	WON,
@@ -44,6 +48,8 @@ enum GameState{
 }
 public class GameWordsManager : MonoBehaviour {
 	
+
+		
 	//Public members
 
 	//Private members
@@ -51,14 +57,16 @@ public class GameWordsManager : MonoBehaviour {
 
 	[SerializeField]
 	private int numberOfLetters = 26;
+
 	private Complexity levelComplexity;
+	[SerializeField]
 	private GameState gameState;
 	private const int maxAttempts = 3;
 	private int numberAttempts;
 	//[SerializeField]
 	private Word[] words = new Word[10];
-	[SerializeField]
-	private Transform[] lettersGO;
+//	[SerializeField]
+//	private Transform[] lettersGO;
 	[SerializeField]
 	private string word;
 	[SerializeField]
@@ -69,20 +77,58 @@ public class GameWordsManager : MonoBehaviour {
 	private int missionID = 0;
 	[SerializeField]
 	private Sprite[] sprites;
+	[SerializeField]
+	private GameObject[] cells;
+
+	// DELEGATES AND EVENTS
+	public delegate void OnLevelComplexityChangeDelegate(Complexity levelComplexity);
+	public event OnLevelComplexityChangeDelegate OnLevelComplexityChange;
+
+	// GETTER AND SETTERS
+	[ExposeProperty]
+	public Complexity LevelComplexity{
+		get{ 
+			return levelComplexity;
+		}
+		set{ 
+			if (levelComplexity != value) {
+				levelComplexity = value;
+				if (OnLevelComplexityChange != null)
+					OnLevelComplexityChange (levelComplexity);
+
+			}
+		}
+	}
 	void Awake(){
 		GenerateWords ();
+
 	}
+
 	void Start () {
-		levelComplexity = Complexity.One;
-		gameState = GameState.STARTED;
-		ReferSceneObjects ();
-		//populateLettersArray ();
-		sprites = LoadSprites();
-		CreateLettersForWord (missionID);
-		CreateCells ();
+		using (var bench = new Benchmark ("Code runs in :")) {
+
+
+			gameState = GameState.STARTED;
+			ReferSceneObjects ();
+			//DeactivateCells ();
+			OnLevelComplexityChange += OnLevelComplexityChangeHandler;
+			LevelComplexity = Complexity.Two;
+			//populateLettersArray ();
+			sprites = LoadSprites ();
+			CreateLettersForWord (missionID);
+			//GenerateCells (LevelComplexity);
+
+		}
 	}
-	private void CreateCells(){
-		//Logic for cell creation
+
+	private void GenerateCells(Complexity lComplexity){
+		// Cells depend on level of complexity
+
+			DeactivateCells();
+			for(int i = 0; i < (int)lComplexity; i++){
+					cells [i].SetActive (true);
+			}
+
 	}
 	public void CheckAnswer(){
 		// Logic for checking answer
@@ -107,25 +153,37 @@ public class GameWordsManager : MonoBehaviour {
 			letter.transform.localPosition = new Vector2 (startPos.x + 1.5f, startPos.y); 
 
 			letter.transform.name = letterName;
-
 			startPos = letter.transform.localPosition;
 		}
 	}
-	private void PopulateLettersArray(){
-		lettersGO = new Transform[numberOfLetters];
-		Transform letters = GameObject.FindGameObjectWithTag ("Letters").transform;
 
-		if (letters != null)
-			for (int i = 0; i < 26; i++) {
-				lettersGO [i] = letters.GetChild (i).transform;
-			}
-		else {
-			Debug.LogError ("LETTERS objects in null");
-			return;
+	void DeactivateCells ()
+	{
+		if(cells != null)
+		foreach (GameObject g in cells) {
+				if(g.activeSelf)
+					g.SetActive (false);
 		}
 	}
+
+//	private void PopulateLettersArray(){
+//		lettersGO = new Transform[numberOfLetters];
+//		Transform letters = GameObject.FindGameObjectWithTag ("Letters").transform;
+//
+//		if (letters != null)
+//			for (int i = 0; i < 26; i++) {
+//				lettersGO [i] = letters.GetChild (i).transform;
+//			}
+//		else {
+//			Debug.LogError ("LETTERS objects in null");
+//			return;
+//		}
+//	}
 	private void ReferSceneObjects(){
 		question = GameObject.FindGameObjectWithTag ("Question").transform;
+		cells = GameObject.FindGameObjectsWithTag("Cell").OrderBy( g => g.name ).ToArray();
+
+
 	}
 	private GameObject CreateLetter(){
 		Object letterPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/GameOfWords/LetterPrefab.prefab", typeof(GameObject));
@@ -161,4 +219,13 @@ public class GameWordsManager : MonoBehaviour {
 		words [0] = new Word (){ Description = "SUPERMARKET", AnswersDict = temp};
 		Debug.Log ("WORDS GENERATED SUCCESSFULLY");
 	}
+	// EVENT HANDLERS
+	private void OnLevelComplexityChangeHandler(Complexity levelComplexity){
+		GenerateCells (levelComplexity);
+		//Debug.Log ("OnLevelComplexityChangeHandler IS CALLED " + (int)levelComplexity);
+	}
+	void Destroy(){
+		OnLevelComplexityChange -= OnLevelComplexityChangeHandler;
+	}
+	
 }

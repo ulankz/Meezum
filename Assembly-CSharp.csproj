@@ -49,6 +49,8 @@
      <Compile Include="Assets\GameOfWords\GameWordsManager.cs" />
      <Compile Include="Assets\GameOfWords\InputManager.cs" />
      <Compile Include="Assets\GameOfWords\Tile.cs" />
+     <Compile Include="Assets\GameOfWords\Utils\Benchmark.cs" />
+     <Compile Include="Assets\GameOfWords\Utils\ExposePropertyAttribute.cs" />
      <Compile Include="Assets\Scripts\ActivatePanel.cs" />
      <Compile Include="Assets\Scripts\CheckDayTime.cs" />
      <Compile Include="Assets\Scripts\InteractWithObjectOnClick_v02.cs" />
