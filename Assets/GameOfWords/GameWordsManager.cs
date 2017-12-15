@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEditor;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
+using Array = System.Array;
 
 public enum Complexity {
 	One = 3,
@@ -48,8 +49,6 @@ public enum GameState{
 }
 public class GameWordsManager : MonoBehaviour {
 	
-
-		
 	//Public members
 
 	//Private members
@@ -79,7 +78,10 @@ public class GameWordsManager : MonoBehaviour {
 	private Sprite[] sprites;
 	[SerializeField]
 	private GameObject[] cells;
+	[SerializeField]
+	private string userInput = "";
 
+	private string answer;	
 	// DELEGATES AND EVENTS
 	public delegate void OnLevelComplexityChangeDelegate(Complexity levelComplexity);
 	public event OnLevelComplexityChangeDelegate OnLevelComplexityChange;
@@ -95,19 +97,14 @@ public class GameWordsManager : MonoBehaviour {
 				levelComplexity = value;
 				if (OnLevelComplexityChange != null)
 					OnLevelComplexityChange (levelComplexity);
-
 			}
 		}
 	}
 	void Awake(){
 		GenerateWords ();
-
 	}
-
 	void Start () {
 		using (var bench = new Benchmark ("Code runs in :")) {
-
-
 			gameState = GameState.STARTED;
 			ReferSceneObjects ();
 			//DeactivateCells ();
@@ -117,21 +114,28 @@ public class GameWordsManager : MonoBehaviour {
 			sprites = LoadSprites ();
 			CreateLettersForWord (missionID);
 			//GenerateCells (LevelComplexity);
-
 		}
 	}
-
 	private void GenerateCells(Complexity lComplexity){
 		// Cells depend on level of complexity
-
 			DeactivateCells();
 			for(int i = 0; i < (int)lComplexity; i++){
 					cells [i].SetActive (true);
 			}
-
 	}
 	public void CheckAnswer(){
 		// Logic for checking answer
+		userInput = GetInputFromUser();
+		string[] temp;
+		int ansIndex = 0;
+		if (!userInput.Contains(" ") && words[missionID].AnswersDict.TryGetValue((int)LevelComplexity,out temp)) {
+			 ansIndex = Array.BinarySearch (temp,userInput);
+		}
+		if (ansIndex > 0) {
+			Debug.Log ("ANSWER IS CORRECT -> " + ansIndex);	
+		} else {
+			Debug.Log ("ANSWER IS WRONG -> " + ansIndex);	
+		}
 	}
 	private void GivePoints(){
 		// Logic for adding points and showing them in UI
@@ -150,8 +154,7 @@ public class GameWordsManager : MonoBehaviour {
 			letter.transform.parent = question;
 			letterName = characters [i].ToString ();
 			letter.GetComponent<SpriteRenderer> ().sprite = GetSpriteByName (letterName);
-			letter.transform.localPosition = new Vector2 (startPos.x + 1.5f, startPos.y); 
-
+			letter.transform.localPosition = new Vector2 (startPos.x + 1.5f, startPos.y); 	
 			letter.transform.name = letterName;
 			startPos = letter.transform.localPosition;
 		}
@@ -164,6 +167,16 @@ public class GameWordsManager : MonoBehaviour {
 				if(g.activeSelf)
 					g.SetActive (false);
 		}
+	}
+	private string GetInputFromUser(){
+		string result = "";
+		if(cells != null)
+			foreach (GameObject g in cells) {
+				if (g.activeSelf && g.transform.childCount > 0)
+					result += g.transform.GetChild(0).name;	
+			}
+		Debug.Log ("INPUT FROM USER IS "+result);
+		return result;
 	}
 
 //	private void PopulateLettersArray(){
@@ -182,8 +195,6 @@ public class GameWordsManager : MonoBehaviour {
 	private void ReferSceneObjects(){
 		question = GameObject.FindGameObjectWithTag ("Question").transform;
 		cells = GameObject.FindGameObjectsWithTag("Cell").OrderBy( g => g.name ).ToArray();
-
-
 	}
 	private GameObject CreateLetter(){
 		Object letterPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/GameOfWords/LetterPrefab.prefab", typeof(GameObject));
@@ -206,16 +217,58 @@ public class GameWordsManager : MonoBehaviour {
 		foreach (Sprite s in sprites) {
 			if (s.name.Equals ("letter_"+name))
 				result = s;
-			
 		}
 		return result;
 	}
 	private void GenerateWords(){
+		string[] three = new string[12]{ "TAM", "PUK", "UPS", "SUP", "CAM", "CET", "RAK", "MAK", "KUM", "SUK", "TUP", "PAT" };
+		Array.Sort (three);
+		string[] four = new string[21] {
+			"KURT",
+			"KURS",
+			"KRUP",
+			"UTES",
+			"MERA",
+			"TEMA",
+			"TRAP",
+			"STUK",
+			"SERP",
+			"UTKA",
+			"REPS",
+			"REPA",
+			"RUKA",
+			"REKA",
+			"PUMA",
+			"PARK",
+			"MARS",
+			"STUK",
+			"SKAT",
+			"SERA",
+			"KREP"
+		};
+		Array.Sort (four);
+		string[] five = new string[12] {
+			"TRESK",
+			"TURKA",
+			"TERMA",
+			"SPRUT",
+			"TESAK",
+			"TRESk",
+			"MAKET",
+			"SUPER",
+			"SUMKA",
+			"SEKTA",
+			"METKA",
+			"REPKA"
+		};
+		Array.Sort (five);
+		string[] six = new string[8]{ "PARKET", "SEKRET", "STUPKA", "KAPERS", "MARKET", "TRESKA", "MARKER", "STERKA" };
+		Array.Sort (six);
 		Dictionary<int,string[]> temp = new Dictionary<int, string[]> ();
-		temp.Add(3,new string[12]{"TAM","PUK","UPS","SUP","CAM","CET","RAK","MAK","KUM","SUK","TUP","PAT"});
-		temp.Add(4,new string[21]{"KURT","KURS","KRUP","UTES","MERA","TEMA","TRAP","STUK","SERP","UTKA","REPS","REPA","RUKA","REKA","PUMA","PARK","MARS","STUK","SKAT","SERA","KREP"});
-		temp.Add(5,new string[12]{"TRESK","TURKA","TERMA","SPRUT","TESAK","TRESk","MAKET","SUPER","SUMKA","SEKTA","METKA","REPKA"});
-		temp.Add(6,new string[8]{"PARKET","SEKRET","STUPKA","KAPERS","MARKET","TRESKA","MARKER","STERKA"});
+		temp.Add(3,three);
+		temp.Add(4,four);
+		temp.Add(5,five);
+		temp.Add(6,six);
 		words [0] = new Word (){ Description = "SUPERMARKET", AnswersDict = temp};
 		Debug.Log ("WORDS GENERATED SUCCESSFULLY");
 	}
