@@ -364,9 +364,9 @@ MonoBehaviour:
     height: 696
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 322d0000
-    m_LastClickedID: 11570
-    m_ExpandedIDs: dafbffff00000000a42a0000de2b0000
+    m_SelectedIDs: 66010000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 9c4ffffff650ffff0051ffffdc51ffffdafbffff00000000de2b0000322d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -568,7 +568,7 @@ MonoBehaviour:
     y: 262
     width: 415
     height: 696
-  m_ScrollPosition: {x: 0, y: 98.45508}
+  m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: -100
@@ -597,8 +597,8 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 363
-    y: 1040
+    x: 375
+    y: 979
     width: 1920
     height: 250
   m_SearchFilter:
@@ -621,10 +621,10 @@ MonoBehaviour:
   m_LastProjectPath: /Users/Ulan/Desktop/Meezum/Meezum_v04
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 95}
     m_SelectedIDs: ca250000
     m_LastClickedID: 9674
-    m_ExpandedIDs: 00000000e0240000822500001628000004290000ffffff7f
+    m_ExpandedIDs: 00000000e024000082250000162800008a39000096390000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -677,24 +677,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 76060000
-    m_LastClickedInstanceID: 1654
+    m_SelectedInstanceIDs: 322d0000
+    m_LastClickedInstanceID: 11570
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: ea240000f2240000d2230000f6230000548b000086360000d4230000d0230000c623000004f8ffff76d2ffffaed4ffffb07efbff2c91feffe2240000ace9ffffa8e9ffff489dffff20affeff4a9bfbff3244fbff3436fbffe637fbff5a39fbff6e3cfaffca23000056f6fdff64340100c2f4ffff92860000422600007a250000de24000022240000ea230000d6230000da2300001c260000802400007e9e00009e2c0000ac2d00005e24000062240000a22700001c25000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: GameWordsManager
-      m_OriginalName: GameWordsManager
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 1654
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:

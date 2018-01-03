@@ -54,6 +54,7 @@
      <Compile Include="Assets\QuizGame\Scripts\Models\Instructions.cs" />
      <Compile Include="Assets\QuizGame\Scripts\Models\Question.cs" />
      <Compile Include="Assets\QuizGame\Scripts\Utils\Points.cs" />
+     <Compile Include="Assets\QuizGame\Scripts\Utils\TapTest.cs" />
      <Compile Include="Assets\Scripts\ActivatePanel.cs" />
      <Compile Include="Assets\Scripts\CheckDayTime.cs" />
      <Compile Include="Assets\Scripts\InteractWithObjectOnClick_v02.cs" />
