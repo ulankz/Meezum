@@ -9,7 +9,7 @@ using Debug = UnityEngine.Debug;
 using Array = System.Array;
 
 public enum Complexity {
-	One = 3,
+	One = 3,	
 	Two = 3,
 	Three = 4,
 	Four = 5,
@@ -52,8 +52,7 @@ public class GameWordsManager : MonoBehaviour {
 	//Public members
 
 	//Private members
-
-
+	
 	[SerializeField]
 	private int numberOfLetters = 26;
 
