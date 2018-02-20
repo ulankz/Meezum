@@ -46,17 +46,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GameOfWords\GameWordsManager.cs" />
-     <Compile Include="Assets\GameOfWords\InputManager.cs" />
-     <Compile Include="Assets\GameOfWords\Tile.cs" />
-     <Compile Include="Assets\GameOfWords\Utils\Benchmark.cs" />
-     <Compile Include="Assets\GameOfWords\Utils\ExposePropertyAttribute.cs" />
-     <Compile Include="Assets\QuizGame\Scripts\Models\Instructions.cs" />
-     <Compile Include="Assets\QuizGame\Scripts\Models\Question.cs" />
-     <Compile Include="Assets\QuizGame\Scripts\Utils\FadeTest.cs" />
-     <Compile Include="Assets\QuizGame\Scripts\Utils\GraphicExtensions.cs" />
-     <Compile Include="Assets\QuizGame\Scripts\Utils\Points.cs" />
-     <Compile Include="Assets\QuizGame\Scripts\Utils\TapTest.cs" />
+     <Compile Include="Assets\ExternalPlugins\LetCAlertViewController\Plugins\Pixelplacement\iTween\Sample\MoveSample.cs" />
+     <Compile Include="Assets\ExternalPlugins\LetCAlertViewController\Plugins\Pixelplacement\iTween\Sample\RotateSample.cs" />
+     <Compile Include="Assets\ExternalPlugins\LetCAlertViewController\Plugins\Pixelplacement\iTween\Sample\SampleInfo.cs" />
+     <Compile Include="Assets\ExternalPlugins\LetCAlertViewController\Plugins\Pixelplacement\iTween\iTween.cs" />
+     <Compile Include="Assets\ExternalPlugins\LetCAlertViewController\Scripts\AlertViews\CustomAlertView.cs" />
+     <Compile Include="Assets\ExternalPlugins\LetCAlertViewController\Scripts\AlertViews\RatingAlertView.cs" />
+     <Compile Include="Assets\ExternalPlugins\LetCAlertViewController\Scripts\AlertViews\SimpleAlertView.cs" />
+     <Compile Include="Assets\ExternalPlugins\LetCAlertViewController\Scripts\Generics\AlertView.cs" />
+     <Compile Include="Assets\ExternalPlugins\LetCAlertViewController\Scripts\Menus\SampleMenu.cs" />
+     <Compile Include="Assets\ExternalPlugins\LetCAlertViewController\Scripts\PopupScaleManager.cs" />
+     <Compile Include="Assets\ExternalPlugins\LetCAlertViewController\Scripts\UIAlertView.cs" />
      <Compile Include="Assets\Scripts\ActivatePanel.cs" />
      <Compile Include="Assets\Scripts\CheckDayTime.cs" />
      <Compile Include="Assets\Scripts\InteractWithObjectOnClick_v02.cs" />
@@ -68,6 +68,30 @@
      <Compile Include="Assets\Scripts\SwitchDayNight.cs" />
      <Compile Include="Assets\Scripts\VideoManager.cs" />
      <Compile Include="Assets\Scripts\XMLManager.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\GameOfWords\Controllers\GameWordsManager.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\GameOfWords\Controllers\InputManager.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\GameOfWords\Enums\Complexity.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\GameOfWords\Enums\GameState.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\GameOfWords\Models\Tile.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\GameOfWords\Models\Word.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\GameOfWords\Utils\Benchmark.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\GameOfWords\Utils\ExposePropertyAttribute.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\Helpers\Language.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\Models\DetailedMission.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\Models\Maze.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\Models\MessElement.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\Models\Mission.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\Models\Player.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\Models\Task.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Controllers\QuizGameManager.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Models\Instructions.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Models\Question.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\FadeTest.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\GraphicExtensions.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\IdleCheck.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\Points.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\SaveManager.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\TapTest.cs" />
      <None Include="Assets\Resources\player_data.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity_5.6.1/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

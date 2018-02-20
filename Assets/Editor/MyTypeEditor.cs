@@ -1,7 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using System.Collections;
-
+using MeezumGame;
+namespace GameOfWords{
 [CustomEditor( typeof( GameWordsManager ) )]
 public class MyTypeEditor : Editor {
 
@@ -26,4 +27,5 @@ public class MyTypeEditor : Editor {
 		ExposeProperties.Expose( m_fields );
 
 	}
+}
 }

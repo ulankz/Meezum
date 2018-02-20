@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
-
+namespace MeezumGame{
 public static class ExposeProperties
 {
 	public static void Expose( PropertyField[] properties )
@@ -221,5 +221,5 @@ public class PropertyField
 		//return false;
 
 	}
-
+	}
 }

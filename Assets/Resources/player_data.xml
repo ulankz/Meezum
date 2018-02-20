@@ -4,11 +4,11 @@
     <PlayerEntry>
       <playerName>Maya</playerName>
       <age>5</age>
-      <scores>45</scores>
+      <scores>61</scores>
       <cookies>0</cookies>
       <eatenCookies>0</eatenCookies>
       <boughtCookies>0</boughtCookies>
-      <cleanedMessItems>8</cleanedMessItems>
+      <cleanedMessItems>24</cleanedMessItems>
       <messItems>
         <MessItem>
           <messItemName>mess_toycar</messItemName>
@@ -44,79 +44,79 @@
         </MessItem>
         <MessItem>
           <messItemName>mess_vase</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_cw_00</messItemName>
-          <status>Queued</status>
+          <status>Disclosed</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_cw_02</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_cw_04</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_cw_06</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_cw_10</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_cw_11</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_cw_12</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_cw_14</messItemName>
-          <status>Queued</status>
+          <status>Disclosed</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_cup</messItemName>
-          <status>Queued</status>
+          <status>Disclosed</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_blotch_window_top</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_blotch_window_right_bottom</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_ink</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_blotch_leftwall</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_blotch_rightwall</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_scarf</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_spidernet_shelves_top</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_spidernet_portrets</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_spidernet_sofa</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
       </messItems>
     </PlayerEntry>
