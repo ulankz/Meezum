@@ -19,7 +19,8 @@ public class IdleCheck : MonoBehaviour
 		set{ 
 			if (idle != value) {
 				idle = value;
-				if(idle)
+				if(idle && UIAlertView.instance.active_alert_views.Count < 1 )
+
 				UIAlertView.instance.ShowSimpleAlertView(gameObject,UIAlertView.Hash("title","Title","message","Hello world","button1title","OK","button1callback","SimpleAlertCallback"));
 //				if (OnIdleChange != null)
 //					OnIdleChange ();

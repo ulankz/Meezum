@@ -94,7 +94,9 @@
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Controllers\QuizGameManager.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Controllers\QuizUIManager.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Models\Instructions.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Models\Question.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Models\QuizButton.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Models\QuizQuestionLabel.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Models\VictorinaQuestion.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\FadeTest.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\GraphicExtensions.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\IdleCheck.cs" />

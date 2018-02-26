@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace QuizGame{
 [System.Serializable]
-public class Question {
+public class VictorinaQuestion {
 	[SerializeField]private string description;
 	[SerializeField]private string[] answers;
 	[SerializeField]private int correctIndex;
@@ -35,7 +35,7 @@ public class Question {
 			correctIndex = value;
 		}
 	}
-	public Question(string desc,string[] ans, int correctIndex){
+	public VictorinaQuestion(string desc,string[] ans, int correctIndex){
 		description = desc;
 		answers = ans;
 		this.correctIndex = correctIndex;

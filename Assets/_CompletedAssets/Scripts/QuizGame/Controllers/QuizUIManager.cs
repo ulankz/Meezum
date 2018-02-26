@@ -16,16 +16,34 @@ namespace QuizGame
 		[SerializeField]
 		private GameObject gamePanel;
 		[SerializeField]
-		private GameObject buttonContainer;
+		private QuizButton[] buttonContainer;
 		[SerializeField] 
 		private GameObject questionPanel;
 		[SerializeField]
-		private Text question;
+		private QuizQuestionLabel questionLabel;
 		[SerializeField]
 		private GameObject starManager;	
 		#endregion
 		void Awake(){
 			starManager = GameObject.FindGameObjectWithTag(Tags.STAR_MANAGER);
+			if (gamePanel != null)
+				buttonContainer = gamePanel.GetComponentsInChildren<QuizButton> ();
+				questionLabel = gamePanel.GetComponentInChildren<QuizQuestionLabel> ();
 		}
+		#region PUBLIC METHODS
+		public void PopulateUIWithData(VictorinaQuestion question){
+			if (questionLabel != null)
+				questionLabel.UpdateQuestionLabel (question.Description);
+			if (buttonContainer != null && buttonContainer.Length > 0) {
+				int i = 0;
+				foreach(QuizButton qButton in buttonContainer){
+
+					qButton.UpdateButton(question.Answers[i]);
+					i++;
+				}
+				i=0;
+			}
+		}
+			#endregion
 	}
 }

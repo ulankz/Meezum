@@ -11,6 +11,7 @@ TagManager:
   - LetterPrefab
   - Cells
   - StarManager
+  - QuizUIManager
   layers:
   - Default
   - TransparentFX

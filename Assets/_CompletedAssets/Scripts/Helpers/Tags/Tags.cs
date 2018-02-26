@@ -14,5 +14,6 @@ namespace MeezumGame
 		public const string LETTER_PREFAB = "LetterPrefab";
 		public const string PLAYER = "Player";
 		public const string QUESTION = "Question";
+		public const string QUIZ_UI_MANAGER = "QuizUIManager";
 	}
 }
