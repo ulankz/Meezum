@@ -10,6 +10,7 @@ TagManager:
   - Question
   - LetterPrefab
   - Cells
+  - StarManager
   layers:
   - Default
   - TransparentFX

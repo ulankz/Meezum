@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace QuizGame{
 public class QuizGameManager : MonoBehaviour {
 
 	// Private Members
@@ -31,4 +31,5 @@ public class QuizGameManager : MonoBehaviour {
 	public void CheckAnswer(){
 		
 	}
+}
 }

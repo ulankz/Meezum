@@ -16,7 +16,7 @@ namespace MeezumGame
 		private string
 			name;
 		[SerializeField]
-		private string
+		private int
 			age;
 		[SerializeField]
 		private int
@@ -35,7 +35,7 @@ namespace MeezumGame
 			language;
 		#endregion
 		#region CONSTRUCTORS
-		public Player (int id, string name, string age, int scores, List<Mission> completedMissions, bool isActive, MessElement[] disorder, Language language)
+		public Player (int id, string name, int age, int scores, List<Mission> completedMissions, bool isActive, MessElement[] disorder, Language language)
 		{
 			this.id = id;
 			this.name = name;
@@ -45,6 +45,15 @@ namespace MeezumGame
 			this.isActive = isActive;
 			this.disorder = disorder;
 			this.language = language;
+		}
+		public Player (int id, string name, int age)
+		{
+			this.id = id;
+			this.name = name;
+			this.age = age;
+		}
+		public Player(){
+		
 		}
 		#endregion
 
@@ -67,7 +76,7 @@ namespace MeezumGame
 			}
 		}
 
-		string Age {
+		int Age {
 			get {
 				return this.age;
 			}

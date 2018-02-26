@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace QuizGame{
 [System.Serializable]
 public class Instructions {
 	[SerializeField]
@@ -14,4 +14,5 @@ public class Instructions {
 	AudioClip[] wrongs;
 	[SerializeField]
 	AudioClip end;
+}
 }

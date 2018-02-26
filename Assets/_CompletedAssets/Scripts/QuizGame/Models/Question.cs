@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+namespace QuizGame{
 [System.Serializable]
 public class Question {
 	[SerializeField]private string description;
@@ -39,4 +40,5 @@ public class Question {
 		answers = ans;
 		this.correctIndex = correctIndex;
 	}
+}
 }
