@@ -100,6 +100,7 @@
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\FadeTest.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\GraphicExtensions.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\IdleCheck.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\MyEventListener.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\Points.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\SaveManager.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\TapTest.cs" />

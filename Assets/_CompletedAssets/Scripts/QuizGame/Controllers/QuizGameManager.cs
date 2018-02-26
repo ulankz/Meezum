@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Linq;
 using UnityEngine;
 using MeezumGame;
 namespace QuizGame
 {
 	public class QuizGameManager : MonoBehaviour
 	{
-
 		#region PRIVATE MEMBERS
 		[SerializeField]
 		private Queue<VictorinaQuestion>
@@ -15,6 +16,8 @@ namespace QuizGame
 		// UI Fields
 		[SerializeField]
 		private QuizUIManager quizUIManager; 
+		[SerializeField]
+		private int questionCount;
 		#endregion
 		// Use this for initialization
 		void Awake ()
@@ -29,7 +32,10 @@ namespace QuizGame
 
 		void Start ()
 		{
+			QuizUIManager.buttonClickDelegate += CheckAnswer ;
+			questionCount = questions.Count;
 			PopulateUIWithData (questions);
+
 		}
 
 		void GenerateQuestions ()
@@ -64,9 +70,17 @@ namespace QuizGame
 			}
 		}
 
-		public void CheckAnswer ()
+		public void CheckAnswer (string idString)
 		{
-		
+			int id;
+			if (Int32.TryParse (idString, out id)) {
+				Debug.Log ("QButton was clicked " + id);
+				quizUIManager.UpdateButtonSprites(false,id);
+			}
+
+		}
+		void OnDestroy(){
+			QuizUIManager.buttonClickDelegate -= CheckAnswer ;
 		}
 	}
 }
