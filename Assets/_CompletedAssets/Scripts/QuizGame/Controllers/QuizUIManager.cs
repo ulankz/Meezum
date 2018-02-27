@@ -39,7 +39,8 @@ namespace QuizGame
 
 		void Start(){
 			foreach (QuizButton qButton in buttonContainer) {
-				qButton.onClick.AddListener (() => buttonClick(qButton.name));
+				//qButton.onClick.AddListener (() => buttonClick(qButton.name));
+				qButton.onSingleClickAction.AddListener(() => buttonClick(qButton.name));
 
 			}
 		}
@@ -47,7 +48,7 @@ namespace QuizGame
 			foreach (QuizButton qButton in buttonContainer)
 				qButton.onClick.RemoveAllListeners ();
 		}
-		private void buttonClick(string id){
+		public void buttonClick(string id){
 			if (buttonClickDelegate != null) {
 				buttonClickDelegate(id);
 			}

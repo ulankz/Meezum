@@ -74,8 +74,8 @@ namespace QuizGame
 		{
 			int id;
 			if (Int32.TryParse (idString, out id)) {
-				Debug.Log ("QButton was clicked " + id);
-				quizUIManager.UpdateButtonSprites(false,id);
+				Debug.Log (" CHECK ANSWER IS CALLED " + id);
+				//quizUIManager.UpdateButtonSprites(false,id);
 			}
 
 		}

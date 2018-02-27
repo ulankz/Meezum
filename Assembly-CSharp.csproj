@@ -93,6 +93,7 @@
      <Compile Include="Assets\_CompletedAssets\Scripts\Models\Task.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Controllers\QuizGameManager.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Controllers\QuizUIManager.cs" />
+     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Controllers\UISegmentedControl.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Models\Instructions.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Models\QuizButton.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Models\QuizQuestionLabel.cs" />
@@ -100,7 +101,6 @@
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\FadeTest.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\GraphicExtensions.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\IdleCheck.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\MyEventListener.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\Points.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\SaveManager.cs" />
      <Compile Include="Assets\_CompletedAssets\Scripts\QuizGame\Utils\TapTest.cs" />
