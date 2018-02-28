@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 366
-    y: 295
+    x: 436
+    y: 377
     width: 1920
     height: 1038
   m_ShowMode: 4
@@ -105,8 +105,8 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 988
-  m_MinSize: {x: 681, y: 492}
-  m_MaxSize: {x: 12006, y: 14042}
+  m_MinSize: {x: 683, y: 492}
+  m_MaxSize: {x: 12008, y: 14042}
   vertical: 1
   controlID: 22
 --- !u!114 &6
@@ -129,8 +129,8 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 988
-  m_MinSize: {x: 681, y: 492}
-  m_MaxSize: {x: 12006, y: 14042}
+  m_MinSize: {x: 683, y: 492}
+  m_MaxSize: {x: 12008, y: 14042}
   vertical: 1
   controlID: 23
 --- !u!114 &7
@@ -154,8 +154,8 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 717
-  m_MinSize: {x: 681, y: 221}
-  m_MaxSize: {x: 12006, y: 4021}
+  m_MinSize: {x: 683, y: 221}
+  m_MaxSize: {x: 12008, y: 4021}
   vertical: 0
   controlID: 24
 --- !u!114 &8
@@ -176,8 +176,8 @@ MonoBehaviour:
     y: 0
     width: 315
     height: 717
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -284,8 +284,8 @@ MonoBehaviour:
   m_DepthBufferBits: 32
   m_Pos:
     serializedVersion: 2
-    x: 683
-    y: 344
+    x: 753
+    y: 426
     width: 1133
     height: 696
   m_SceneLighting: 1
@@ -358,15 +358,15 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 366
-    y: 344
+    x: 436
+    y: 426
     width: 313
     height: 696
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d687ffff
-    m_LastClickedID: -30762
-    m_ExpandedIDs: dafbffff00000000e42a0000002c0000c62c0000e22c0000b62d0000
+    m_SelectedIDs: 66010000
+    m_LastClickedID: 0
+    m_ExpandedIDs: dafbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -488,8 +488,8 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 683
-    y: 344
+    x: 705
+    y: 190
     width: 1133
     height: 696
   m_MaximizeOnPlay: 0
@@ -538,7 +538,7 @@ MonoBehaviour:
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
-  m_LastWindowPixelSize: {x: 2266, y: 1392}
+  m_LastWindowPixelSize: {x: 1133, y: 696}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
@@ -564,11 +564,11 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 1820
-    y: 344
+    x: 1454
+    y: 17
     width: 466
     height: 696
-  m_ScrollPosition: {x: 0, y: 286.95508}
+  m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: -100
@@ -597,8 +597,8 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 366
-    y: 1061
+    x: 0
+    y: 734
     width: 1920
     height: 250
   m_SearchFilter:
@@ -612,19 +612,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/_CompletedAssets/Scripts/GameOfWords/Controllers
+    - Assets/StreamingAssets
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_CompletedAssets/Scripts/GameOfWords/Controllers
+  - Assets/StreamingAssets
   m_LastFoldersGridSize: 16
   m_LastProjectPath: /Users/Ulan/Desktop/Meezum/Meezum_v04
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 183}
-    m_SelectedIDs: 1e2a0000
-    m_LastClickedID: 10782
-    m_ExpandedIDs: 00000000342500001426000026260000d4260000f4260000e0270000e228000038290000b4310000ffffff7f
+    scrollPos: {x: 0, y: 363}
+    m_SelectedIDs: 72260000
+    m_LastClickedID: 9842
+    m_ExpandedIDs: 00000000362500009c250000dc25000032260000cc260000d6260000f6260000e2270000e4280000b6310000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -652,7 +652,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000034250000d4260000f4260000e0270000e228000038290000b4310000
+    m_ExpandedIDs: 0000000036250000dc2500001626000028260000d6260000f6260000e2270000e42800003a290000b6310000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -679,19 +679,19 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: ea240000f2240000d2230000f6230000548b000086360000d4230000d0230000c623000004f8ffff76d2ffffaed4ffffb07efbff2c91feffe2240000ace9ffffa8e9ffff489dffff20affeff4a9bfbff3244fbff3436fbffe637fbff5a39fbff6e3cfaffca23000056f6fdff64340100c2f4ffff92860000422600007a250000de24000022240000ea230000d6230000da2300001c260000802400007e9e00009e2c0000ac2d00005e24000062240000a22700001c25000000000000b6290000
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: ea240000f2240000d2230000f6230000548b000086360000d4230000d0230000c623000004f8ffff76d2ffffaed4ffffb07efbff2c91feffe2240000ace9ffffa8e9ffff489dffff20affeff4a9bfbff3244fbff3436fbffe637fbff5a39fbff6e3cfaffca23000056f6fdff64340100c2f4ffff92860000422600007a250000de24000022240000ea230000d6230000da2300001c260000802400007e9e00009e2c0000ac2d00005e24000062240000a22700001c25000000000000b6290000102a0000f6270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: QButtonEditor
-      m_OriginalName: QButtonEditor
+      m_Name: Cell
+      m_OriginalName: Cell
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 20064
+      m_UserData: 9706
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 366
-    y: 1061
+    x: 388
+    y: 907
     width: 1920
     height: 250
