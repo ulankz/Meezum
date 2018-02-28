@@ -6,6 +6,18 @@
 Temp/
 Library/
 Assets/AssetStoreTools*
+Assets/StreamingAssets/
+Assets/Resources/
+Assets/Sprites/
+Assets/ExternalPlugins/
+Assets/Editor/
+Assets/Animation/
+Assets/_CompletedAssets/Animation/
+Assets/_CompletedAssets/Audio/
+Assets/_CompletedAssets/Prefabs/
+Assets/_CompletedAssets/SampleAssets/
+Assets/_CompletedAssets/Scenes/
+
 
 # Visual Studio 2015 cache directory
 /.vs/
