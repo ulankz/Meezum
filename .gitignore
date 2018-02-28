@@ -6,17 +6,20 @@
 Temp/
 Library/
 Assets/AssetStoreTools*
-Assets/StreamingAssets/
-Assets/Resources/
-Assets/Sprites/
-Assets/ExternalPlugins/
+Assets/StreamingAssets*
+Assets/Resources*
+Packages/
+Assets/Sprites*
+Assets/ExternalPlugins*
 Assets/Editor/
-Assets/Animation/
+Assets/Animation*
+Assets/Materials*
 Assets/_CompletedAssets/Animation/
 Assets/_CompletedAssets/Audio/
 Assets/_CompletedAssets/Prefabs/
 Assets/_CompletedAssets/SampleAssets/
 Assets/_CompletedAssets/Scenes/
+Assets/_CompletedAssets*
 
 
 # Visual Studio 2015 cache directory
@@ -56,4 +59,15 @@ sysinfo.txt
 *.jpeg
 *.psd
 *.mp4
+
+iOS/Meezum/Libraries/libiPhone-lib.a
+Assets/StreamingAssets/main.mp4
+iOS/Meezum/Data/sharedassets1.assets.resS
+Library/PlayerDataCache/Data/sharedassets1.assets.resS
+iOS/Meezum/Data/sharedassets0.assets.resS
+Assets/StreamingAssets/2017-11-07 Викторина.psd
+
+
+
+
 
