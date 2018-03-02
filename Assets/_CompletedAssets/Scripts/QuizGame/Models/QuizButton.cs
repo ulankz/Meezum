@@ -79,7 +79,7 @@ namespace QuizGame
 		
 		#endregion
 
-		void Awake ()
+		protected override void Awake ()
 		{
 			buttonLabel = gameObject.transform.GetComponentInChildren<Text> ();
 			buttonImage = gameObject.GetComponent<Image> ();
@@ -110,7 +110,7 @@ namespace QuizGame
 		#endregion
 		#region CHECK FOR DOUBLE CLICK
 		private float clickTime;            // time of click
-		private bool onClick = true;            // is click allowed on button?
+		private bool onSingleClick = true;            // is click allowed on button?
 		private bool onDoubleClick = true;    // is double-click allowed on button?
 		#endregion
 		public override void OnPointerClick (PointerEventData eventData)
@@ -138,7 +138,7 @@ namespace QuizGame
 			clickTime = eventData.clickTime;
 			
 			// single click
-			if (onClick && clickCount == 1)
+			if (onSingleClick && clickCount == 1)
 			{
 				IsSingleClicked = true;
 				onSingleClickAction.Invoke();
