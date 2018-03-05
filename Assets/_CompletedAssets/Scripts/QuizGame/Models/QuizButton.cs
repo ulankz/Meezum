@@ -110,51 +110,52 @@ namespace QuizGame
 		#endregion
 		#region CHECK FOR DOUBLE CLICK
 		private float clickTime;            // time of click
-		private bool onSingleClick = true;            // is click allowed on button?
-		private bool onDoubleClick = true;    // is double-click allowed on button?
+//		private bool onSingleClick = true;            // is click allowed on button?
+//		private bool onDoubleClick = true;    // is double-click allowed on button?
 		#endregion
-		public override void OnPointerClick (PointerEventData eventData)
+		#region PRIVATE MEMBERS
+		private string singleClickButtonID;	
+		private string doubleClickButtonID;
+		#endregion
+
+		int tap;
+		float interval = 0.1f;
+		bool readyForDoubleTap;
+		public override void OnPointerClick(PointerEventData eventData)
 		{
-			base.OnPointerClick (eventData);
-
-			int clickCount = 0;
-			Debug.Log ("Initial click count " + clickCount);
-			IsSingleClicked = false;
-			IsDoubleClicked = false;
-			//this.transform.parent.GetComponent<UISegmentedControl>().SelectSegment(this);
-
-			clickCount = 1; // single click
+			tap ++;
 
 
-			
-			// get interval between this click and the previous one (check for double click)
-			float interval = eventData.clickTime - clickTime;
-			
-			// if this is double click, change click count
-			if (interval < 5f && interval > 0)
-				clickCount = 2;
-			
-			// reset click time
-			clickTime = eventData.clickTime;
-			
-			// single click
-			if (onSingleClick && clickCount == 1)
+			if (tap == 1)
 			{
-				IsSingleClicked = true;
-				onSingleClickAction.Invoke();
-				Debug.Log ("SingleClick " + clickCount);
-				SetWrongChoiceState();
+				//do stuff
+				Debug.Log("BUTTON IS SINGLE TAPPED");
+				this.onSingleClickAction.Invoke();
+				StartCoroutine("Delay");
+				StartCoroutine(DoubleTapInterval() );
 
 			}
 			
-			// double click
-			if (onDoubleClick && clickCount == 2)
-			{	
-				IsDoubleClicked = true;
-				onDoubleClickAction.Invoke();
-				SetCorrectChoiceState();
-				Debug.Log ("Double click " + clickCount);
-			}		
+			else if (tap > 1 && readyForDoubleTap)
+			{
+				//do stuff
+				this.onDoubleClickAction.Invoke();
+				Debug.Log("BUTTON IS DOUBLE TAPPED");
+				tap = 0;
+				StopCoroutine("Delay");
+				readyForDoubleTap = false;
+			}
+		}
+		
+		IEnumerator DoubleTapInterval()
+		{  
+			yield return new WaitForSeconds(interval);
+			readyForDoubleTap = true;
+
+		}
+		IEnumerator Delay(){
+			yield return new WaitForSeconds (5f);
+			Debug.Log ("TO CHECK AN ANSWER CLICK ONE MORE TIME");
 		}
 
 
