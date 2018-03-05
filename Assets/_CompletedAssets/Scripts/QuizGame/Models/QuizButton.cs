@@ -142,8 +142,9 @@ namespace QuizGame
 				this.onDoubleClickAction.Invoke();
 				Debug.Log("BUTTON IS DOUBLE TAPPED");
 				tap = 0;
-				StopCoroutine("Delay");
 				readyForDoubleTap = false;
+				StopCoroutine("Delay");
+
 			}
 		}
 		
