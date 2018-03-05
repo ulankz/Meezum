@@ -26,8 +26,11 @@ namespace QuizGame
 		#endregion
 
 		#region DELEGATE AND EVENTS
-		public delegate void OnButtonClickDelegate (string id);
-		public static event OnButtonClickDelegate buttonClickDelegate;
+		public delegate void OnButtonSingleClickDelegate (string id);
+		public static event OnButtonSingleClickDelegate buttonSingleClickDelegate;
+		public delegate void OnButtonDoubleClickDelegate (string id);
+		public static event OnButtonDoubleClickDelegate buttonDoubleClickDelegate;
+
 		#endregion
 
 		void Awake(){
@@ -37,24 +40,36 @@ namespace QuizGame
 				questionLabel = gamePanel.GetComponentInChildren<QuizQuestionLabel> ();
 		}
 
-		void Start(){
-			foreach (QuizButton qButton in buttonContainer) {
-				//qButton.onClick.AddListener (() => buttonClick(qButton.name));
-				qButton.onSingleClickAction.AddListener(() => buttonClick(qButton.name));
+		void OnEnable(){
+			// HANDLES THE PROBLEM OFF ADDING LISTENERS THORUGH FOR LOOP
+				buttonContainer[0].onSingleClickAction.AddListener(() => buttonSingleClickHandler(buttonContainer[0].name));
+				buttonContainer[0].onDoubleClickAction.AddListener(() => buttonDoubleClickHandler(buttonContainer[0].name));
+				buttonContainer[1].onSingleClickAction.AddListener(() => buttonSingleClickHandler(buttonContainer[1].name));
+				buttonContainer[1].onDoubleClickAction.AddListener(() => buttonDoubleClickHandler(buttonContainer[1].name));
+				buttonContainer[2].onSingleClickAction.AddListener(() => buttonSingleClickHandler(buttonContainer[2].name));
+				buttonContainer[2].onDoubleClickAction.AddListener(() => buttonDoubleClickHandler(buttonContainer[2].name));
+				buttonContainer[3].onSingleClickAction.AddListener(() => buttonSingleClickHandler(buttonContainer[3].name));
+				buttonContainer[3].onDoubleClickAction.AddListener(() => buttonDoubleClickHandler(buttonContainer[3].name));
 
+		}
+		void OnDisable(){
+			buttonContainer[0].onClick.RemoveAllListeners ();
+			buttonContainer[1].onClick.RemoveAllListeners ();
+			buttonContainer[2].onClick.RemoveAllListeners ();
+			buttonContainer[3].onClick.RemoveAllListeners ();
+		}
+		public void buttonSingleClickHandler(string id){
+			if (buttonSingleClickDelegate != null) {
+				buttonSingleClickDelegate(id);
 			}
 		}
-		void Destroy(){
-			foreach (QuizButton qButton in buttonContainer)
-				qButton.onClick.RemoveAllListeners ();
-		}
-		public void buttonClick(string id){
-			if (buttonClickDelegate != null) {
-				buttonClickDelegate(id);
+		public void buttonDoubleClickHandler(string id){
+			if (buttonDoubleClickDelegate != null) {
+				buttonDoubleClickDelegate(id);
 			}
 		}
 		#region PUBLIC METHODS
-		public void PopulateUIWithData(VictorinaQuestion question){
+		public void PopulateUI(VictorinaQuestion question){
 			if (questionLabel != null)
 				questionLabel.UpdateQuestionLabel (question.Description);
 			if (buttonContainer != null && buttonContainer.Length > 0) {
@@ -67,15 +82,22 @@ namespace QuizGame
 				i=0;
 			}
 		}
-		public void UpdateButtonSprites(bool correctChoice,int buttonIndex){
+		public void UpdateButtonSprites(int correctChoice,int buttonIndex){
 			switch (correctChoice) {
-			case true:
+			case 1: // 1 for Correct Choice
 				buttonContainer[buttonIndex].SetCorrectChoiceState();
 				break;
-			case false: 
+			case 2: // 2 for Wrong Choice
 				buttonContainer[buttonIndex].SetWrongChoiceState();
 				break;
-			
+			case 0: // 0 for Default Choice
+				buttonContainer[buttonIndex].SetDefaultState();
+				break;
+			}
+		}
+		public void ResetButtonSprites(){
+			foreach (QuizButton qButton in buttonContainer) {
+				qButton.SetDefaultState();
 			}
 		}
 			#endregion
