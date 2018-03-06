@@ -33,7 +33,6 @@ namespace QuizGame
 		public Sprite onSprite;
 		public Color offTextColor = Color.white;
 		public Color onTextColor = Color.white;
-		
 		private bool isSelected;
 		public bool IsSelected {
 			get {
@@ -83,6 +82,8 @@ namespace QuizGame
 		{
 			buttonLabel = gameObject.transform.GetComponentInChildren<Text> ();
 			buttonImage = gameObject.GetComponent<Image> ();
+			LoadAudios ();
+			aSource = gameObject.AddComponent<AudioSource> ();
 		}
 
 		#region PUBLIC MEMBERS
@@ -107,6 +108,38 @@ namespace QuizGame
 		{
 			buttonImage.sprite = stateImages [0];// Sets  sprite for correct state
 		}
+		public AudioClip AnswerDescriptionAudio {
+			get {
+				return this.answerDescriptionAudio;
+			}
+			set {
+				answerDescriptionAudio = value;
+			}
+		}
+		public AudioClip ButtonClickCorrectSound {
+			get {
+				return this.buttonClickCorrectSound;
+			}
+			set {
+				buttonClickCorrectSound = value;
+			}
+		}
+		public AudioClip ButtonClickWrongSound {
+			get {
+				return this.buttonClickWrongSound;
+			}
+			set {
+				buttonClickWrongSound = value;
+			}
+		}
+		public AudioClip ButtonClickDefaultSound {
+			get {
+				return this.buttonClickDefaultSound;
+			}
+			set {
+				buttonClickDefaultSound = value;
+			}
+		}
 		#endregion
 		#region CHECK FOR DOUBLE CLICK
 		private float clickTime;            // time of click
@@ -116,6 +149,12 @@ namespace QuizGame
 		#region PRIVATE MEMBERS
 		private string singleClickButtonID;	
 		private string doubleClickButtonID;
+		private AudioClip answerDescriptionAudio;
+		private AudioClip buttonClickCorrectSound;
+		private AudioClip buttonClickWrongSound;
+		private AudioClip buttonClickDefaultSound;
+		[SerializeField]
+		private AudioSource aSource;
 		#endregion
 
 		int tap;
@@ -129,6 +168,7 @@ namespace QuizGame
 			if (tap == 1)
 			{
 				//do stuff
+				PlayAnswerDescriptionSound();
 				Debug.Log("BUTTON IS SINGLE TAPPED");
 				this.onSingleClickAction.Invoke();
 				StartCoroutine("Delay");
@@ -139,6 +179,7 @@ namespace QuizGame
 			else if (tap > 1 && readyForDoubleTap)
 			{
 				//do stuff
+				PlayButtonSound();
 				this.onDoubleClickAction.Invoke();
 				Debug.Log("BUTTON IS DOUBLE TAPPED");
 				tap = 0;
@@ -146,6 +187,31 @@ namespace QuizGame
 				StopCoroutine("Delay");
 
 			}
+		}
+
+//		void PlayButtonSound (string state)
+//		{
+//			switch(state){
+//			case "correct":
+//				aSource.clip = ButtonClickCorrectSound;
+//				break;
+//			case "wrong":
+//				aSource.clip = ButtonClickWrongSound;
+//				break;
+//			}
+//			if (!aSource.isPlaying)
+//				aSource.Play ();
+//		}
+		void PlayButtonSound (){
+			aSource.clip = ButtonClickDefaultSound;
+			if (!aSource.isPlaying)
+				aSource.Play ();
+		}
+		void PlayAnswerDescriptionSound ()
+		{
+			aSource.clip = AnswerDescriptionAudio;
+			if (!aSource.isPlaying)
+				aSource.Play ();
 		}
 		
 		IEnumerator DoubleTapInterval()
@@ -159,7 +225,12 @@ namespace QuizGame
 			Debug.Log ("TO CHECK AN ANSWER CLICK ONE MORE TIME");
 		}
 
-
+		private void LoadAudios(){
+			AnswerDescriptionAudio = Resources.Load ("Sounds/QuizGame/callToAction", typeof(AudioClip)) as AudioClip;
+			ButtonClickCorrectSound = Resources.Load ("Sounds/QuizGame/callToAction", typeof(AudioClip)) as AudioClip;
+			ButtonClickWrongSound = Resources.Load ("Sounds/QuizGame/callToAction", typeof(AudioClip)) as AudioClip;
+			ButtonClickDefaultSound = Resources.Load ("Sounds/QuizGame/callToAction", typeof(AudioClip)) as AudioClip;
+		}
 	}
 		
 }
