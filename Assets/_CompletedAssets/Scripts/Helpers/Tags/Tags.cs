@@ -15,5 +15,6 @@ namespace MeezumGame
 		public const string PLAYER = "Player";
 		public const string QUESTION = "Question";
 		public const string QUIZ_UI_MANAGER = "QuizUIManager";
+		public const string SOUND_MANAGER = "SoundManager";
 	}
 }

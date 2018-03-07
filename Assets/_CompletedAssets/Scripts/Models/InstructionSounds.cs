@@ -38,7 +38,7 @@ namespace MeezumGame
 		#endregion
 		#region PROTECTED MEMBERS
 		protected virtual void LoadAudioClips(){
-			Debug.Log ("LOAD_AUDIO_CLIPS : AudioClips loaded successfully");
+
 		}
 		#endregion
 	
