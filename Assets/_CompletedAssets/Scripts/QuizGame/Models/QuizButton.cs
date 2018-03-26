@@ -13,6 +13,11 @@ namespace QuizGame
 	{
 
 		#region PUBLIC MEMBERS
+
+		public delegate void OnSingleClickCallDelegate();
+		
+		public static event OnSingleClickCallDelegate singleClickCallDelegate;
+
 		[System.Serializable]
 		public class OnSingleClick : UnityEvent {};
 		public OnSingleClick onSingleClickAction;
@@ -83,7 +88,7 @@ namespace QuizGame
 			buttonLabel = gameObject.transform.GetComponentInChildren<Text> ();
 			buttonImage = gameObject.GetComponent<Image> ();
 			LoadAudios ();
-			aSource = gameObject.AddComponent<AudioSource> ();
+			aSource = gameObject.GetComponent<AudioSource> ();
 		}
 
 		#region PUBLIC MEMBERS
@@ -162,6 +167,7 @@ namespace QuizGame
 		bool readyForDoubleTap;
 		public override void OnPointerClick(PointerEventData eventData)
 		{
+			base.OnPointerClick (eventData);
 			tap ++;
 
 
@@ -222,7 +228,10 @@ namespace QuizGame
 		}
 		IEnumerator Delay(){
 			yield return new WaitForSeconds (5f);
+			if (singleClickCallDelegate != null)
+				singleClickCallDelegate ();
 			Debug.Log ("TO CHECK AN ANSWER CLICK ONE MORE TIME");
+
 		}
 
 		private void LoadAudios(){
