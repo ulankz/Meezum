@@ -16,6 +16,7 @@ namespace MeezumGame
 		#endregion
 		#region SYSTEM METHODS
 		private void Awake(){
+			gameObject.tag = Tags.INSTRUCTIONS_SOUND_MANAGER;
 			audioSource = gameObject.AddComponent<AudioSource> ();
 			PopulateWholeInstructionSounds ();
 		}

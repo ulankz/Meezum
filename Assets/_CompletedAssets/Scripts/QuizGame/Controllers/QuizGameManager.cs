@@ -28,14 +28,14 @@ namespace QuizGame
 		[SerializeField]
 		private bool quizGameStarted;
 		[SerializeField]
-		private InstructionSoundManager soundManager;
+		private InstructionSoundManager instructionSoundManager;
 		#endregion
 		#region INTERNAL METHODS
 		// Use this for initialization
 		void Awake ()
 		{
 			quizUIManager = GameObject.FindGameObjectWithTag (Tags.QUIZ_UI_MANAGER).GetComponent<QuizUIManager> ();
-			soundManager = GameObject.FindGameObjectWithTag (Tags.SOUND_MANAGER).GetComponent<InstructionSoundManager> ();
+			instructionSoundManager = GameObject.FindGameObjectWithTag (Tags.INSTRUCTIONS_SOUND_MANAGER).GetComponent<InstructionSoundManager> ();
 			if (quizUIManager == null)
 				Debug.LogError ("QUIZ_UI_MANAGER IS NULL !!");
 			GenerateQuestions ();
@@ -117,14 +117,14 @@ namespace QuizGame
 		}
 		public void StartQuizGame ()
 		{
-			soundManager.PlayGameRule ("QuizGame");
+			instructionSoundManager.PlayGameRule ("QuizGame");
 			//questions[currentQuestionIndex].
 			PopulateUIWithData (questions);
 
 		}
 		public void EndQuizGame ()
 		{
-			soundManager.PlayEnd ("QuizGame");
+			instructionSoundManager.PlayEnd ("QuizGame");
 			ShowEndGameMessage ();
 		}
 		#endregion

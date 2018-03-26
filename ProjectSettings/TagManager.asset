@@ -13,6 +13,7 @@ TagManager:
   - StarManager
   - QuizUIManager
   - SoundManager
+  - InstructionsSoundManager
   layers:
   - Default
   - TransparentFX
