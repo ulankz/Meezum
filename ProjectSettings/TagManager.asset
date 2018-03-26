@@ -12,6 +12,9 @@ TagManager:
   - Cells
   - StarManager
   - QuizUIManager
+  - SoundManager
+  - InstructionsSoundManager
+  - NotificationManager
   layers:
   - Default
   - TransparentFX

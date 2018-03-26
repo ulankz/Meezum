@@ -13,6 +13,11 @@ namespace QuizGame
 	{
 
 		#region PUBLIC MEMBERS
+
+		public delegate void OnSingleClickCallDelegate();
+		
+		public static event OnSingleClickCallDelegate singleClickCallDelegate;
+
 		[System.Serializable]
 		public class OnSingleClick : UnityEvent {};
 		public OnSingleClick onSingleClickAction;
@@ -33,7 +38,6 @@ namespace QuizGame
 		public Sprite onSprite;
 		public Color offTextColor = Color.white;
 		public Color onTextColor = Color.white;
-		
 		private bool isSelected;
 		public bool IsSelected {
 			get {
@@ -79,10 +83,12 @@ namespace QuizGame
 		
 		#endregion
 
-		void Awake ()
+		protected override void Awake ()
 		{
 			buttonLabel = gameObject.transform.GetComponentInChildren<Text> ();
 			buttonImage = gameObject.GetComponent<Image> ();
+			LoadAudios ();
+			aSource = gameObject.GetComponent<AudioSource> ();
 		}
 
 		#region PUBLIC MEMBERS
@@ -107,57 +113,133 @@ namespace QuizGame
 		{
 			buttonImage.sprite = stateImages [0];// Sets  sprite for correct state
 		}
+		public AudioClip AnswerDescriptionAudio {
+			get {
+				return this.answerDescriptionAudio;
+			}
+			set {
+				answerDescriptionAudio = value;
+			}
+		}
+		public AudioClip ButtonClickCorrectSound {
+			get {
+				return this.buttonClickCorrectSound;
+			}
+			set {
+				buttonClickCorrectSound = value;
+			}
+		}
+		public AudioClip ButtonClickWrongSound {
+			get {
+				return this.buttonClickWrongSound;
+			}
+			set {
+				buttonClickWrongSound = value;
+			}
+		}
+		public AudioClip ButtonClickDefaultSound {
+			get {
+				return this.buttonClickDefaultSound;
+			}
+			set {
+				buttonClickDefaultSound = value;
+			}
+		}
 		#endregion
 		#region CHECK FOR DOUBLE CLICK
 		private float clickTime;            // time of click
-		private bool onClick = true;            // is click allowed on button?
-		private bool onDoubleClick = true;    // is double-click allowed on button?
+//		private bool onSingleClick = true;            // is click allowed on button?
+//		private bool onDoubleClick = true;    // is double-click allowed on button?
 		#endregion
-		public override void OnPointerClick (PointerEventData eventData)
+		#region PRIVATE MEMBERS
+		private string singleClickButtonID;	
+		private string doubleClickButtonID;
+		private AudioClip answerDescriptionAudio;
+		private AudioClip buttonClickCorrectSound;
+		private AudioClip buttonClickWrongSound;
+		private AudioClip buttonClickDefaultSound;
+		[SerializeField]
+		private AudioSource aSource;
+		#endregion
+
+		int tap;
+		float interval = 0.1f;
+		bool readyForDoubleTap;
+		public override void OnPointerClick(PointerEventData eventData)
 		{
 			base.OnPointerClick (eventData);
-
-			int clickCount = 0;
-			Debug.Log ("Initial click count " + clickCount);
-			IsSingleClicked = false;
-			IsDoubleClicked = false;
-			//this.transform.parent.GetComponent<UISegmentedControl>().SelectSegment(this);
-
-			clickCount = 1; // single click
+			tap ++;
 
 
-			
-			// get interval between this click and the previous one (check for double click)
-			float interval = eventData.clickTime - clickTime;
-			
-			// if this is double click, change click count
-			if (interval < 5f && interval > 0)
-				clickCount = 2;
-			
-			// reset click time
-			clickTime = eventData.clickTime;
-			
-			// single click
-			if (onClick && clickCount == 1)
+			if (tap == 1)
 			{
-				IsSingleClicked = true;
-				onSingleClickAction.Invoke();
-				Debug.Log ("SingleClick " + clickCount);
-				SetWrongChoiceState();
+				//do stuff
+				PlayAnswerDescriptionSound();
+				Debug.Log("BUTTON IS SINGLE TAPPED");
+				this.onSingleClickAction.Invoke();
+				StartCoroutine("Delay");
+				StartCoroutine(DoubleTapInterval() );
 
 			}
 			
-			// double click
-			if (onDoubleClick && clickCount == 2)
-			{	
-				IsDoubleClicked = true;
-				onDoubleClickAction.Invoke();
-				SetCorrectChoiceState();
-				Debug.Log ("Double click " + clickCount);
-			}		
+			else if (tap > 1 && readyForDoubleTap)
+			{
+				//do stuff
+				PlayButtonSound();
+				this.onDoubleClickAction.Invoke();
+				Debug.Log("BUTTON IS DOUBLE TAPPED");
+				tap = 0;
+				readyForDoubleTap = false;
+				StopCoroutine("Delay");
+
+			}
 		}
 
+//		void PlayButtonSound (string state)
+//		{
+//			switch(state){
+//			case "correct":
+//				aSource.clip = ButtonClickCorrectSound;
+//				break;
+//			case "wrong":
+//				aSource.clip = ButtonClickWrongSound;
+//				break;
+//			}
+//			if (!aSource.isPlaying)
+//				aSource.Play ();
+//		}
+		void PlayButtonSound (){
+			aSource.clip = ButtonClickDefaultSound;
+			if (!aSource.isPlaying)
+				aSource.Play ();
+		}
+		void PlayAnswerDescriptionSound ()
+		{
+			aSource.clip = AnswerDescriptionAudio;
+			if (!aSource.isPlaying)
+				aSource.Play ();
+		}
+		
+		IEnumerator DoubleTapInterval()
+		{  
+			yield return new WaitForSeconds(interval);
+			readyForDoubleTap = true;
 
+		}
+		IEnumerator Delay(){
+			yield return new WaitForSeconds (5f);
+			if (singleClickCallDelegate != null)
+				singleClickCallDelegate ();
+			Debug.Log ("TO CHECK AN ANSWER CLICK ONE MORE TIME");
+
+		}
+
+		private void LoadAudios(){
+			AnswerDescriptionAudio = Resources.Load ("Sounds/QuizGame/callToAction", typeof(AudioClip)) as AudioClip;
+			ButtonClickCorrectSound = Resources.Load ("Sounds/QuizGame/callToAction", typeof(AudioClip)) as AudioClip;
+			ButtonClickWrongSound = Resources.Load ("Sounds/QuizGame/callToAction", typeof(AudioClip)) as AudioClip;
+			ButtonClickDefaultSound = Resources.Load ("Sounds/QuizGame/callToAction", typeof(AudioClip)) as AudioClip;
+		}
 	}
 		
 }
