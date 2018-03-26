@@ -17,5 +17,6 @@ namespace MeezumGame
 		public const string QUIZ_UI_MANAGER = "QuizUIManager";
 		public const string SOUND_MANAGER = "SoundManager";
 		public const string INSTRUCTIONS_SOUND_MANAGER = "InstructionsSoundManager";
+		public const string NOTIFICATION_MANAGER = "NotificationManager";
 	}
 }
