@@ -29,6 +29,11 @@ namespace QuizGame
 		private bool quizGameStarted;
 		[SerializeField]
 		private InstructionSoundManager instructionSoundManager;
+		[SerializeField]
+		private SoundManager soundManager;
+		[SerializeField]
+		private IdleCheck notificationManager;
+
 		#endregion
 		#region INTERNAL METHODS
 		// Use this for initialization
@@ -36,6 +41,8 @@ namespace QuizGame
 		{
 			quizUIManager = GameObject.FindGameObjectWithTag (Tags.QUIZ_UI_MANAGER).GetComponent<QuizUIManager> ();
 			instructionSoundManager = GameObject.FindGameObjectWithTag (Tags.INSTRUCTIONS_SOUND_MANAGER).GetComponent<InstructionSoundManager> ();
+			soundManager = GameObject.FindGameObjectWithTag (Tags.SOUND_MANAGER).GetComponent<SoundManager> ();
+			notificationManager = GameObject.FindGameObjectWithTag (Tags.NOTIFICATION_MANAGER).GetComponent<IdleCheck> ();
 			if (quizUIManager == null)
 				Debug.LogError ("QUIZ_UI_MANAGER IS NULL !!");
 			GenerateQuestions ();
@@ -47,6 +54,9 @@ namespace QuizGame
 		{
 			QuizUIManager.buttonSingleClickDelegate += SingleClickHandler;
 			QuizUIManager.buttonDoubleClickDelegate += CheckAnswer;
+			IdleCheck.idleChangeDelegate += IdleChangeHandler;
+			SimpleAlertView.okButtonClickDelegate += AlertViewOkButtonHandler;
+			QuizButton.singleClickCallDelegate += PlaySingleClickCallToAction;
 			questionCount = questions.Length;
 
 			StartQuizGame ();
@@ -54,33 +64,34 @@ namespace QuizGame
 
 		void GenerateQuestions ()
 		{
-			VictorinaQuestion q1 = new VictorinaQuestion ("Как ты поступишь, если незнакомый человек предложит пойти с ним?", new string[] {
+			VictorinaQuestion q0 = new VictorinaQuestion (0,"Как ты поступишь, если незнакомый человек предложит пойти с ним?", new string[] {
 				"Конечно пойду, он хочет помочь",
 				"Пойду если он добрый",
 				"Не пойду, и закричу, если он будет заставлять",
 				"Пойду, если он знает мойх родителей"
-			}, 2,"Sounds/QuizGame/callToAction");
-			VictorinaQuestion q2 = new VictorinaQuestion ("Что ты сделаешь, если родители долго делают покупки?", new string[] {
+			}, 2);
+			VictorinaQuestion q1 = new VictorinaQuestion (1,"Что ты сделаешь, если родители долго делают покупки?", new string[] {
 				"Пойду искать игрушки",
 				"Буду торопить их быстрее сделать покупки",
 				"Пойду искать других детей,чтобы пойграть",
 				"Подожду и никуда от них не отойду"
-			}, 3,"Sounds/QuizGame/callToAction");
-			VictorinaQuestion q3 = new VictorinaQuestion ("Как правильно держаться за маму в местах, где много людей?", new string[] {
+			}, 3);
+			VictorinaQuestion q2 = new VictorinaQuestion (2,"Как правильно держаться за маму в местах, где много людей?", new string[] {
 				"Держаться за ее сумку",
 				"Крепко держать за ее руку",
 				"Держаться за ее одежду",
 				"Можно вообще не держаться, а только видеть"
-			}, 1,"Sounds/QuizGame/callToAction");
-			questions [0] = q1;
-			questions [1] = q2;
-			questions [2] = q3;
+			}, 1);
+			questions [0] = q0;
+			questions [1] = q1;
+			questions [2] = q2;
 		}
 
 		void PopulateUIWithData (VictorinaQuestion[] qArray)
 		{
 			if (quizUIManager != null && isActiveAndEnabled && currentQuestionIndex < qArray.Length) {
 				quizUIManager.PopulateUI (qArray [currentQuestionIndex]);
+				PlayQuestionSound (currentQuestionIndex);
 				//currentQuestionIndex++;
 			}
 		}
@@ -88,6 +99,10 @@ namespace QuizGame
 		{
 			QuizUIManager.buttonSingleClickDelegate -= SingleClickHandler;
 			QuizUIManager.buttonDoubleClickDelegate -= CheckAnswer;
+			IdleCheck.idleChangeDelegate -= IdleChangeHandler;
+			SimpleAlertView.okButtonClickDelegate -= AlertViewOkButtonHandler;
+			QuizButton.singleClickCallDelegate -= PlaySingleClickCallToAction;
+
 		}
 		void Update(){
 			Debug.Log ("CURRENT_QUESTION_INDEX " + currentQuestionIndex);
@@ -102,6 +117,7 @@ namespace QuizGame
 				//Debug.Log (" CHECK ANSWER IS CALLED " + id);
 				if (currentQuestionIndex < questions.Length) {
 					CheckCurrentAnswer (id, questions [currentQuestionIndex]);
+					quizUIManager.DisabeUI(false);
 					StartCoroutine (NextQuestionUpdateDelay (nextQuestionUpdateDelay));
 					currentQuestionIndex++;
 				}
@@ -112,6 +128,7 @@ namespace QuizGame
 			int id;
 			if (Int32.TryParse (idString, out id)) {
 				//Debug.Log (" SINGLE_CLICK_HANDLER IS CALLED " + id);
+				PlayAnswerSound(currentQuestionIndex,id);
 
 			}
 		}
@@ -121,20 +138,41 @@ namespace QuizGame
 			//questions[currentQuestionIndex].
 			PopulateUIWithData (questions);
 
+
 		}
 		public void EndQuizGame ()
 		{
 			instructionSoundManager.PlayEnd ("QuizGame");
 			ShowEndGameMessage ();
+
+		}
+		private void PlaySingleClickCallToAction(){// After single click 5 sec of inactivity
+			instructionSoundManager.PlayCallFirstClickToAction ("QuizGame");
 		}
 		#endregion
 		#region PRIVATE METHODS
+
+		void IdleChangeHandler (bool flag)
+		{
+			quizUIManager.DisabeUI (!flag);
+		}
+		void AlertViewOkButtonHandler(){
+			quizUIManager.DisabeUI (true);
+		}
+		private void PlayQuestionSound(int currrentQuestionIndex){
+			soundManager.PlaySound (questions [currentQuestionIndex].QuestionSound,2);
+		}
+		private void PlayAnswerSound(int currentQuestionIndex,int selectedButtonId){
+			soundManager.PlaySound (questions [currentQuestionIndex].AnswerSounds [selectedButtonId]);
+		}
 		private void ShowNextQuestion ()
-		{	
+		{	quizUIManager.DisabeUI (true);
 			quizUIManager.ResetButtonSprites();
 			if (currentQuestionIndex < questions.Length) {
 				PopulateUIWithData (questions);
 			}else {
+				quizUIManager.DisabeUI (false);
+				quizUIManager.DisableButtons(true);
 				EndQuizGame ();
 			}
 		}
