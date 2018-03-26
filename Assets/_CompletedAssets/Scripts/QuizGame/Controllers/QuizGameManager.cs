@@ -192,10 +192,12 @@ namespace QuizGame
 			if (selectedId == currentQuestion.CorrectIndex) {
 				// ADD star to StarManager
 				quizUIManager.UpdateButtonSprites (1, selectedId);
+				quizUIManager.UpdateStarManager(currentQuestionIndex,true);
 
 			} else {
 				quizUIManager.UpdateButtonSprites (1, currentQuestion.CorrectIndex);
 				quizUIManager.UpdateButtonSprites(2,selectedId);
+				quizUIManager.UpdateStarManager(currentQuestionIndex,false);
 			}
 		}
 	

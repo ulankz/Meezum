@@ -24,7 +24,7 @@ namespace QuizGame
 		[SerializeField]
 		private QuizQuestionLabel questionLabel;
 		[SerializeField]
-		private GameObject starManager;	
+		private StarManager starManager;	
 		#endregion
 
 		#region DELEGATE AND EVENTS
@@ -36,7 +36,7 @@ namespace QuizGame
 		#endregion
 
 		void Awake(){
-			starManager = GameObject.FindGameObjectWithTag(Tags.STAR_MANAGER);
+			starManager = GameObject.FindGameObjectWithTag(Tags.STAR_MANAGER).GetComponent<StarManager>();
 			if (gamePanel != null) {
 				buttonContainer = gamePanel.GetComponentsInChildren<QuizButton> ();
 				questionLabel = gamePanel.GetComponentInChildren<QuizQuestionLabel> ();
@@ -112,6 +112,13 @@ namespace QuizGame
 		public void DisableButtons(bool flag){
 			foreach(Button b in buttonContainer){
 				b.enabled = !flag;
+			}
+		}
+		public void UpdateStarManager(int id,bool flag){
+			if (flag) {
+				starManager.SetStar (id);
+			} else {
+				starManager.UnsetStar(id);
 			}
 		}
 		#endregion
