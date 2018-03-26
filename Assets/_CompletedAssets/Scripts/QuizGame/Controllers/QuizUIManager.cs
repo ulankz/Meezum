@@ -12,6 +12,8 @@ namespace QuizGame
 		[SerializeField]
 		private GameObject quizPanel;
 		[SerializeField]
+		private CanvasGroup quizPanelCanvasGroup;
+		[SerializeField]
 		private Image character;
 		[SerializeField]
 		private GameObject gamePanel;
@@ -35,9 +37,13 @@ namespace QuizGame
 
 		void Awake(){
 			starManager = GameObject.FindGameObjectWithTag(Tags.STAR_MANAGER);
-			if (gamePanel != null)
+			if (gamePanel != null) {
 				buttonContainer = gamePanel.GetComponentsInChildren<QuizButton> ();
 				questionLabel = gamePanel.GetComponentInChildren<QuizQuestionLabel> ();
+			}
+			if (quizPanel != null) {
+				quizPanelCanvasGroup = quizPanel.GetComponent<CanvasGroup>(); 
+			}
 		}
 
 		void OnEnable(){
@@ -50,7 +56,6 @@ namespace QuizGame
 				buttonContainer[2].onDoubleClickAction.AddListener(() => buttonDoubleClickHandler(buttonContainer[2].name));
 				buttonContainer[3].onSingleClickAction.AddListener(() => buttonSingleClickHandler(buttonContainer[3].name));
 				buttonContainer[3].onDoubleClickAction.AddListener(() => buttonDoubleClickHandler(buttonContainer[3].name));
-
 		}
 		void OnDisable(){
 			buttonContainer[0].onClick.RemoveAllListeners ();
@@ -68,6 +73,7 @@ namespace QuizGame
 				buttonDoubleClickDelegate(id);
 			}
 		}
+
 		#region PUBLIC METHODS
 		public void PopulateUI(VictorinaQuestion question){
 			if (questionLabel != null)
@@ -100,7 +106,15 @@ namespace QuizGame
 				qButton.SetDefaultState();
 			}
 		}
-			#endregion
+		public void DisabeUI(bool flag){
+			quizPanelCanvasGroup.blocksRaycasts = flag;
+		}
+		public void DisableButtons(bool flag){
+			foreach(Button b in buttonContainer){
+				b.enabled = !flag;
+			}
+		}
+		#endregion
 	
 
 	}
