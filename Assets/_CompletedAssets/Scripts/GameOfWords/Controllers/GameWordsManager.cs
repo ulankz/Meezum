@@ -159,7 +159,7 @@ public class GameWordsManager : MonoBehaviour {
 		cells = GameObject.FindGameObjectsWithTag("Cell").OrderBy( g => g.name ).ToArray();
 	}
 	private GameObject CreateLetter(){
-		Object letterPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/GameOfWords/LetterPrefab.prefab", typeof(GameObject));
+		Object letterPrefab = AssetDatabase.LoadAssetAtPath("Assets/_CompletedAssets/Prefabs/GameOfWords/LetterPrefab.prefab", typeof(GameObject));
 		GameObject letter = Instantiate (letterPrefab,Vector2.zero,Quaternion.identity) as GameObject;
 		letter.transform.localPosition = Vector2.zero;
 		if (letter)
