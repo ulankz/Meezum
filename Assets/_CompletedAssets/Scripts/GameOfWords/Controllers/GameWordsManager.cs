@@ -118,6 +118,7 @@ public class GameWordsManager : MonoBehaviour {
 			letter.GetComponent<SpriteRenderer> ().sprite = GetSpriteByName (letterName);
 			letter.transform.localPosition = new Vector2 (startPos.x + 1.5f, startPos.y); 	
 			letter.transform.name = letterName;
+			letter.transform.localScale = Vector2.one;
 			startPos = letter.transform.localPosition;
 		}
 	}
