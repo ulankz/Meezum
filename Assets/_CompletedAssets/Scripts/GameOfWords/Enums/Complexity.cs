@@ -10,8 +10,8 @@ namespace MeezumGame
 		One = 3,	
 		Two = 3,
 		Three = 4,
-		Four = 5,
-		Five = 6
+		Four = 4,
+		Five = 5
 
 
 	}
