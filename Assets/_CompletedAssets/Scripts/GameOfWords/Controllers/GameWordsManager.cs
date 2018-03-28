@@ -12,22 +12,16 @@ using MeezumGame;
 namespace GameOfWords{
 public class GameWordsManager : MonoBehaviour {
 	
-	//Public members
-
-	//Private members
-	
+	#region PRIVATE MEMBERS
 	[SerializeField]
 	private int numberOfLetters = 26;
-
 	private Complexity levelComplexity;
 	[SerializeField]
 	private GameState gameState;
 	private const int maxAttempts = 3;
 	private int numberAttempts;
-	//[SerializeField]
+	[SerializeField]
 	private Word[] words = new Word[10];
-//	[SerializeField]
-//	private Transform[] lettersGO;
 	[SerializeField]
 	private string word;
 	[SerializeField]
@@ -42,13 +36,20 @@ public class GameWordsManager : MonoBehaviour {
 	private GameObject[] cells;
 	[SerializeField]
 	private string userInput = "";
+	private string answer;
+	[SerializeField]
+	private float letterPosOffset = 1.4f;
+	[SerializeField]
+	private const string letterPrefabPath = "Assets/_CompletedAssets/Prefabs/GameOfWords/LetterPrefab.prefab";
+	[SerializeField]
+	private const string spriteLoadPath = "GameOfWords/Alphabets";
 
-	private string answer;	
-	// DELEGATES AND EVENTS
+	#endregion
+	#region DELEGATES AND EVENTS
 	public delegate void OnLevelComplexityChangeDelegate(Complexity levelCom);
 	public event OnLevelComplexityChangeDelegate OnLevelComplexityChange;
-
-	// GETTER AND SETTERS
+	#endregion
+	#region PUBLIC PROPERTIES
 	[ExposeProperty]
 	public Complexity LevelComplexity{
 		get{ 
@@ -62,6 +63,8 @@ public class GameWordsManager : MonoBehaviour {
 			}
 		}
 	}
+	#endregion
+	#region SYSTEM METHODS
 	void Awake(){
 		GenerateWords ();
 	}
@@ -78,26 +81,33 @@ public class GameWordsManager : MonoBehaviour {
 			//GenerateCells (LevelComplexity);
 		}
 	}
+	void Destroy(){
+		OnLevelComplexityChange -= OnLevelComplexityChangeHandler;
+	}
+	#endregion
+	#region PUBLIC METHODS
+		public void CheckAnswer(){
+			// Logic for checking answer
+			userInput = GetInputFromUser();
+			string[] temp;
+			int ansIndex = 0;
+			if (!userInput.Contains(" ") && words[missionID].AnswersDict.TryGetValue((int)LevelComplexity,out temp)) {
+				ansIndex = Array.BinarySearch (temp,userInput);
+			}
+			if (ansIndex > 0) {
+				Debug.Log ("ANSWER IS CORRECT -> " + ansIndex);	
+			} else {
+				Debug.Log ("ANSWER IS WRONG -> " + ansIndex);	
+			}
+		}
+	#endregion
+	#region PRIVATE METHODS
 	private void GenerateCells(Complexity lComplexity){
 		// Cells depend on level of complexity
 			DeactivateCells();
 			for(int i = 0; i < (int)lComplexity; i++){
 					cells [i].SetActive (true);
 			}
-	}
-	public void CheckAnswer(){
-		// Logic for checking answer
-		userInput = GetInputFromUser();
-		string[] temp;
-		int ansIndex = 0;
-		if (!userInput.Contains(" ") && words[missionID].AnswersDict.TryGetValue((int)LevelComplexity,out temp)) {
-			 ansIndex = Array.BinarySearch (temp,userInput);
-		}
-		if (ansIndex > 0) {
-			Debug.Log ("ANSWER IS CORRECT -> " + ansIndex);	
-		} else {
-			Debug.Log ("ANSWER IS WRONG -> " + ansIndex);	
-		}
 	}
 	private void GivePoints(){
 		// Logic for adding points and showing them in UI
@@ -113,17 +123,17 @@ public class GameWordsManager : MonoBehaviour {
 		string letterName = null;
 		for (int i = 0; i < characters.Length; i++) {
 			letter = CreateLetter ();
-			letter.transform.parent = question;
+			letter.transform.SetParent(question);
 			letterName = characters [i].ToString ();
 			letter.GetComponent<SpriteRenderer> ().sprite = GetSpriteByName (letterName);
-			letter.transform.localPosition = new Vector2 (startPos.x + 1.5f, startPos.y); 	
+			letter.transform.localPosition = new Vector2 (startPos.x + letterPosOffset, startPos.y); 	
 			letter.transform.name = letterName;
 			letter.transform.localScale = Vector2.one;
 			startPos = letter.transform.localPosition;
 		}
 	}
 
-	void DeactivateCells ()
+	private void  DeactivateCells ()
 	{
 		if(cells != null)
 		foreach (GameObject g in cells) {
@@ -156,11 +166,11 @@ public class GameWordsManager : MonoBehaviour {
 //		}
 //	}
 	private void ReferSceneObjects(){
-		question = GameObject.FindGameObjectWithTag ("Question").transform;
-		cells = GameObject.FindGameObjectsWithTag("Cell").OrderBy( g => g.name ).ToArray();
+		question = GameObject.FindGameObjectWithTag (Tags.QUESTION).transform;
+		cells = GameObject.FindGameObjectsWithTag(Tags.CELL).OrderBy( g => g.name ).ToArray();
 	}
 	private GameObject CreateLetter(){
-		Object letterPrefab = AssetDatabase.LoadAssetAtPath("Assets/_CompletedAssets/Prefabs/GameOfWords/LetterPrefab.prefab", typeof(GameObject));
+		Object letterPrefab = AssetDatabase.LoadAssetAtPath(letterPrefabPath, typeof(GameObject));
 		GameObject letter = Instantiate (letterPrefab,Vector2.zero,Quaternion.identity) as GameObject;
 		letter.transform.localPosition = Vector2.zero;
 		if (letter)
@@ -168,7 +178,7 @@ public class GameWordsManager : MonoBehaviour {
 		return null;
 	}
 	private Sprite[] LoadSprites(){
-		var sprites = Resources.LoadAll<Sprite>("GameOfWords/Alphabets");
+		var sprites = Resources.LoadAll<Sprite>(spriteLoadPath);
 		if (sprites.Length > 0) {
 			Debug.Log ("SPRITE LOADING COMPLETED SUCCESSFULLY");
 			return sprites;
@@ -240,8 +250,6 @@ public class GameWordsManager : MonoBehaviour {
 		GenerateCells (levelComplexity);
 		//Debug.Log ("OnLevelComplexityChangeHandler IS CALLED " + (int)levelComplexity);
 	}
-	void Destroy(){
-		OnLevelComplexityChange -= OnLevelComplexityChangeHandler;
-	}
+	#endregion
 	}
 }
