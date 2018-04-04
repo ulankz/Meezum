@@ -26,6 +26,9 @@ namespace MeezumGame
 		public const string GAME_WORDS_MANAGER = "GameWordsManager";
 		public const string QUIZ_GAME_MANAGER = "QuizGameManager";
 		public const string GAME_PANEL = "GamePanel";
+		public const string GAME_WORDS_ROOT_PANEL = "GameWordsRootPanel";
+		public const string QUESTIONS_PANEL = "QuestionsPanel";
+		public const string CHECK_BUTTON = "CheckButton";
 
 
 

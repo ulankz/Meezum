@@ -21,6 +21,9 @@ TagManager:
   - GameWordsManager
   - QuizGameManager
   - GamePanel
+  - QuestionsPanel
+  - CheckButton
+  - GameWordsRootPanel
   layers:
   - Default
   - TransparentFX
