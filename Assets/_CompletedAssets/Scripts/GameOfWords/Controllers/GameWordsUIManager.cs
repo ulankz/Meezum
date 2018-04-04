@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using MeezumGame;
-namespace QuizGame
+namespace GameOfWords
 {
 	public class GameWordsUIManager : MonoBehaviour, UIManagable
 	{
 
-//		#region PRIVATE MEMBERS
-//		[SerializeField]
-//		private GameObject quizPanel;
-//		[SerializeField]
-//		private CanvasGroup quizPanelCanvasGroup;
-//		[SerializeField]
-//		private Image character;
-//		[SerializeField]
-//		private GameObject gamePanel;
-//		[SerializeField]
-//		private QuizButton[] buttonContainer;
-//		[SerializeField] 
-//		private GameObject questionPanel;
-//		[SerializeField]
-//		private QuizQuestionLabel questionLabel;
-//		[SerializeField]
-//		private StarManager starManager;	
-//		#endregion
+		#region PRIVATE MEMBERS
+		[SerializeField]
+		private GameObject gameWordsRootPanel;
+		[SerializeField]
+		private CanvasGroup gameWordsPanelCanvasGroup;
+		[SerializeField]
+		private Image character;
+		[SerializeField]
+		private GameObject gamePanel;
+		[SerializeField] 
+		private GameObject questionPanel;
+		[SerializeField]
+		private StarManager starManager;
+		[SerializeField]
+		private CellPlaceHolder cellsContainer;
+		[SerializeField]
+		private Button checkButton;
+		#endregion
 //
 //		#region DELEGATE AND EVENTS
 //		public delegate void OnButtonSingleClickDelegate (string id);
@@ -35,46 +35,37 @@ namespace QuizGame
 //
 //		#endregion
 //
-//		void Awake(){
-//			starManager = GameObject.FindGameObjectWithTag(Tags.STAR_MANAGER).GetComponent<StarManager>();
-//			if (gamePanel != null) {
-//				buttonContainer = gamePanel.GetComponentsInChildren<QuizButton> ();
-//				questionLabel = gamePanel.GetComponentInChildren<QuizQuestionLabel> ();
-//			}
-//			if (quizPanel != null) {
-//				quizPanelCanvasGroup = quizPanel.GetComponent<CanvasGroup>(); 
-//			}
-//		}
-//
-//		void OnEnable(){
-//			// HANDLES THE PROBLEM OFF ADDING LISTENERS THORUGH FOR LOOP
-//				buttonContainer[0].onSingleClickAction.AddListener(() => buttonSingleClickHandler(buttonContainer[0].name));
-//				buttonContainer[0].onDoubleClickAction.AddListener(() => buttonDoubleClickHandler(buttonContainer[0].name));
-//				buttonContainer[1].onSingleClickAction.AddListener(() => buttonSingleClickHandler(buttonContainer[1].name));
-//				buttonContainer[1].onDoubleClickAction.AddListener(() => buttonDoubleClickHandler(buttonContainer[1].name));
-//				buttonContainer[2].onSingleClickAction.AddListener(() => buttonSingleClickHandler(buttonContainer[2].name));
-//				buttonContainer[2].onDoubleClickAction.AddListener(() => buttonDoubleClickHandler(buttonContainer[2].name));
-//				buttonContainer[3].onSingleClickAction.AddListener(() => buttonSingleClickHandler(buttonContainer[3].name));
-//				buttonContainer[3].onDoubleClickAction.AddListener(() => buttonDoubleClickHandler(buttonContainer[3].name));
-//		}
-//		void OnDisable(){
-//			buttonContainer[0].onClick.RemoveAllListeners ();
-//			buttonContainer[1].onClick.RemoveAllListeners ();
-//			buttonContainer[2].onClick.RemoveAllListeners ();
-//			buttonContainer[3].onClick.RemoveAllListeners ();
-//		}
-//		public void buttonSingleClickHandler(string id){
-//			if (buttonSingleClickDelegate != null) {
-//				buttonSingleClickDelegate(id);
-//			}
-//		}
+		#region SYSTEM METHODS
+		void Awake(){
+			gameWordsRootPanel = GameObject.FindGameObjectWithTag (Tags.GAME_WORDS_ROOT_PANEL);
+			gamePanel = GameObject.FindGameObjectWithTag (Tags.GAME_PANEL);
+			starManager = GameObject.FindGameObjectWithTag(Tags.STAR_MANAGER).GetComponent<StarManager>();
+			if (gamePanel != null) {
+				questionPanel = GameObject.FindGameObjectWithTag(Tags.QUESTIONS_PANEL);
+				cellsContainer = GameObject.FindGameObjectWithTag(Tags.CELLS).GetComponent<CellPlaceHolder>();
+				character = GameObject.FindGameObjectWithTag(Tags.CHARACTER).GetComponent<Image>();
+				checkButton = GameObject.FindGameObjectWithTag(Tags.CHECK_BUTTON).GetComponent<Button>();
+			}
+			if (gameWordsRootPanel != null) {
+				gameWordsPanelCanvasGroup = gameWordsRootPanel.GetComponent<CanvasGroup>(); 
+			}
+		}
+		void Update(){
+
+		}
+		void OnEnable(){
+		}
+		void OnDisable(){
+		}
+		#endregion
+
 //		public void buttonDoubleClickHandler(string id){
 //			if (buttonDoubleClickDelegate != null) {
 //				buttonDoubleClickDelegate(id);
 //			}
 //		}
 //
-//		#region PUBLIC METHODS
+		#region PUBLIC METHODS
 //		public void PopulateUI(VictorinaQuestion question){
 //			if (questionLabel != null)
 //				questionLabel.UpdateQuestionLabel (question.Description);
@@ -88,41 +79,72 @@ namespace QuizGame
 //				i=0;
 //			}
 //		}
-//		public void UpdateButtonSprites(int correctChoice,int buttonIndex){
-//			switch (correctChoice) {
-//			case 1: // 1 for Correct Choice
-//				buttonContainer[buttonIndex].SetCorrectChoiceState();
-//				break;
-//			case 2: // 2 for Wrong Choice
-//				buttonContainer[buttonIndex].SetWrongChoiceState();
-//				break;
-//			case 0: // 0 for Default Choice
-//				buttonContainer[buttonIndex].SetDefaultState();
-//				break;
-//			}
-//		}
-//		public void ResetButtonSprites(){
-//			foreach (QuizButton qButton in buttonContainer) {
-//				qButton.SetDefaultState();
-//			}
-//		}
-//		public void DisabeUI(bool flag){
-//			quizPanelCanvasGroup.blocksRaycasts = flag;
-//		}
-//		public void DisableButtons(bool flag){
-//			foreach(Button b in buttonContainer){
-//				b.enabled = !flag;
-//			}
-//		}
-//		public void UpdateStarManager(int id,bool flag){
-//			if (flag) {
-//				starManager.SetStar (id);
-//			} else {
-//				starManager.UnsetStar(id);
-//			}
-//		}
-//		#endregion
-//	
+		public void UpdateButtonSprites(CellStatus status){
+			switch (status) {
+			case CellStatus.EMPTY: // 1 for Correct Choice
+				checkButton.interactable = false;
+				checkButton.image.color = Color.white;
+				break;
+			case CellStatus.PARTIALY_FILLED: // 2 for Wrong Choice
+				checkButton.interactable = true;
+				checkButton.image.color = Color.yellow;
+				break;
+			case CellStatus.FULLY_FILLED: // 0 for Default Choice
+				checkButton.interactable = true;
+				checkButton.image.color = Color.green;
+				break;
+			}
+
+		}
+		public void UpdateTiles(bool flag){
+			if (flag) {
+				foreach (Tile t in cellsContainer.ActiveTiles) {
+					t.gameObject.GetComponent<SpriteRenderer> ().color = Color.green;
+				}
+			}
+				else{
+					foreach(Tile t in cellsContainer.ActiveTiles){
+						t.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+					}
+				}
+
+		}
+		public void ResetTileColors(){
+			foreach (Tile t in cellsContainer.ActiveTiles) {
+				t.gameObject.GetComponent<SpriteRenderer> ().color = Color.white;
+			}
+		}
+		public void ResetTilePositions(){
+			foreach(Tile t in cellsContainer.ActiveTiles){
+				Debug.Log("ACTIVE TILES AFTER RESET " + t);
+				t.PutToInitialPlace();
+
+			}
+			cellsContainer.ActiveTiles.Clear ();
+		}
+		public void ResetCheckButton(){
+			checkButton.image.color = Color.white;
+		}
+		public void DisabeUI(bool flag){
+			gameWordsPanelCanvasGroup.blocksRaycasts = flag;
+		}
+		public void DisableButtons(bool flag){
+				if(checkButton!=null)
+					checkButton.interactable = !flag;
+
+		}
+		public void UpdateStarManager(int id,bool flag){
+			if (flag) {
+				starManager.SetStar (id);
+			} else {
+				starManager.UnsetStar(id);
+			}
+		}
+		public void SetupActiveCells(int levelComplexity){
+			cellsContainer.LookUpCurrentActiveCells (levelComplexity);
+		}
+		#endregion
+	
 
 	}
 

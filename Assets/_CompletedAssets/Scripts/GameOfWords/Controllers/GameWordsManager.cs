@@ -31,11 +31,11 @@ namespace GameOfWords
 		[SerializeField]
 		private GameState
 			gameState;
-		private const int maxAttempts = 3;
+		private  int maxAttempts = 2;
 		private int numberAttempts;
 		[SerializeField]
-		private Word[]
-			words = new Word[10];
+		private int wordsCount = 3;
+		private Word[] words;
 		[SerializeField]
 		private string
 			word;
@@ -68,10 +68,30 @@ namespace GameOfWords
 		private const string
 			spriteLoadPath = "GameOfWords/Alphabets";
 
+		// UI Fields
+		[SerializeField]
+		private GameWordsUIManager
+			gameWordsUIManager; 
+		[SerializeField]
+		private bool wordsGameStarted;
+		[SerializeField]
+		private InstructionSoundManager instructionSoundManager;
+		[SerializeField]
+		private SoundManager soundManager;
+		[SerializeField]
+		private IdleCheck notificationManager;
+		[SerializeField]
+		private int
+			currentQuestionIndex = 0;
+		private float nextQuestionDelay = 2f;
+		private int maxQuestions = 5;
+		private bool UIDisabled = false;
 	#endregion
 	#region DELEGATES AND EVENTS
 		public delegate void OnLevelComplexityChangeDelegate (Complexity levelCom);
 		public event OnLevelComplexityChangeDelegate OnLevelComplexityChange;
+		public delegate void OnAnswerCheckedDelegate (bool answered);
+		public event OnAnswerCheckedDelegate onAnswerChecked;
 	#endregion
 	#region PUBLIC PROPERTIES
 		[ExposeProperty]
@@ -99,28 +119,30 @@ namespace GameOfWords
 		private bool HasInput {
 			get {
 				// returns true if either the mouse button is down or at least one touch is felt on the screen
-				return Input.GetMouseButton (0);
+				return Input.GetMouseButton (0)&&!UIDisabled;
 			}
 		}
 	#endregion
 	#region SYSTEM METHODS
 		void Awake ()
 		{
+			gameWordsUIManager = GameObject.FindGameObjectWithTag (Tags.GAME_WORDS_UI_MANAGER).GetComponent<GameWordsUIManager> ();
+			instructionSoundManager = GameObject.FindGameObjectWithTag (Tags.INSTRUCTIONS_SOUND_MANAGER).GetComponent<InstructionSoundManager> ();
+			soundManager = GameObject.FindGameObjectWithTag (Tags.SOUND_MANAGER).GetComponent<SoundManager> ();
+			notificationManager = GameObject.FindGameObjectWithTag (Tags.NOTIFICATION_MANAGER).GetComponent<IdleCheck> ();
+			if (gameWordsUIManager == null)
+				Debug.LogError ("QUIZ_UI_MANAGER IS NULL !!");
 			GenerateWords ();
+			if (words.Length == 0)
+				Debug.LogError ("WORDS LIST IS EMPTY !!");
 		}
 		void Start ()
 		{
-			using (var bench = new Benchmark ("Code runs in :")) {
-				gameState = GameState.STARTED;
-				ReferSceneObjects ();
-				//DeactivateCells ();
-				OnLevelComplexityChange += OnLevelComplexityChangeHandler;
-				LevelComplexity = Complexity.Two;
-				//populateLettersArray ();
-				sprites = LoadSprites ();
-				CreateLettersForWord (missionID);
-				//GenerateCells (LevelComplexity);
-			}
+			//using (var bench = new Benchmark ("Code runs in :")) {
+			SetupGame ();
+			StartGameWordsGame ();
+				
+			//}
 		}
 		void Update ()
 		{
@@ -130,16 +152,28 @@ namespace GameOfWords
 				if (draggingItem)
 					DropItem ();
 			}
+			Debug.Log ("MAX ATTEMPTS LEFT " + maxAttempts);
 		}
-		void Destroy ()
+		void OnEnable(){
+			onAnswerChecked += AnswerCheckedHandler;
+			IdleCheck.idleChangeDelegate += IdleChangeHandler;
+			SimpleAlertView.okButtonClickDelegate += AlertViewOkButtonHandler;
+			CellPlaceHolder.onCellStatusChangeDelegate += CellStatusChangeHandler;
+		}
+		void OnDestroy ()
 		{
+			onAnswerChecked -= AnswerCheckedHandler;
 			OnLevelComplexityChange -= OnLevelComplexityChangeHandler;
+			IdleCheck.idleChangeDelegate -= IdleChangeHandler;
+			SimpleAlertView.okButtonClickDelegate -= AlertViewOkButtonHandler;
+			CellPlaceHolder.onCellStatusChangeDelegate -= CellStatusChangeHandler;
 		}
 	#endregion
 	#region PUBLIC METHODS
 		public void CheckAnswer ()
 		{
 			// Logic for checking answer
+			bool result;
 			userInput = GetInputFromUser ();
 			string[] temp;
 			int ansIndex = 0;
@@ -148,28 +182,70 @@ namespace GameOfWords
 			}
 			if (ansIndex > 0) {
 				Debug.Log ("ANSWER IS CORRECT -> " + ansIndex);	
-
+				result = true;
+				gameWordsUIManager.UpdateStarManager (currentQuestionIndex,result);
+				currentQuestionIndex++;
 			} else {
-				Debug.Log ("ANSWER IS WRONG -> " + ansIndex);	
+				Debug.Log ("ANSWER IS WRONG -> " + ansIndex);
+				if(maxAttempts > 0)
+					maxAttempts--;
+				if(maxAttempts==0)
+					currentQuestionIndex++;
+				result = false;
 			}
+			if (onAnswerChecked != null)
+				onAnswerChecked (result);
 		}
 	#endregion
 	#region PRIVATE METHODS
+		private void CellStatusChangeHandler(CellStatus status){
+			gameWordsUIManager.UpdateButtonSprites (status);
+			switch (status) {
+			case CellStatus.EMPTY:
+				break;
+			case CellStatus.PARTIALY_FILLED:
+
+				break;
+			case CellStatus.FULLY_FILLED:
+
+				break;
+			}
+		}
+		private void AnswerCheckedHandler (bool isChecked){
+			gameWordsUIManager.UpdateTiles (isChecked);
+			UIDisabled = isChecked;// Disable UI if answer is correct
+			gameWordsUIManager.DisabeUI (true);
+			gameWordsUIManager.DisableButtons (true);
+			StartCoroutine (NextQuestionUpdateDelay(nextQuestionDelay,isChecked));
+		}
+		private void SetupGame(){
+			Debug.Log ("Setup Game");
+			OnLevelComplexityChange += OnLevelComplexityChangeHandler;
+			gameState = GameState.STARTED;
+			ReferSceneObjects ();
+			LevelComplexity = Complexity.One;
+			sprites = LoadSprites ();
+			CreateLettersForWord (missionID);
+
+		}
 		private void GenerateCells (Complexity lComplexity)
 		{
+			Debug.Log ("Generate Cells()");
 			// Cells depend on level of complexity
 			DeactivateCells ();
 			for (int i = 0; i < (int)lComplexity; i++) {
 				cells [i].SetActive (true);
 			}
+			gameWordsUIManager.SetupActiveCells ((int)lComplexity);
 		}
-		private void GivePoints ()
+		void IdleChangeHandler (bool flag)
 		{
-			// Logic for adding points and showing them in UI
-		}
-		private void ActionAlert ()
-		{
-			// Should allert after every 8 seconds in case of no action
+			UIDisabled = true;
+			gameWordsUIManager.DisabeUI (!flag);
+		} 
+		void AlertViewOkButtonHandler(){
+			UIDisabled = false;
+			gameWordsUIManager.DisabeUI (true);
 		}
 		private void CreateLettersForWord (int missionId)
 		{
@@ -257,6 +333,7 @@ namespace GameOfWords
 		}
 		private void GenerateWords ()
 		{
+			words = new Word[wordsCount];
 			string[] three = new string[12]{ "TAM", "PUK", "UPS", "SUP", "CAM", "CET", "RAK", "MAK", "KUM", "SUK", "TUP", "PAT" };
 			Array.Sort (three);
 			string[] four = new string[21] {
@@ -317,7 +394,6 @@ namespace GameOfWords
 		private void DragOrPickUp ()
 		{
 			var inputPosition = CurrentTouchPosition;
-			
 			if (draggingItem) {
 				draggedObject.transform.position = inputPosition + touchOffset;
 			} else {
@@ -334,12 +410,98 @@ namespace GameOfWords
 				}
 			}
 		}
-
 		private void DropItem ()
 		{
 			draggingItem = false;
 			//draggedObject.transform.localScale = new Vector3(1f,1f,1f);
 			draggedObject.GetComponent<Tile> ().Drop ();
+		}
+		public void StartGameWordsGame ()
+		{
+			instructionSoundManager.PlayGameRule ("GameWords");
+			//PopulateUIWithData (questions);
+			//gameWordsUIManager.SetupActiveCells ((int)levelComplexity);
+			
+			
+		}
+		void PopulateUIWithData (Word[] qArray)
+		{
+//			if (quizUIManager != null && isActiveAndEnabled && currentQuestionIndex < qArray.Length) {
+//				quizUIManager.PopulateUI (qArray [currentQuestionIndex]);
+//				PlayQuestionSound (currentQuestionIndex);
+//
+//			}
+		}
+
+		private void PlayQuestionSound(int currrentQuestionIndex){
+			//soundManager.PlaySound (questions [currentQuestionIndex].QuestionSound,2);
+		}
+		private void PlayAnswerSound(int currentQuestionIndex,int selectedButtonId){
+			//soundManager.PlaySound (questions [currentQuestionIndex].AnswerSounds [selectedButtonId]);
+		}
+		private void ShowNextQuestion ()
+		{	UIDisabled = false;
+			gameWordsUIManager.ResetCheckButton ();
+			gameWordsUIManager.ResetTileColors ();
+			gameWordsUIManager.ResetTilePositions ();
+			gameWordsUIManager.DisableButtons (false);
+			if (currentQuestionIndex < maxQuestions) {
+				NextLevelComplexity(currentQuestionIndex);
+				maxAttempts = 2;
+			}else {
+				UIDisabled = true;
+				gameWordsUIManager.DisabeUI (false);
+				gameWordsUIManager.DisableButtons(true);
+				EndGameWordsGame ();
+			}
+		}
+		private void NextLevelComplexity(int level){
+			switch(level){
+			case 0:
+				LevelComplexity = Complexity.One;
+				break;
+			case 1:
+				LevelComplexity = Complexity.Two;
+				break;
+			case 2:
+				LevelComplexity = Complexity.Three;
+				break;
+			case 3:
+				LevelComplexity = Complexity.Four;
+				break;
+			case 4:
+				LevelComplexity = Complexity.Five;
+				break;
+			}
+		}
+		private IEnumerator NextQuestionUpdateDelay (float time,bool isChecked)
+		{
+			yield return new WaitForSeconds (time);
+			UIDisabled = false;
+			if (isChecked || maxAttempts == 0) {
+				ShowNextQuestion ();
+			}
+
+			gameWordsUIManager.ResetTileColors ();
+			gameWordsUIManager.ResetCheckButton ();
+			//gameWordsUIManager.ResetTilePositions ();
+				
+		}
+
+
+		public void EndGameWordsGame ()
+		{
+			instructionSoundManager.PlayEnd ("GameWords");
+			ShowEndGameMessage ();
+			
+		}
+		private void ShowEndGameMessage ()
+		{
+			if (UIAlertView.instance.active_alert_views.Count < 1)
+				UIAlertView.instance.ShowSimpleAlertView (gameObject, UIAlertView.Hash ("title", "Game Completed", "message", "Well Done!!!", "button1title", "OK", "button1callback", "SimpleAlertCallback"));
+		}
+		private void CheckForCellFill(int activeCells){ // Checks for fully or partially filled cells
+			
 		}
 	#endregion
 	}
