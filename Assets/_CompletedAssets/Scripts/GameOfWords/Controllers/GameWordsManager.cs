@@ -173,6 +173,9 @@ namespace GameOfWords
 		public void CheckAnswer ()
 		{
 			// Logic for checking answer
+			if (gameWordsUIManager.GetCellStatus () == CellStatus.PARTIALY_FILLED) {
+				instructionSoundManager.PlayPartiallyFilledReactionSound("GameWords");
+			}
 			bool result;
 			userInput = GetInputFromUser ();
 			string[] temp;
@@ -183,15 +186,18 @@ namespace GameOfWords
 			if (ansIndex > 0) {
 				Debug.Log ("ANSWER IS CORRECT -> " + ansIndex);	
 				result = true;
+				instructionSoundManager.PlayRightCombinationSound("GameWords");
 				gameWordsUIManager.UpdateStarManager (currentQuestionIndex,result);
 				currentQuestionIndex++;
 			} else {
 				Debug.Log ("ANSWER IS WRONG -> " + ansIndex);
+				instructionSoundManager.PlayWrongCombinationSound("GameWords");
 				if(maxAttempts > 0)
 					maxAttempts--;
 				if(maxAttempts==0)
 					currentQuestionIndex++;
 				result = false;
+
 			}
 			if (onAnswerChecked != null)
 				onAnswerChecked (result);
@@ -204,14 +210,17 @@ namespace GameOfWords
 			case CellStatus.EMPTY:
 				break;
 			case CellStatus.PARTIALY_FILLED:
-
+				//instructionSoundManager.PlayFullFilledReactionSound("GameWords");
 				break;
 			case CellStatus.FULLY_FILLED:
-
+				instructionSoundManager.PlayFullFilledReactionSound("GameWords");
 				break;
 			}
+			Debug.Log ("HOW MANY TIMES CELL STATUS CHANGE HANDLER IS CALLED ");
 		}
 		private void AnswerCheckedHandler (bool isChecked){
+
+
 			gameWordsUIManager.UpdateTiles (isChecked);
 			UIDisabled = isChecked;// Disable UI if answer is correct
 			gameWordsUIManager.DisabeUI (true);
@@ -242,6 +251,8 @@ namespace GameOfWords
 		{
 			UIDisabled = true;
 			gameWordsUIManager.DisabeUI (!flag);
+			instructionSoundManager.PlayCallToAction ("GameWords");
+
 		} 
 		void AlertViewOkButtonHandler(){
 			UIDisabled = false;

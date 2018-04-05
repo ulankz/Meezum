@@ -144,7 +144,9 @@ namespace GameOfWords
 			cellsContainer.LookUpCurrentActiveCells (levelComplexity);
 		}
 		#endregion
-	
+		public CellStatus GetCellStatus(){
+			return cellsContainer.CellStatus;
+		}
 
 	}
 
