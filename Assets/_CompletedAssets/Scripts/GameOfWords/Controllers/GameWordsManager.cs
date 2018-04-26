@@ -118,7 +118,7 @@ namespace GameOfWords
 		[ExposeProperty]
 		private bool HasInput {
 			get {
-				// returns true if either the mouse button is down or at least one touch is felt on the screen
+				// returns true if either the mouse button is down or at least one touch is left on the screen
 				return Input.GetMouseButton (0)&&!UIDisabled;
 			}
 		}
@@ -174,7 +174,7 @@ namespace GameOfWords
 		{
 			// Logic for checking answer
 			if (gameWordsUIManager.GetCellStatus () == CellStatus.PARTIALY_FILLED) {
-				instructionSoundManager.PlayPartiallyFilledReactionSound("GameWords");
+				instructionSoundManager.PlayPartiallyReactionSound("GameWords");
 			}
 			bool result;
 			userInput = GetInputFromUser ();
@@ -213,7 +213,7 @@ namespace GameOfWords
 				//instructionSoundManager.PlayFullFilledReactionSound("GameWords");
 				break;
 			case CellStatus.FULLY_FILLED:
-				instructionSoundManager.PlayFullFilledReactionSound("GameWords");
+				instructionSoundManager.PlayFullReactionSound("GameWords");
 				break;
 			}
 			Debug.Log ("HOW MANY TIMES CELL STATUS CHANGE HANDLER IS CALLED ");
