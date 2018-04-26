@@ -24,6 +24,14 @@ TagManager:
   - QuestionsPanel
   - CheckButton
   - GameWordsRootPanel
+  - ClassificationUIManager
+  - ClassificationGameManager
+  - ClassificationCheckButton
+  - ClassificationGamePanel
+  - ClassificationQuestionPanel
+  - ClassificationActorsPanel
+  - ClassificationActor
+  - ClassificationRootPanel
   layers:
   - Default
   - TransparentFX

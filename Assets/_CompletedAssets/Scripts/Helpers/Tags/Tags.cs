@@ -29,8 +29,13 @@ namespace MeezumGame
 		public const string GAME_WORDS_ROOT_PANEL = "GameWordsRootPanel";
 		public const string QUESTIONS_PANEL = "QuestionsPanel";
 		public const string CHECK_BUTTON = "CheckButton";
-
-
-
+		public const string CLASSIFICATION_UI_MANAGER = "ClassificationUIManager";
+		public const string CLASSIFICATION_GAME_MANAGER = "ClassificationGameManager";
+		public const string CLASSIFICATION_CHECK_BUTTON = "ClassificationCheckButton";
+		public const string CLASSIFICATION_GAME_PANEL = "ClassificationGamePanel";
+		public const string CLASSIFICATION_QUESTION_PANEL = "ClassificationQuestionPanel";
+		public const string CLASSIFICATION_ACTORS_PANEL = "ClassificationActorsPanel";
+		public const string CLASSIFICATION_ACTOR = "ClassificationActor";
+		public const string CLASSIFICATION_ROOT_PANEL = "ClassificationRootPanel";
 	}
 }
