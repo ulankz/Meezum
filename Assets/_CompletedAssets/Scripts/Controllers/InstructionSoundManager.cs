@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using QuizGame;
 using GameOfWords;
+using Classification;
 namespace MeezumGame
 {
 	public class InstructionSoundManager : MonoBehaviour
@@ -67,30 +68,36 @@ namespace MeezumGame
 					audioSource.Play();
 			}
 		}
-		public void PlayFullFilledReactionSound(string miniGame){
-			if (instructionSounds.TryGetValue (miniGame,out currentInstructionSoundInstance)){
-				audioSource.clip = (currentInstructionSoundInstance as InstructionSoundGameOfWords).FullFilledReactionSound;
-				if(!audioSource.isPlaying)
-					audioSource.Play();
+		public void PlayFullReactionSound(string miniGame){
+				if (instructionSounds.TryGetValue (miniGame, out currentInstructionSoundInstance)) {
+					if (miniGame == "Classification")
+						audioSource.clip = (currentInstructionSoundInstance as InstructionSoundClassification).FullSelectedReactionSound;
+					else if (miniGame == "GameWords") {
+						audioSource.clip = (currentInstructionSoundInstance as InstructionSoundGameOfWords).FullFilledReactionSound;
+					}
+					if (!audioSource.isPlaying)
+						audioSource.Play ();
+				}
 			}
-		}
 		
-		public void PlayPartiallyFilledReactionSound(string miniGame){
-			if (instructionSounds.TryGetValue (miniGame,out currentInstructionSoundInstance)){
-				audioSource.clip = (currentInstructionSoundInstance as InstructionSoundGameOfWords).PartiallyFilledReactionSound;
-				if(!audioSource.isPlaying)
-					audioSource.Play();
+		public void PlayPartiallyReactionSound(string miniGame){
+			if (instructionSounds.TryGetValue (miniGame, out currentInstructionSoundInstance)) {
+				if (miniGame == "Classification")
+					audioSource.clip = (currentInstructionSoundInstance as InstructionSoundClassification).PartiallySelectedReactionSound;
+				else if (miniGame == "GameWords") {
+					audioSource.clip = (currentInstructionSoundInstance as InstructionSoundGameOfWords).PartiallyFilledReactionSound;
+				}
+				if (!audioSource.isPlaying)
+					audioSource.Play ();
 			}
 		}
+
 		public void PlayRightCombinationSound (string miniGame){
 			int correctSoundsSize;
-
 			if (instructionSounds.TryGetValue (miniGame,out currentInstructionSoundInstance)){
 				correctSoundsSize = (currentInstructionSoundInstance as InstructionSoundGameOfWords).Corrects.Length;
 				audioSource.clip = (currentInstructionSoundInstance as InstructionSoundGameOfWords).Corrects[Random.Range(0, correctSoundsSize)];
 			}
-
-
 			if(!audioSource.isPlaying)
 				audioSource.Play();
 		}
