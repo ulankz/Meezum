@@ -249,7 +249,7 @@ namespace Classification
 		#region PUBLIC METHODS
 		public void CheckAnswer ()
 		{
-			//Debug.Log ("Check Answer is pressed");
+			Debug.Log ("Check Answer is pressed");
 			if (currentQuestionIndex < 5) {//questions.Length
 				CheckCurrentAnswer (questions [currentQuestionIndex]);
 				Debug.Log ("CURRENT QUESTION INDEX IS " + currentQuestionIndex);
@@ -348,7 +348,7 @@ namespace Classification
 						if (currentQuestion.CorrectAnswersDict [element.Key] == 1) {
 							classificationUIManager.UpdateActorSprites (1, i);
 							Debug.Log ("CHECK ME > ERROR FIRES HERE " + i);
-						} else {
+					} else if (currentQuestion.CorrectAnswersDict [element.Key] == 0){
 							classificationUIManager.UpdateActorSprites (2, i);
 						}
 						Debug.Log ("TRACKER OBJECT IS NOT YET CHECKED");

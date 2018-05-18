@@ -32,6 +32,7 @@ TagManager:
   - ClassificationActorsPanel
   - ClassificationActor
   - ClassificationRootPanel
+  - MazeManager
   layers:
   - Default
   - TransparentFX
