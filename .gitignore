@@ -5,7 +5,7 @@
 [Bb]uilds/
 Temp/
 Library/
-#Assets/AssetStoreTools*
+Assets/AssetStoreTools*
 #Assets/StreamingAssets*
 #Assets/Resources*
 #Packages/
@@ -19,7 +19,6 @@ Library/
 #Assets/_CompletedAssets/Prefabs/
 #Assets/_CompletedAssets/SampleAssets/
 #Assets/_CompletedAssets/Scenes/
-
 iOS/
 
 

@@ -15,6 +15,24 @@ TagManager:
   - SoundManager
   - InstructionsSoundManager
   - NotificationManager
+  - GameWordsUIManager
+  - Character
+  - BackgroundMusic
+  - GameWordsManager
+  - QuizGameManager
+  - GamePanel
+  - QuestionsPanel
+  - CheckButton
+  - GameWordsRootPanel
+  - ClassificationUIManager
+  - ClassificationGameManager
+  - ClassificationCheckButton
+  - ClassificationGamePanel
+  - ClassificationQuestionPanel
+  - ClassificationActorsPanel
+  - ClassificationActor
+  - ClassificationRootPanel
+  - MazeManager
   layers:
   - Default
   - TransparentFX

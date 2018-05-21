@@ -52,16 +52,12 @@ namespace QuizGame
 
 		void Start ()
 		{
-			QuizUIManager.buttonSingleClickDelegate += SingleClickHandler;
-			QuizUIManager.buttonDoubleClickDelegate += CheckAnswer;
-			IdleCheck.idleChangeDelegate += IdleChangeHandler;
-			SimpleAlertView.okButtonClickDelegate += AlertViewOkButtonHandler;
-			QuizButton.singleClickCallDelegate += PlaySingleClickCallToAction;
+
 			questionCount = questions.Length;
 
 			StartQuizGame ();
 		}
-
+		
 		void GenerateQuestions ()
 		{
 			VictorinaQuestion q0 = new VictorinaQuestion (0,"Как ты поступишь, если незнакомый человек предложит пойти с ним?", new string[] {
@@ -92,8 +88,14 @@ namespace QuizGame
 			if (quizUIManager != null && isActiveAndEnabled && currentQuestionIndex < qArray.Length) {
 				quizUIManager.PopulateUI (qArray [currentQuestionIndex]);
 				PlayQuestionSound (currentQuestionIndex);
-				//currentQuestionIndex++;
 			}
+		}
+		void OnEnable(){
+			QuizUIManager.buttonSingleClickDelegate += SingleClickHandler;
+			QuizUIManager.buttonDoubleClickDelegate += CheckAnswer;
+			IdleCheck.idleChangeDelegate += IdleChangeHandler;
+			SimpleAlertView.okButtonClickDelegate += AlertViewOkButtonHandler;
+			QuizButton.singleClickCallDelegate += PlaySingleClickCallToAction;
 		}
 		void OnDestroy ()
 		{

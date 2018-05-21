@@ -27,7 +27,7 @@ namespace MeezumGame
 			}
 		}
 
-		public AudioClip CallToAction {
+		public AudioClip CallToAction { // In activity for 8 seconds
 			get {
 				return this.callToAction;
 			}
