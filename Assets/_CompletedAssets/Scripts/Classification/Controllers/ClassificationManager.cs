@@ -261,7 +261,7 @@ namespace Classification
 		public void StartQuizGame ()
 		{
 			//instructionSoundManager.PlayGameRule ("Classification");
-
+			UIDisabled = false;
 			PopulateUIWithData (questions);
 			Debug.Log ("POPULATE UI WITH DATA CLASSIFICATION MANAGER");
 			
@@ -297,6 +297,7 @@ namespace Classification
 			} else {
 				classificationUIManager.DisabeUI (false);
 				classificationUIManager.DisableButtons (true);
+				UIDisabled = true;
 				EndQuizGame ();
 			}
 		}
@@ -368,7 +369,7 @@ namespace Classification
 				if (Input.GetTouch (i).phase.Equals (TouchPhase.Began)) {
 					// Construct a ray from the current touch coordinates
 					Ray ray = Camera.main.ScreenPointToRay (Input.GetTouch (i).position);
-					if (Physics.Raycast (ray, out hit)) {
+					if (Physics.Raycast (ray, out hit) && UIDisabled) {
 						hit.transform.gameObject.SendMessage ("OnMouseDown");
 //						Debug.Log("Hits " + hit.transform.gameObject.name);
 //						if(hit.transform.gameObject.tag == Tags.CLASSIFICATION_CHECK_BUTTON){
