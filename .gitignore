@@ -6,18 +6,18 @@
 Temp/
 Library/
 Assets/AssetStoreTools*
-Assets/StreamingAssets*
-Assets/Resources*
-Packages/
-Assets/Sprites*
-Assets/ExternalPlugins*
-Assets/Editor/
-Assets/Animation*
-Assets/Materials*
-Assets/_CompletedAssets/Animation/
-Assets/_CompletedAssets/Audio/
+#Assets/StreamingAssets*
+#Assets/Resources*
+#Packages/
+#Assets/Sprites*
+#Assets/ExternalPlugins*
+#Assets/Editor/
+#Assets/Animation*
+#Assets/Materials*
+#Assets/_CompletedAssets/Animation/
+#Assets/_CompletedAssets/Audio/
 
-Assets/_CompletedAssets/SampleAssets/
+#Assets/_CompletedAssets/SampleAssets/
 
 
 iOS/
