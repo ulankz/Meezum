@@ -33,6 +33,13 @@ TagManager:
   - ClassificationActor
   - ClassificationRootPanel
   - MazeManager
+  - Coin
+  - Floor
+  - ComicsUIManager
+  - ComicsStartButton
+  - ComicsExitButton
+  - ComicsSettingsButton
+  - LocalizationManager
   layers:
   - Default
   - TransparentFX

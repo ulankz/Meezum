@@ -38,5 +38,8 @@ namespace MeezumGame
 		public const string CLASSIFICATION_ACTOR = "ClassificationActor";
 		public const string CLASSIFICATION_ROOT_PANEL = "ClassificationRootPanel";
 		public const string MAZE_MANAGER = "MazeManager";
+		public const string COMICS_START_BUTTON = "ComicsStartButton";
+		public const string COMICS_EXIT_BUTTON = "ComicsExitButton";
+		public const string COMICS_SETTINGS_BUTTON = "ComicsSettingsButton";
 	}
 }
