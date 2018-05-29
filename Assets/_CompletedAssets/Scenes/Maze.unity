@@ -559,6 +559,10 @@ Prefab:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 713416163}
+    - target: {fileID: 11471494, guid: 6414ea9cfa2ccc24a95c775ffa926968, type: 2}
+      propertyPath: maxAvailableTasks
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6414ea9cfa2ccc24a95c775ffa926968, type: 2}
   m_IsPrefabParent: 0
