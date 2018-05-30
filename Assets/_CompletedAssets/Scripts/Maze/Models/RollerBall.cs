@@ -23,6 +23,7 @@ public class RollerBall : MonoBehaviour {
 
 	private int turnsCount = 0;
 	private int taskLevel = 1;
+	private int completedTasks = 0;
 	private int maxAvailableTasks = 4;
 	System.Collections.Generic.List<GameObject> taskPortals = new System.Collections.Generic.List<GameObject> (); // taskPortals are necessary to record all the spawned tasks within the labyrinth
 
@@ -103,6 +104,7 @@ public class RollerBall : MonoBehaviour {
 				previousStep = PlayerPrefs.GetString ("previousStep", "firstStep"); // Take a look in FixedUpdate () about this variable.
 				playerPosX = PlayerPrefs.GetInt ("playerPosX", 0);
 				playerPosZ = PlayerPrefs.GetInt ("playerPosZ", 0);
+				completedTasks = PlayerPrefs.GetInt ("CompletedTasks", 0);
 				string startingFloorName = "Floor_Column" + playerPosX.ToString() + "_Row" + playerPosZ.ToString(); // It will get the player to the cell, where he was previously stopped, once after he entered to the task scene.
 				GameObject startingFloor = GameObject.Find(startingFloorName);
 				if (startingFloor != null) {
@@ -163,7 +165,7 @@ public class RollerBall : MonoBehaviour {
 							}
 							previousStep = "up";
 							playerPosZ++; // if the player makes his move up, so it will go to the upper cell
-							if (taskLevel > maxAvailableTasks) { // Once all tasks are completed, the player will have to go to the exit, if he gets stuck the sound should play notifying him that this cell is the deadline.
+							if (completedTasks == maxAvailableTasks) { // Once all tasks are completed, the player will have to go to the exit, if he gets stuck the sound should play notifying him that this cell is the deadline.
 								if (StuckInDeadline ("up")) { 
 									Debug.Log ("You're stuck!"); // Here you stuck, and the sound should play
 								}
@@ -179,7 +181,7 @@ public class RollerBall : MonoBehaviour {
 							}
 							previousStep = "down";
 							playerPosZ--;
-							if (taskLevel > maxAvailableTasks) {
+							if (completedTasks == maxAvailableTasks) {
 								if (StuckInDeadline ("down")) {
 									Debug.Log ("You're stuck!");
 								}
@@ -192,7 +194,7 @@ public class RollerBall : MonoBehaviour {
 					if (moveVector.x >= -3 & moveVector.x <= 3 && moveVector.z >= -10 && moveVector.z <= -5) { // Right
 						if(playerPosZ == RowsCount -1 && playerPosX == ColumnsCount - 1) {
 							PlayerPrefs.DeleteAll (); // Once we exit from the labyrinth, we ensure that all data is deleted
-							SceneManager.LoadScene ("Comics"); // Go to the stage where final comics scene will be presented to the player
+							SceneManager.LoadScene ("Exit"); // Go to the stage where final comics scene will be presented to the player
 						}
 						else if (playerPosX + 1 < ColumnsCount && !wallPlacement.WallRight) {
 							floor.GetComponent<Renderer> ().material.color = defaultFloorColor;
@@ -201,7 +203,7 @@ public class RollerBall : MonoBehaviour {
 							}
 							previousStep = "right";
 							playerPosX++;
-							if (taskLevel > maxAvailableTasks) {
+							if (completedTasks == maxAvailableTasks) {
 								if (StuckInDeadline ("right")) {
 									Debug.Log ("You're stuck!");
 								}
@@ -217,7 +219,7 @@ public class RollerBall : MonoBehaviour {
 							}
 							previousStep = "left";
 							playerPosX--;
-							if (taskLevel > maxAvailableTasks) {
+							if (completedTasks == maxAvailableTasks) {
 								if (StuckInDeadline ("left")) {
 									Debug.Log ("You're stuck!");
 								}
