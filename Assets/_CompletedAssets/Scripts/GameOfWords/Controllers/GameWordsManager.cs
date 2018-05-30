@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using Array = System.Array;
 using MeezumGame;
+using UnityEngine.SceneManagement;
 
 namespace GameOfWords
 {
@@ -504,6 +505,11 @@ namespace GameOfWords
 		{
 			instructionSoundManager.PlayEnd ("GameWords");
 			ShowEndGameMessage ();
+			if (PlayerPrefs.GetInt ("CompletedTasks", 0) != null) {
+				int completedTasks = PlayerPrefs.GetInt ("CompletedTasks", 0);
+				PlayerPrefs.SetInt("CompletedTasks", completedTasks+1);
+			}
+			SceneManager.LoadScene ("Maze");
 			
 		}
 		private void ShowEndGameMessage ()
