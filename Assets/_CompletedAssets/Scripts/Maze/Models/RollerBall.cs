@@ -29,6 +29,8 @@ public class RollerBall : MonoBehaviour {
 	public float moveSpeed;
 	public Joystick joystick;
 	private double timer = 1.0;
+	private bool allowMotion = false;
+	private bool gameHasStarted = false;
 
 	// This is to define where the wall was placed per cell
 	public struct WallPlacement {
@@ -85,26 +87,27 @@ public class RollerBall : MonoBehaviour {
 	void Start () {
 		mRigidBody = GetComponent<Rigidbody> (); // it is our ball (player)
 		mAudioSource = GetComponent<AudioSource> ();
-
-		/* This is to ensure that all data was saved after entering previous task. However, take a note, 
-		   that all data must be erased, when the player enters the labyrinth for the first time. 
-		   Otherwise, worst scenario might happen. */
-
-		if (PlayerPrefs.GetFloat ("PlayerPositionX", 0) != null) {
-			taskLevel = PlayerPrefs.GetInt ("taskLevel", 1); // If the player makes 6 turns in the maze, the new task with an appropriate level will be spawned. So this is required to record current task level.
-			previousStep = PlayerPrefs.GetString ("previousStep", "firstStep"); // Take a look in FixedUpdate () about this variable.
-			playerPosX = PlayerPrefs.GetInt ("playerPosX", 0);
-			playerPosZ = PlayerPrefs.GetInt ("playerPosZ", 0);
-			string floorName = "Floor_Column" + playerPosX.ToString() + "_Row" + playerPosZ.ToString(); // It will get the player to the cell, where he was previously stopped, once after he entered to the task scene.
-			GameObject floor = GameObject.Find(floorName);
-			if (floor != null) {
-				transform.position = floor.transform.position;
-			}
-		}
 	}
 
 	void FixedUpdate () {
 		if (mRigidBody != null) {
+
+			/* This is to ensure that all data was saved after entering previous task. However, take a note, 
+		   that all data must be erased, when the player enters the labyrinth for the first time. 
+		   Otherwise, worst scenario might happen. */
+
+			if (!gameHasStarted) {
+				taskLevel = PlayerPrefs.GetInt ("taskLevel", 1); // If the player makes 6 turns in the maze, the new task with an appropriate level will be spawned. So this is required to record current task level.
+				previousStep = PlayerPrefs.GetString ("previousStep", "firstStep"); // Take a look in FixedUpdate () about this variable.
+				playerPosX = PlayerPrefs.GetInt ("playerPosX", 0);
+				playerPosZ = PlayerPrefs.GetInt ("playerPosZ", 0);
+				string startingFloorName = "Floor_Column" + playerPosX.ToString() + "_Row" + playerPosZ.ToString(); // It will get the player to the cell, where he was previously stopped, once after he entered to the task scene.
+				GameObject startingFloor = GameObject.Find(startingFloorName);
+				if (startingFloor != null) {
+					transform.position = startingFloor.transform.position;
+				}
+				gameHasStarted = true;
+			}
 
 			string wallDirection = "Wall_At_Column" + playerPosX.ToString() + "_Row" + playerPosZ.ToString();
 
@@ -124,8 +127,14 @@ public class RollerBall : MonoBehaviour {
 
 				timer -= Time.deltaTime; 
 
-				if (timer <= 0) {
-					timer = 1.0;
+				if (allowMotion) {
+					transform.position = Vector3.Lerp (transform.position, floor.transform.position, moveSpeed * Time.deltaTime);
+					if (timer <= 0) {
+						allowMotion = false;
+					}
+				}
+
+				if (timer <= 0 && !allowMotion) {
 
 					// previousStep is required to record the two-based steps for the player, so by this we can know whether the player will make a "turn".
 					// turnsCount records information about how much turns were made by the player.
@@ -153,6 +162,8 @@ public class RollerBall : MonoBehaviour {
 									Debug.Log ("You're stuck!"); // Here you stuck, and the sound should play
 								}
 							}
+							allowMotion = true;
+							timer = 1.0;
 						}
 					} else if (moveVector.x >= -10 & moveVector.x <= -5 && moveVector.z >= -3 && moveVector.z <= 3) { // Downwards
 						if (playerPosZ - 1 > -1 && !wallPlacement.WallBack) {
@@ -167,6 +178,8 @@ public class RollerBall : MonoBehaviour {
 									Debug.Log ("You're stuck!");
 								}
 							}
+							allowMotion = true;
+							timer = 1.0;
 						}
 					}
 
@@ -187,6 +200,8 @@ public class RollerBall : MonoBehaviour {
 									Debug.Log ("You're stuck!");
 								}
 							}
+							allowMotion = true;
+							timer = 1.0;
 						}
 					} else if (moveVector.x >= -3 & moveVector.x <= 3 && moveVector.z >= 5 && moveVector.z <= 10) { // Left
 						if (playerPosX - 1 > -1 && !wallPlacement.WallLeft) {
@@ -201,6 +216,8 @@ public class RollerBall : MonoBehaviour {
 									Debug.Log ("You're stuck!");
 								}
 							}
+							allowMotion = true;
+							timer = 1.0;
 						}
 					}
 
@@ -255,21 +272,19 @@ public class RollerBall : MonoBehaviour {
 						}
 					}
 
-					mRigidBody.transform.position = Vector3.MoveTowards(transform.position, floor.transform.position, moveSpeed);
 				}
+
 			}
 		}
 
 		if (ViewCamera != null) {
+			string centerFloorName = "Floor_Column" + ((BasicMazeGenerator.ColumnCount + 4) / 2).ToString() + "_Row" + ((BasicMazeGenerator.RowCount) / 2).ToString();
+			GameObject centerFloor = GameObject.Find(centerFloorName);
 			Vector3 direction = (Vector3.up*2+Vector3.back)*2;
 			RaycastHit hit;
-			Debug.DrawLine(transform.position,transform.position+direction,Color.red);
-			if(Physics.Linecast(transform.position,transform.position+direction,out hit)){
-				ViewCamera.transform.position = new Vector3(hit.point.x, 45, hit.point.z);
-			}else{
-				ViewCamera.transform.position = new Vector3(transform.position.x+direction.x, 45, transform.position.z+direction.z);
-			}
-			ViewCamera.transform.LookAt(transform.position); // this is how camera will look to the player position or any other defined position.
+			Debug.DrawLine(centerFloor.transform.position,centerFloor.transform.position+direction,Color.red);
+			ViewCamera.transform.position = new Vector3(centerFloor.transform.position.x, 40, centerFloor.transform.position.z);
+			ViewCamera.transform.LookAt(centerFloor.transform.position); // this is how camera will look to the player position or any other defined position.
 		}
 	}
 
@@ -287,7 +302,6 @@ public class RollerBall : MonoBehaviour {
 
 		if (coll.gameObject.name.Contains ("TaskPortal")) { // If the player enters the mesh that was generated after turns made, he will go straight to the scene where the task will be presented. All data must be saved before going to the next scene.
 			turnsCount = 0; // we have to nullify the turns count
-			Debug.Log (coll.gameObject.name);
 			PlayerPrefs.SetInt ("taskLevel", taskLevel);
 			PlayerPrefs.SetString ("previousStep", previousStep);
 			PlayerPrefs.SetInt ("playerPosX", playerPosX);
