@@ -41,5 +41,11 @@ namespace MeezumGame
 		public const string COMICS_START_BUTTON = "ComicsStartButton";
 		public const string COMICS_EXIT_BUTTON = "ComicsExitButton";
 		public const string COMICS_SETTINGS_BUTTON = "ComicsSettingsButton";
+		public const string MENU_START_BUTTON = "StartButton";
+		public const string MENU_EXIT_BUTTON = "ExitButton";
+		public const string MENU_SETTINGS_BUTTON = "SettingsButton";
+		public const string GAME_ENTRY_TITLE = "GameEntryTitle";
+		public const string GAME_ENTRY_DESCRIPTION = "GameEntryDescription";
+
 	}
 }

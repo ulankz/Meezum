@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 90534132}
   m_Layer: 5
   m_Name: Exit
-  m_TagString: ComicsExitButton
+  m_TagString: ExitButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +137,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1394618531}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -586,93 +586,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9d9571fe3012854d9efceb25813c98d, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &358974450
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 358974451}
-  - component: {fileID: 358974453}
-  - component: {fileID: 358974452}
-  - component: {fileID: 358974454}
-  m_Layer: 5
-  m_Name: T5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &358974451
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 358974450}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.999936, y: 0.999936, z: 0.999936}
-  m_Children: []
-  m_Father: {fileID: 1394618531}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.555, y: 0}
-  m_AnchorMax: {x: 0.71039456, y: 0.43869793}
-  m_AnchoredPosition: {x: -4, y: 193}
-  m_SizeDelta: {x: -7, y: -420}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &358974452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 358974450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.8588236, g: 0.3647059, b: 0.13725491, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: I have some problems with that,I am completely lost
---- !u!222 &358974453
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 358974450}
---- !u!114 &358974454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 358974450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1a5c1ebe6b6e4f9286199e5ab93db04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: t5
 --- !u!1 &475303488 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1368243423597598, guid: b9d9571fe3012854d9efceb25813c98d,
@@ -731,7 +644,7 @@ GameObject:
   - component: {fileID: 514868902}
   m_Layer: 5
   m_Name: Settings
-  m_TagString: ComicsSettingsButton
+  m_TagString: SettingsButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -747,7 +660,7 @@ RectTransform:
   m_LocalScale: {x: 0.999936, y: 0.999936, z: 0.999936}
   m_Children: []
   m_Father: {fileID: 1394618531}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -828,93 +741,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 514868900}
---- !u!1 &551193570
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 551193571}
-  - component: {fileID: 551193573}
-  - component: {fileID: 551193572}
-  - component: {fileID: 551193574}
-  m_Layer: 5
-  m_Name: T2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &551193571
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 551193570}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.999936, y: 0.999936, z: 0.999936}
-  m_Children: []
-  m_Father: {fileID: 1394618531}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.3766833, y: 0.81530213}
-  m_AnchorMax: {x: 0.4683666, y: 1}
-  m_AnchoredPosition: {x: 1, y: -239}
-  m_SizeDelta: {x: -32, y: -101}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &551193572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 551193570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.8588236, g: 0.3647059, b: 0.13725491, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: I have some problems with that,I am completely lost
---- !u!222 &551193573
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 551193570}
---- !u!114 &551193574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 551193570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1a5c1ebe6b6e4f9286199e5ab93db04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: t2
 --- !u!1 &777932360
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +754,7 @@ GameObject:
   - component: {fileID: 777932362}
   m_Layer: 5
   m_Name: StartButton
-  m_TagString: ComicsStartButton
+  m_TagString: StartButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -945,12 +771,12 @@ RectTransform:
   m_Children:
   - {fileID: 1632824029}
   m_Father: {fileID: 1394618531}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.62833107, y: 0}
-  m_AnchorMax: {x: 0.62833107, y: 0}
-  m_AnchoredPosition: {x: 0, y: 266}
-  m_SizeDelta: {x: 195, y: 185}
+  m_AnchorMin: {x: 0.6726828, y: 0}
+  m_AnchorMax: {x: 0.6726828, y: 0}
+  m_AnchoredPosition: {x: -1, y: 368}
+  m_SizeDelta: {x: 375, y: 302}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &777932362
 MonoBehaviour:
@@ -979,8 +805,8 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: 780963b22a6ac4670832227aba73c1a1, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: f27e3c89246484bd49b04400126ed84d, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 3359f87a3e6004df0a57972eb69909dc, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: f99551a1b27ff4d818d7d24d175c4f3b, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1012,7 +838,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f27e3c89246484bd49b04400126ed84d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f99551a1b27ff4d818d7d24d175c4f3b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1171,7 +997,7 @@ GameObject:
   - component: {fileID: 889447268}
   - component: {fileID: 889447272}
   m_Layer: 5
-  m_Name: ComicsCanvas
+  m_Name: GameEntryCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1279,7 +1105,7 @@ GameObject:
   - component: {fileID: 950259948}
   m_Layer: 5
   m_Name: T1
-  m_TagString: Untagged
+  m_TagString: GameEntryDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1295,12 +1121,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1394618531}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.14051172, y: 0.81530213}
-  m_AnchorMax: {x: 0.31569532, y: 1}
-  m_AnchoredPosition: {x: 8, y: -35}
-  m_SizeDelta: {x: -97, y: -87}
+  m_AnchorMin: {x: 0.41938832, y: 0.81530213}
+  m_AnchorMax: {x: 0.7318807, y: 1}
+  m_AnchoredPosition: {x: 6, y: -423}
+  m_SizeDelta: {x: -122, y: 59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &950259946
 MonoBehaviour:
@@ -1325,7 +1151,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 24
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
@@ -1352,7 +1178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a5c1ebe6b6e4f9286199e5ab93db04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: t1
+  key: victorina_desc
 --- !u!224 &968849734 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224831507548878074, guid: c93360dd1a29b460aa3d772537165e17,
@@ -1420,48 +1246,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1064002048
+--- !u!1 &1291535753
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 1064002049}
-  - component: {fileID: 1064002051}
-  - component: {fileID: 1064002050}
-  - component: {fileID: 1064002052}
+  - component: {fileID: 1291535754}
+  - component: {fileID: 1291535757}
+  - component: {fileID: 1291535756}
+  - component: {fileID: 1291535755}
   m_Layer: 5
-  m_Name: T4
-  m_TagString: Untagged
+  m_Name: GameTitle
+  m_TagString: GameEntryTitle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1064002049
+--- !u!224 &1291535754
 RectTransform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1064002048}
+  m_GameObject: {fileID: 1291535753}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.999936, y: 0.999936, z: 0.999936}
   m_Children: []
   m_Father: {fileID: 1394618531}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.80700004, y: 0.517}
-  m_AnchorMax: {x: 0.97581387, y: 1}
-  m_AnchoredPosition: {x: -6, y: -233}
-  m_SizeDelta: {x: -22, y: -496}
+  m_AnchorMin: {x: 0.31569532, y: 0.81530213}
+  m_AnchorMax: {x: 0.6813276, y: 1}
+  m_AnchoredPosition: {x: 0, y: -35}
+  m_SizeDelta: {x: -305, y: -87}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1064002050
+--- !u!114 &1291535755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1064002048}
+  m_GameObject: {fileID: 1291535753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a5c1ebe6b6e4f9286199e5ab93db04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: victorina
+--- !u!114 &1291535756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1291535753}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -1477,125 +1315,24 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
-    m_FontStyle: 0
+    m_FontSize: 50
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: I have some problems with that,I am completely lost
---- !u!222 &1064002051
+  m_Text: "\u0412\u0418\u041A\u0422\u041E\u0420\u0418\u041D\u0410"
+--- !u!222 &1291535757
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1064002048}
---- !u!114 &1064002052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1064002048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1a5c1ebe6b6e4f9286199e5ab93db04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: t4
---- !u!1 &1315975714
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1315975715}
-  - component: {fileID: 1315975717}
-  - component: {fileID: 1315975716}
-  - component: {fileID: 1315975718}
-  m_Layer: 5
-  m_Name: T6
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1315975715
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1315975714}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.999936, y: 0.999936, z: 0.999936}
-  m_Children: []
-  m_Father: {fileID: 1394618531}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.06525782, y: 0}
-  m_AnchorMax: {x: 0.22000001, y: 0.4504167}
-  m_AnchoredPosition: {x: 2, y: 32}
-  m_SizeDelta: {x: -55, y: -416}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1315975716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1315975714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.8588236, g: 0.3647059, b: 0.13725491, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "I have some problems with that,I am completely lost I have some problems
-    with that,I am completely lost I have some problems with that,I am completely
-    lost I have some problems with that,I \nam completely"
---- !u!222 &1315975717
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1315975714}
---- !u!114 &1315975718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1315975714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1a5c1ebe6b6e4f9286199e5ab93db04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: t6
+  m_GameObject: {fileID: 1291535753}
 --- !u!1001 &1324485573
 Prefab:
   m_ObjectHideFlags: 0
@@ -1829,7 +1566,7 @@ GameObject:
   - component: {fileID: 1394618535}
   - component: {fileID: 1394618534}
   m_Layer: 5
-  m_Name: ComicsUIManager
+  m_Name: GameEntryUIManager
   m_TagString: ComicsUIManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1846,12 +1583,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1291535754}
   - {fileID: 950259945}
-  - {fileID: 551193571}
-  - {fileID: 1878283549}
-  - {fileID: 1064002049}
-  - {fileID: 358974451}
-  - {fileID: 1315975715}
   - {fileID: 777932361}
   - {fileID: 90534131}
   - {fileID: 514868901}
@@ -1883,7 +1616,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 460c10806c086443995d435c209c5858, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 81872651e071d42d1b446f0bb6de3350, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1906,7 +1639,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1394618530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad2a61327c81840e7bdd8edfbefbd18b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3373afce80bf9485993feb71e4545a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 0}
@@ -2007,7 +1740,7 @@ GameObject:
   - component: {fileID: 1632824032}
   m_Layer: 5
   m_Name: StartText
-  m_TagString: Untagged
+  m_TagString: GameEntryStartButtonText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2027,7 +1760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.45900002}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -4.200001}
+  m_AnchoredPosition: {x: 0, y: -4.199997}
   m_SizeDelta: {x: 0, y: -7.699997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1632824030
@@ -2121,90 +1854,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6ae6f43d2f94e9491de89c595639cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1878283548
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1878283549}
-  - component: {fileID: 1878283551}
-  - component: {fileID: 1878283550}
-  - component: {fileID: 1878283552}
-  m_Layer: 5
-  m_Name: T3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1878283549
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1878283548}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.999936, y: 0.999936, z: 0.999936}
-  m_Children: []
-  m_Father: {fileID: 1394618531}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.59351176, y: 0.7236511}
-  m_AnchorMax: {x: 0.7404883, y: 0.9928385}
-  m_AnchoredPosition: {x: -4, y: -75}
-  m_SizeDelta: {x: -40, y: -200}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1878283550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1878283548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.8588236, g: 0.3647059, b: 0.13725491, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: I have some problems with that,I am completely lost
---- !u!222 &1878283551
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1878283548}
---- !u!114 &1878283552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1878283548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1a5c1ebe6b6e4f9286199e5ab93db04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: t3

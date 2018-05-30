@@ -33,7 +33,7 @@ public class ComicsUIManager : MonoBehaviour,UIManagable {
 			});
 
 		}
-		privavte void OnDisable(){
+		private void OnDisable(){
 			startButton.onClick.RemoveAllListeners ();
 			exitButton.onClick.RemoveAllListeners ();
 			settingsButton.onClick.RemoveAllListeners ();
@@ -42,7 +42,8 @@ public class ComicsUIManager : MonoBehaviour,UIManagable {
 		#region PRIVATE FUNCTIONS
 		private void StartButton(){
 			Debug.Log ("START BUTTON WAS CLICKED");
-			SceneManager.LoadScene (Scenes.COMICS_SCENE);
+			GlobalClass.miniGameToLoad = 1;
+			SceneManager.LoadScene (Scenes.GAME_ENTRY_SCENE);
 		}
 		private void ExitLevel(){
 			Debug.Log ("EXIT BUTTON WAS CLICKED");

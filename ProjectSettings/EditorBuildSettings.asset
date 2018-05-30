@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/_CompletedAssets/Scenes/CMaze.unity
     guid: 746e20e2271b94f5ea3e426bd642b558
   - enabled: 1
+    path: Assets/_CompletedAssets/Scenes/GameEntry.unity
+    guid: 00000000000000000000000000000000
+  - enabled: 1
     path: Assets/_CompletedAssets/Scenes/QuizGame.unity
     guid: 0d717cc0478c346efbc9adbdff4527ba
   - enabled: 1
@@ -25,4 +28,4 @@ EditorBuildSettings:
     guid: 69e54e03c08364463985adbcf0cc3f69
   - enabled: 1
     path: Assets/_CompletedAssets/Scenes/Classification.unity
-    guid: 00000000000000000000000000000000
+    guid: ceb525dcbddb2484fa9b06724e7c8e2c

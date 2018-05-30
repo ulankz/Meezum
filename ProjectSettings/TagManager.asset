@@ -40,6 +40,12 @@ TagManager:
   - ComicsExitButton
   - ComicsSettingsButton
   - LocalizationManager
+  - StartButton
+  - ExitButton
+  - SettingsButton
+  - GameEntryTitle
+  - GameEntryDescription
+  - GameEntryStartButtonText
   layers:
   - Default
   - TransparentFX
