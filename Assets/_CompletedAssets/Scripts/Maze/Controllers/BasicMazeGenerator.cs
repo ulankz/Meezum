@@ -5,11 +5,11 @@ using System.Collections;
 //Basic class for maze generation logic
 //</summary>
 public abstract class BasicMazeGenerator {
-	public static int RowCount{ get{ return mMazeRows; } }
-	public static int ColumnCount { get { return mMazeColumns; } }
+	public int RowCount{ get{ return mMazeRows; } }
+	public int ColumnCount { get { return mMazeColumns; } }
 
-	public static int mMazeRows;
-	public static int mMazeColumns;
+	public int mMazeRows;
+	public int mMazeColumns;
 	private MazeCell[,] mMaze;
 
 	public BasicMazeGenerator(int rows, int columns){

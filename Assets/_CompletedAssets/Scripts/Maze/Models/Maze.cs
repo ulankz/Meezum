@@ -32,7 +32,7 @@ public class Maze : MonoBehaviour {
 	void Start () {
 		// enteredLabyrinth let us know, whether the player enters the maze for the first time.
 		if (PlayerPrefs.GetInt ("enteredLabyrinth", 0) != null) {
-			enteredLabyrinth = PlayerPrefs.GetInt("enteredLabyrinth", 0) != 0;
+			enteredLabyrinth = PlayerPrefs.GetInt ("enteredLabyrinth", 0) != 0;
 		}
 
 		// If the player enters the maze for the first time, the new maze will be generated, after iterative entering the previous generated model will be presented.
@@ -88,6 +88,7 @@ public class Maze : MonoBehaviour {
 				}
 			}
 		}
+
 		if(Pillar != null){
 			for (int row = 0; row < Rows+1; row++) {
 				for (int column = 0; column < Columns+1; column++) {
@@ -100,5 +101,9 @@ public class Maze : MonoBehaviour {
 		}
 		enteredLabyrinth = true;
 		PlayerPrefs.SetInt("enteredLabyrinth", enteredLabyrinth ? 1 : 0);
+		if (PlayerPrefs.GetInt ("RowsCount", 0) == 0 && PlayerPrefs.GetInt ("ColumnsCount", 0) == 0) {
+			PlayerPrefs.SetInt ("RowsCount", Rows);
+			PlayerPrefs.SetInt ("ColumnsCount", Columns);
+		}
 	}
 }

@@ -31,6 +31,8 @@ public class RollerBall : MonoBehaviour {
 	private double timer = 1.0;
 	private bool allowMotion = false;
 	private bool gameHasStarted = false;
+	private int RowsCount = 0;
+	private int ColumnsCount = 0;
 
 	// This is to define where the wall was placed per cell
 	public struct WallPlacement {
@@ -106,6 +108,10 @@ public class RollerBall : MonoBehaviour {
 				if (startingFloor != null) {
 					transform.position = startingFloor.transform.position;
 				}
+				if (PlayerPrefs.GetInt ("RowsCount", 0) != 0 && PlayerPrefs.GetInt ("ColumnsCount", 0) != 0) {
+					RowsCount = PlayerPrefs.GetInt ("RowsCount", 0);
+					ColumnsCount = PlayerPrefs.GetInt ("ColumnsCount", 0);
+				}
 				gameHasStarted = true;
 			}
 
@@ -150,7 +156,7 @@ public class RollerBall : MonoBehaviour {
 					// The maze is defined in x and z manner. So z++ means the player goes up, z-- down, x++ right, x-- left.
 
 					if (moveVector.x >= 5 & moveVector.x <= 10 && moveVector.z >= -3 && moveVector.z <= 3) { // The player moves joystick upwards
-						if (playerPosZ + 1 < BasicMazeGenerator.RowCount && !wallPlacement.WallFront) { // If the player makes his move to upper cell, we must ensure, that no wall in front exists, and the boundary is kept, so the system won't throw an error.
+						if (playerPosZ + 1 < RowsCount && !wallPlacement.WallFront) { // If the player makes his move to upper cell, we must ensure, that no wall in front exists, and the boundary is kept, so the system won't throw an error.
 							floor.GetComponent<Renderer> ().material.color = defaultFloorColor; // If the player moves to the next cell, the previous cell will change its color to its default.
 							if (taskLevel <= maxAvailableTasks && previousStep != "firstStep" && previousStep != "up" && previousStep != "down") { // Take a look to all available turns of the player above. If and only the tasks are not completed the turns will be counted. "firstStep", iterative turns, reversed turns are not counted as a turn.
 								turnsCount++;
@@ -184,11 +190,11 @@ public class RollerBall : MonoBehaviour {
 					}
 
 					if (moveVector.x >= -3 & moveVector.x <= 3 && moveVector.z >= -10 && moveVector.z <= -5) { // Right
-						if(playerPosZ == BasicMazeGenerator.RowCount -1 && playerPosX == BasicMazeGenerator.ColumnCount - 1) {
+						if(playerPosZ == RowsCount -1 && playerPosX == ColumnsCount - 1) {
 							PlayerPrefs.DeleteAll (); // Once we exit from the labyrinth, we ensure that all data is deleted
 							SceneManager.LoadScene ("Comics"); // Go to the stage where final comics scene will be presented to the player
 						}
-						else if (playerPosX + 1 < BasicMazeGenerator.ColumnCount && !wallPlacement.WallRight) {
+						else if (playerPosX + 1 < ColumnsCount && !wallPlacement.WallRight) {
 							floor.GetComponent<Renderer> ().material.color = defaultFloorColor;
 							if (taskLevel <= maxAvailableTasks && previousStep != "firstStep" && previousStep != "right" && previousStep != "left") {
 								turnsCount++;
@@ -278,8 +284,11 @@ public class RollerBall : MonoBehaviour {
 		}
 
 		if (ViewCamera != null) {
-			string centerFloorName = "Floor_Column" + ((BasicMazeGenerator.ColumnCount + 4) / 2).ToString() + "_Row" + ((BasicMazeGenerator.RowCount) / 2).ToString();
+			string centerFloorName = "Floor_Column" + ((ColumnsCount + 4) / 2).ToString() + "_Row" + (RowsCount / 2).ToString();
 			GameObject centerFloor = GameObject.Find(centerFloorName);
+			if (centerFloor == null) {
+				Debug.Log ("Not found");
+			}
 			Vector3 direction = (Vector3.up*2+Vector3.back)*2;
 			RaycastHit hit;
 			Debug.DrawLine(centerFloor.transform.position,centerFloor.transform.position+direction,Color.red);
