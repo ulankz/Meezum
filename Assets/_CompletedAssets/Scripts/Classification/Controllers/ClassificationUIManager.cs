@@ -36,7 +36,7 @@ namespace Classification
 		private Button checkButton;
 		[SerializeField]
 		private List<Sprite> actorSprites;
-		private string actorSpritePath = "GameOfWords/Alphabets";
+		private string actorSpritePath = "Classification";
 		#endregion
 //
 //		#region DELEGATE AND EVENTS

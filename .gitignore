@@ -1,4 +1,4 @@
-[Ll]ibrary/
+it status[Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
@@ -55,8 +55,8 @@ sysinfo.txt
 *.wav
 *.mp3
 *.ogg
-*.png
-*.jpeg
+#*.png
+#*.jpeg
 *.psd
 *.mp4
 

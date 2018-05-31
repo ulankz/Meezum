@@ -15,17 +15,23 @@ EditorBuildSettings:
     path: Assets/_CompletedAssets/Scenes/Comics.unity
     guid: 187050ed4048d424e8faefd6c5a22d2b
   - enabled: 1
-    path: Assets/_CompletedAssets/Scenes/CMaze.unity
-    guid: 746e20e2271b94f5ea3e426bd642b558
+    path: Assets/_CompletedAssets/Scenes/Maze.unity
+    guid: 5f66713930f36f84a865122d99889d76
   - enabled: 1
     path: Assets/_CompletedAssets/Scenes/GameEntry.unity
-    guid: 00000000000000000000000000000000
+    guid: c8862f7d8c59b4cd7adaf9c759a82c8e
   - enabled: 1
     path: Assets/_CompletedAssets/Scenes/QuizGame.unity
     guid: 0d717cc0478c346efbc9adbdff4527ba
   - enabled: 1
+    path: Assets/_CompletedAssets/Scenes/Classification.unity
+    guid: ceb525dcbddb2484fa9b06724e7c8e2c
+  - enabled: 1
     path: Assets/_CompletedAssets/Scenes/GameOfWords.unity
     guid: 69e54e03c08364463985adbcf0cc3f69
   - enabled: 1
-    path: Assets/_CompletedAssets/Scenes/Classification.unity
-    guid: ceb525dcbddb2484fa9b06724e7c8e2c
+    path: Assets/_CompletedAssets/Scenes/Settings.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/_CompletedAssets/Scenes/Exit.unity
+    guid: b49e67313c691a142970f21f2a1b6605
