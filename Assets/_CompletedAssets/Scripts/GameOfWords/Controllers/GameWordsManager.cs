@@ -346,55 +346,55 @@ namespace GameOfWords
 		private void GenerateWords ()
 		{
 			words = new Word[wordsCount];
-			string[] three = new string[12]{ "TAM", "PUK", "UPS", "SUP", "CAM", "CET", "RAK", "MAK", "KUM", "SUK", "TUP", "PAT" };
+			string[] three = new string[12]{ "ТАМ", "ПУК", "УПС", "СУП", "САМ", "СЕТ", "РАК", "МАК", "КУМ", "СУК", "ТУП", "ПАТ" };
 			Array.Sort (three);
 			string[] four = new string[21] {
-			"KURT",
-			"KURS",
-			"KRUP",
-			"UTES",
-			"MERA",
-			"TEMA",
-			"TRAP",
-			"STUK",
-			"SERP",
-			"UTKA",
-			"REPS",
-			"REPA",
-			"RUKA",
-			"REKA",
-			"PUMA",
-			"PARK",
-			"MARS",
-			"STUK",
-			"SKAT",
-			"SERA",
-			"KREP"
+			"КУРТ",
+			"КУРС",
+			"КРУП",
+			"УТЕС",
+			"МЕРА",
+			"ТЕМА",
+			"ТРАП",
+			"СТУК",
+			"СЕРП",
+			"УТКА",
+			"РЕПС",
+			"РЕПА",
+			"РУКА",
+			"РЕКА",
+			"ПУМА",
+			"ПАРК",
+			"МАРС",
+			"СТУК",
+			"СКАТ",
+			"СЕРА",
+			"КРЕП"
 		};
 			Array.Sort (four);
 			string[] five = new string[12] {
-			"TRESK",
-			"TURKA",
-			"TERMA",
-			"SPRUT",
-			"TESAK",
-			"TRESk",
-			"MAKET",
-			"SUPER",
-			"SUMKA",
-			"SEKTA",
-			"METKA",
-			"REPKA"
+			"ТРЕСК",
+			"ТУРКА",
+			"ТЕРМА",
+			"СПРУТ",
+			"ТЕСАК",
+			"ТРЕСК",
+			"МАКЕТ",
+			"СУПЕР",
+			"СУМКА",
+			"СЕКТА",
+			"МЕТКА",
+			"РЕПКА"
 		};
 			Array.Sort (five);
-			string[] six = new string[8]{ "PARKET", "SEKRET", "STUPKA", "KAPERS", "MARKET", "TRESKA", "MARKER", "STERKA" };
+			string[] six = new string[8]{ "ПАРКЕТ", "СЕКРЕТ", "СТУПКА", "КАПЕРС", "МАРКЕТ", "ТРЕСКА", "МАРКЕР", "СТЕРКА" };
 			Array.Sort (six);
 			Dictionary<int,string[]> temp = new Dictionary<int, string[]> ();
 			temp.Add (3, three);
 			temp.Add (4, four);
 			temp.Add (5, five);
 			temp.Add (6, six);
-			words [0] = new Word (){ Description = "SUPERMARKET", AnswersDict = temp};
+			words [0] = new Word (){ Description = "СУПЕРМАРКЕТ", AnswersDict = temp};
 			Debug.Log ("WORDS GENERATED SUCCESSFULLY");
 		}
 		// EVENT HANDLERS
