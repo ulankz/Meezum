@@ -4,11 +4,11 @@
     <PlayerEntry>
       <playerName>Maya</playerName>
       <age>5</age>
-      <scores>63</scores>
+      <scores>62</scores>
       <cookies>0</cookies>
       <eatenCookies>0</eatenCookies>
       <boughtCookies>0</boughtCookies>
-      <cleanedMessItems>26</cleanedMessItems>
+      <cleanedMessItems>25</cleanedMessItems>
       <messItems>
         <MessItem>
           <messItemName>mess_toycar</messItemName>
@@ -48,7 +48,7 @@
         </MessItem>
         <MessItem>
           <messItemName>mess_cw_00</messItemName>
-          <status>Cleaned</status>
+          <status>Disclosed</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_cw_02</messItemName>

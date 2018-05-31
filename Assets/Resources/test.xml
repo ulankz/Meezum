@@ -1,0 +1,17 @@
+<root>
+	<cars name="Honda">
+		<year>1999</year>
+		<model>Civic</model>
+		<colors>white;blue;black;red</colors>
+	</cars>
+	<cars name="Toyota">
+		<year>2007</year>
+		<model>Prius</model>
+		<colors>silver;black</colors>
+	</cars>
+	<cars name="Chevrolet">
+		<year>2016</year>
+		<model>2500 HD</model>
+		<colors>green;white;purple</colors>
+	</cars>
+</root>

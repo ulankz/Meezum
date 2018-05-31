@@ -1,0 +1,17 @@
+<players>
+  <player id="0" isActive="False">
+    <name>Айгерим</name>
+    <avatar>hop</avatar>
+    <score>10</score>
+  </player>
+  <player id="1" isActive="False">
+    <name>Досбол</name>
+    <avatar>talky</avatar>
+    <score>0</score>
+  </player>
+  <player id="847473480" isActive="True">
+    <name>Данияр</name>
+    <avatar>hip</avatar>
+    <score>40</score>
+  </player>
+</players>
