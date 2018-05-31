@@ -3,7 +3,10 @@ guid: c6f3302e31897fb4d89c9db2b787dfab
 timeCreated: 1506599723
 licenseType: Pro
 AudioImporter:
+<<<<<<< HEAD
   externalObjects: {}
+=======
+>>>>>>> master
   serializedVersion: 6
   defaultSettings:
     loadType: 0
@@ -17,7 +20,10 @@ AudioImporter:
   normalize: 1
   preloadAudioData: 1
   loadInBackground: 0
+<<<<<<< HEAD
   ambisonic: 0
+=======
+>>>>>>> master
   3D: 1
   userData: 
   assetBundleName: 
