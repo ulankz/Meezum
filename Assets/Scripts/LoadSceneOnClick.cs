@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneOnClick : MonoBehaviour {
 
-	public GameObject helper;
-
 	public void LoadByIndex(int sceneIndex) {
 		SceneManager.LoadScene (sceneIndex);
+		//if (SceneManager.GetActiveScene().name != "Forest")
+			GameObject.Find("btn_door").SetActive(false);
 	}
 
 	public void PlaySound() {
@@ -16,8 +16,6 @@ public class LoadSceneOnClick : MonoBehaviour {
 	}
 
 	void OnMouseUpAsButton() {
-		if (helper)
-			helper.SetActive (false);
 		SceneManager.LoadScene (0);
 		XMLManager.ins.SavePlayers ();
 	}

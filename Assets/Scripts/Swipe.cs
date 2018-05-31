@@ -11,7 +11,6 @@ public class Swipe : MonoBehaviour {
 	public GameObject gamePanel;
 	public GameObject cupboardPanel;
 	public GameObject tvPanel;
-	public GameObject optionsPanel;
 
 	public Vector2 SwipeDelta {get { return swipeDelta; }}
 
@@ -22,12 +21,12 @@ public class Swipe : MonoBehaviour {
 		startTouch = swipeDelta = Vector2.zero;
 		isDraging = false;
 	}
+	/*
 	private void Update() {
 		 swipeLeft = swipeRight = false;
 		if (!gamePanel.activeSelf && !cupboardPanel.activeSelf && !tvPanel.activeSelf && !optionsPanel.activeSelf) {  
 			#region Standalone Inputs
 			if (Input.GetMouseButtonDown (0)) {
-				
 				isDraging = true;
 				startTouch = Input.mousePosition;
 			} else if (Input.GetMouseButtonUp (0)) {
@@ -38,7 +37,6 @@ public class Swipe : MonoBehaviour {
 			#region Mobile Inputs
 			if (Input.touches.Length > 0) {
 				if (Input.touches [0].phase == TouchPhase.Began) {
-					
 					isDraging = true;
 					startTouch = Input.touches [0].position;
 				} else if (Input.touches [0].phase == TouchPhase.Ended || Input.touches [0].phase == TouchPhase.Canceled) {
@@ -72,4 +70,5 @@ public class Swipe : MonoBehaviour {
 			}
 		}
 	}
+	*/
 }

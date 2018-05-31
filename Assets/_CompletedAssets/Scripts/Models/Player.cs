@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+
 namespace MeezumGame
 {
-	public class Player : MonoBehaviour
+	[Serializable]
+	public class Player
 	{
-		#region PRIVATE MEMEBERS
+		#region PRIVATE MEMBERS
 		[SerializeField]
 		private int
 			id;
@@ -16,11 +20,14 @@ namespace MeezumGame
 		private string
 			name;
 		[SerializeField]
-		private int
-			age;
+		private string 
+			avatar;
+		//[SerializeField]
+		//private int 
+		//	age;
 		[SerializeField]
 		private int
-			scores;
+			score;
 		[SerializeField]
 		private List<Mission>
 			completedMissions;
@@ -35,30 +42,34 @@ namespace MeezumGame
 			language;
 		#endregion
 		#region CONSTRUCTORS
-		public Player (int id, string name, int age, int scores, List<Mission> completedMissions, bool isActive, MessElement[] disorder, Language language)
+		public Player (int id, string name, string avatar, int score, List<Mission> completedMissions, bool isActive, MessElement[] disorder, Language language)
 		{
 			this.id = id;
 			this.name = name;
-			this.age = age;
-			this.scores = scores;
+			this.avatar = avatar;
+			this.score = score;
 			this.completedMissions = completedMissions;
 			this.isActive = isActive;
 			this.disorder = disorder;
 			this.language = language;
 		}
-		public Player (int id, string name, int age)
+		public Player (int id, bool isActive, string name, string avatar, int score)
 		{
 			this.id = id;
+			this.isActive = isActive;
 			this.name = name;
-			this.age = age;
+			//this.age = age;
+			this.avatar = avatar;
+			this.score = score;
 		}
+
 		public Player(){
 		
 		}
 		#endregion
 
 		#region PROPERTY MEMBERS
-		int Id {
+		public int Id {
 			get {
 				return this.id;
 			}
@@ -67,7 +78,7 @@ namespace MeezumGame
 			}
 		}
 
-		string Name {
+		public string Name {
 			get {
 				return this.name;
 			}
@@ -76,7 +87,16 @@ namespace MeezumGame
 			}
 		}
 
-		int Age {
+		public string Avatar {
+			get {
+				return this.avatar;
+			}
+			set {
+				avatar = value;
+			}
+		}
+
+		/*public int Age {
 			get {
 				return this.age;
 			}
@@ -84,13 +104,14 @@ namespace MeezumGame
 				age = value;
 			}
 		}
+		*/
 
-		int Scores {
+		public int Score {
 			get {
-				return this.scores;
+				return this.score;
 			}
 			set {
-				scores = value;
+				score = value;
 			}
 		}
 
@@ -104,7 +125,7 @@ namespace MeezumGame
 		}
 
 
-		bool IsActive {
+		public bool IsActive {
 			get {
 				return this.isActive;
 			}
