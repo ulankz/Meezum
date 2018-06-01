@@ -19,7 +19,6 @@ public class ModalPanel : MonoBehaviour {
 			if (!modalPanel)
 				Debug.LogError ("There needs to be one active ModalPanel script on a GameObject in your scene.");
 		}
-
 		return modalPanel;
 	}
 

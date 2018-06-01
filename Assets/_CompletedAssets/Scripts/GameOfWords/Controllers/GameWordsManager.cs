@@ -500,7 +500,6 @@ namespace GameOfWords
 				
 		}
 
-
 		public void EndGameWordsGame ()
 		{
 			instructionSoundManager.PlayEnd ("GameWords");
@@ -510,8 +509,9 @@ namespace GameOfWords
 				PlayerPrefs.SetInt("CompletedTasks", completedTasks+1);
 			}
 			SceneManager.LoadScene ("Maze");
-			
+		
 		}
+
 		private void ShowEndGameMessage ()
 		{
 			if (UIAlertView.instance.active_alert_views.Count < 1)
