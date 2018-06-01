@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 2bf4d88dc62d55548b763537d2b176cc
-timeCreated: 1527821211
+guid: e06cee5fb54d0d64d95ea093ffe26adf
+timeCreated: 1527821245
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: main_tree_door_0
-    21300002: main_tree_door_1
+    21300000: door_0
+    21300002: door_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -80,26 +80,26 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: main_tree_door_0
+      name: door_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 126
-        height: 128
+        x: 8
+        y: 4
+        width: 368
+        height: 376
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: main_tree_door_1
+      name: door_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
+        x: 391
+        y: 4
+        width: 369
+        height: 376
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
