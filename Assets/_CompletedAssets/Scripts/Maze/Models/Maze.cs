@@ -13,16 +13,16 @@ public class Maze : MonoBehaviour {
 	}
 
 	private BasicMazeGenerator mMazeGenerator = null;
-	public bool FullRandom = false;
-	public int RandomSeed = 12345;
+	public bool FullRandom = true;
+	public int RandomSeed = 3;
 	public GameObject Floor = null;
 	public GameObject Wall = null;
 	public GameObject Pillar = null;
-	public int Rows = 5;
-	public int Columns = 5;
-	public float CellWidth = 5;
-	public float CellHeight = 5;
-	public bool AddGaps = true;
+	public int Rows = 10;
+	public int Columns = 10;
+	public float CellWidth = 4;
+	public float CellHeight = 4;
+	public bool AddGaps = false;
 	private bool enteredLabyrinth = false;
 
 	public void DeleteAllSavedData() { // it is required to delete all saved data, after initial enter to the maze, data must be refreshed.
