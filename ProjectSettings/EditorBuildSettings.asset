@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/_CompletedAssets/Scenes/Forest.unity
     guid: 2c1d8ad8366a0aa44adb92b269c4740b
   - enabled: 1
-    path: Assets/_CompletedAssets/Scenes/Guestroom.unity
+    path: Assets/_CompletedAssets/Scenes/Hidden Scenes/GRoom.unity
     guid: 70328bae6dff23344a123f662778f5de
   - enabled: 1
     path: Assets/_CompletedAssets/Scenes/Comics.unity
@@ -37,4 +37,4 @@ EditorBuildSettings:
     guid: fa6fc800b0edb954496f991c7fee38cd
   - enabled: 1
     path: Assets/_CompletedAssets/Scenes/Settings.unity
-    guid: 00000000000000000000000000000000
+    guid: 2cda990e2423bbf4892e6590ba056729
