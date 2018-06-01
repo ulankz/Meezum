@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 8dc633c78a284450db95cd48d64c548f
+timeCreated: 1522838999
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: DS Goose
+  fontNames:
+  - DS Goose
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a1fd463b8e55f314ab8688180e17b229, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
