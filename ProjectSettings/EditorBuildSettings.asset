@@ -9,10 +9,13 @@ EditorBuildSettings:
     path: Assets/_CompletedAssets/Scenes/Forest.unity
     guid: 2c1d8ad8366a0aa44adb92b269c4740b
   - enabled: 1
-    path: Assets/_CompletedAssets/Scenes/MainMenu_old.unity
+    path: Assets/_CompletedAssets/Scenes/Guestroom.unity
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/_CompletedAssets/Scenes/SuperMainMenu.unity
     guid: fa6fc800b0edb954496f991c7fee38cd
   - enabled: 1
-    path: Assets/_CompletedAssets/Scenes/Guestroom.unity
+    path: Assets/_CompletedAssets/Scenes/Unused scenes/Guestroom_old.unity
     guid: 70328bae6dff23344a123f662778f5de
   - enabled: 1
     path: Assets/_CompletedAssets/Scenes/Comics.unity
