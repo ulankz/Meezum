@@ -1,4 +1,4 @@
-it status[Ll]ibrary/
+﻿it status[Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
@@ -52,9 +52,9 @@ sysinfo.txt
 *.unitypackage
 
 # Exclude all resource files
-*.wav
-*.mp3
-*.ogg
+#*.wav
+#*.mp3
+#*.ogg
 #*.png
 #*.jpeg
 *.psd
