@@ -376,6 +376,7 @@ namespace Classification
 //							CheckAnswer();
 //
 //						}
+					
 					}
 				}
 			}

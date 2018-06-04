@@ -8,7 +8,7 @@ public class LoadSceneOnClick : MonoBehaviour {
 	public void LoadByIndex(int sceneIndex) {
 		SceneManager.LoadScene (sceneIndex);
 		//if (SceneManager.GetActiveScene().name != "Forest")
-			GameObject.Find("btn_door").SetActive(false);
+			//GameObject.Find("btn_door").SetActive(false);
 	}
 
 	public void PlaySound() {

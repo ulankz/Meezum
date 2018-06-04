@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+namespace MeezumGame{
 public class SwipeBackground : MonoBehaviour {
 
 	public Swipe swipeControls;
@@ -24,16 +24,19 @@ public class SwipeBackground : MonoBehaviour {
 	void Update () {
 		float x = 0.0f;
 		if (swipeControls.SwipeLeft && swipeIndex > -1) {
-			x = gameObject.transform.position.x - (sprite.bounds.max.x*0.65f - Mathf.Abs(camBound.x));
+			x = gameObject.transform.position.x - (sprite.bounds.max.x*1f - Mathf.Abs(camBound.x));
 			swipeIndex -= 1;
 			//print ("Moving left");
 			gameObject.transform.position = new Vector3(x, gameObject.transform.position.y, gameObject.transform.position.z) ;
 		}
 		if (swipeControls.SwipeRight && swipeIndex < 1) {
-			x = gameObject.transform.position.x + sprite.bounds.max.x * 0.65f - Mathf.Abs (camBound.x);
+			x = gameObject.transform.position.x + sprite.bounds.max.x * 1f - Mathf.Abs (camBound.x);
 			swipeIndex += 1;
 			//print ("Moving right");
 			gameObject.transform.position = new Vector3(x, gameObject.transform.position.y, gameObject.transform.position.z) ;
 		}
+
+
 	}
+}
 }

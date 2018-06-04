@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_CompletedAssets/Scenes/Forest.unity
+    guid: 2c1d8ad8366a0aa44adb92b269c4740b
+  - enabled: 1
+    path: Assets/Scenes/GuestroomSwipe.unity
+    guid: 00000000000000000000000000000000
