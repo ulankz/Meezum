@@ -46,6 +46,7 @@ namespace MeezumGame
 		public const string MENU_SETTINGS_BUTTON = "SettingsButton";
 		public const string GAME_ENTRY_TITLE = "GameEntryTitle";
 		public const string GAME_ENTRY_DESCRIPTION = "GameEntryDescription";
-
+		public const string INTERACTIVE_SPRITE = "InteractiveSprite";
+		public const string MOVABLE_OBJECT = "Movable";
 	}
 }

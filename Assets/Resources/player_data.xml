@@ -4,11 +4,11 @@
     <PlayerEntry>
       <playerName>Maya</playerName>
       <age>5</age>
-      <scores>71</scores>
+      <scores>93</scores>
       <cookies>0</cookies>
       <eatenCookies>0</eatenCookies>
       <boughtCookies>0</boughtCookies>
-      <cleanedMessItems>7</cleanedMessItems>
+      <cleanedMessItems>2</cleanedMessItems>
       <messItems>
         <MessItem>
           <messItemName>mess_toycar</messItemName>
@@ -20,23 +20,23 @@
         </MessItem>
         <MessItem>
           <messItemName>mess_rabbit</messItemName>
-          <status>Cleaned</status>
+          <status>Queued</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_blanket</messItemName>
-          <status>Cleaned</status>
+          <status>Queued</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_yellowpillow</messItemName>
-          <status>Cleaned</status>
+          <status>Queued</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_pinkpillow</messItemName>
-          <status>Cleaned</status>
+          <status>Queued</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_bear</messItemName>
-          <status>Cleaned</status>
+          <status>Queued</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_pencils</messItemName>

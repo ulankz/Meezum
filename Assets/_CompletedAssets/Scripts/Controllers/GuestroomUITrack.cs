@@ -9,12 +9,13 @@ public class GuestroomUITrack : UITrackable {
 		private GameObject cupboardPanel;
 		[SerializeField]
 		private GameObject tvPanel;
-	//public GameObject optionsPanel;
+		[SerializeField]
+		private GameObject optionsPanel;
 	
 	
 	// Update is called once per frame
 	void Update () {
-			isHidden = (!gamePanel.activeSelf && !cupboardPanel.activeSelf && !tvPanel.activeSelf );//&& !optionsPanel.activeSelf
+			isHidden = (!gamePanel.activeSelf && !cupboardPanel.activeSelf && !tvPanel.activeSelf && !optionsPanel.activeSelf);
 	}
 }
 }

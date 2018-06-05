@@ -46,6 +46,8 @@ TagManager:
   - GameEntryTitle
   - GameEntryDescription
   - GameEntryStartButtonText
+  - InteractiveSprite
+  - Movable
   layers:
   - Default
   - TransparentFX

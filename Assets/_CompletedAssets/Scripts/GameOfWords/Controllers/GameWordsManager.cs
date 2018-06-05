@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEditor;
+//using UnityEditor;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using Array = System.Array;
@@ -318,7 +318,7 @@ namespace GameOfWords
 		}
 		private GameObject CreateLetter ()
 		{
-			Object letterPrefab = AssetDatabase.LoadAssetAtPath (letterPrefabPath, typeof(GameObject));
+			Object letterPrefab = Resources.Load(letterPrefabPath, typeof(GameObject));
 			GameObject letter = Instantiate (letterPrefab, Vector2.zero, Quaternion.identity) as GameObject;
 			letter.transform.localPosition = Vector2.zero;
 			if (letter)
