@@ -2347,7 +2347,6 @@ GameObject:
   m_Component:
   - component: {fileID: 737289706}
   - component: {fileID: 737289710}
-  - component: {fileID: 737289709}
   - component: {fileID: 737289708}
   - component: {fileID: 737289707}
   m_Layer: 0
@@ -2404,37 +2403,6 @@ MonoBehaviour:
   - {fileID: 1013410685}
   celestialBody: {fileID: 953816715}
   helper: {fileID: 0}
---- !u!114 &737289709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 737289705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8787dc8774591d44a856421558ebb4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHighlighted: {fileID: 21300000, guid: 82194893fee8f734eb76770a6f142e0a, type: 3}
-  onPressed: {fileID: 21300000, guid: 82194893fee8f734eb76770a6f142e0a, type: 3}
-  onDisabled: {fileID: 21300000, guid: 82194893fee8f734eb76770a6f142e0a, type: 3}
-  sRenderer: {fileID: 0}
-  onMouseDown:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  onMouseEnter:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  onMouseExit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  swapSprites: 1
 --- !u!212 &737289710
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3158,7 +3126,6 @@ GameObject:
   m_Component:
   - component: {fileID: 953816716}
   - component: {fileID: 953816720}
-  - component: {fileID: 953816718}
   - component: {fileID: 953816717}
   - component: {fileID: 953816719}
   m_Layer: 0
@@ -3200,37 +3167,6 @@ MonoBehaviour:
   - {fileID: 1500041654}
   celestialBody: {fileID: 737289705}
   helper: {fileID: 0}
---- !u!114 &953816718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 953816715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8787dc8774591d44a856421558ebb4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHighlighted: {fileID: 21300000, guid: 96a617dfeb795f84d8a93415857c36f3, type: 3}
-  onPressed: {fileID: 21300000, guid: 96a617dfeb795f84d8a93415857c36f3, type: 3}
-  onDisabled: {fileID: 21300000, guid: 96a617dfeb795f84d8a93415857c36f3, type: 3}
-  sRenderer: {fileID: 0}
-  onMouseDown:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  onMouseEnter:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  onMouseExit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  swapSprites: 1
 --- !u!58 &953816719
 CircleCollider2D:
   m_ObjectHideFlags: 0
