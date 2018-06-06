@@ -4,29 +4,9 @@
     <avatar>hop</avatar>
     <score>10</score>
   </player>
-  <player id="1" isActive="False">
-    <name>Досбол</name>
-    <avatar>talky</avatar>
-    <score>0</score>
-  </player>
-  <player id="847473480" isActive="False">
-    <name>Данияр</name>
-    <avatar>hip</avatar>
-    <score>40</score>
-  </player>
-  <player id="847659105" isActive="False">
-    <name>Даурен</name>
-    <avatar>talky</avatar>
-    <score>0</score>
-  </player>
-  <player id="95490144" isActive="False">
-    <name>dfdfd</name>
-    <avatar>ult</avatar>
-    <score>0</score>
-  </player>
-  <player id="32623749" isActive="True">
-    <name>Улан</name>
-    <avatar>hip</avatar>
+  <player id="-1994117179" isActive="True">
+    <name>Meezum</name>
+    <avatar>rhon</avatar>
     <score>0</score>
   </player>
 </players>
