@@ -26,7 +26,6 @@ public class LocalizationManager : MonoBehaviour {
 
 	void Start() {
 		LoadLocalizedText("localizedUI_ru.json");
-		Debug.Log ("Called");
 	}
 	
 	public void LoadLocalizedText(string fileName)

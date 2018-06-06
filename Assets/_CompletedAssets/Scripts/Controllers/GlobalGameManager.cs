@@ -9,7 +9,6 @@ public class GlobalGameManager : MonoBehaviour {
 
 		private GlobalGameManager()
 		{
-		
 		}
 
 		public static GlobalGameManager Instance
@@ -37,6 +36,9 @@ public class GlobalGameManager : MonoBehaviour {
 
 		[SerializeField]
 		private LocalizationManager localizationManager;
+
+		[SerializeField]
+		private GameDurationTimerManager gameDurationTimerManager;
 
 		private void Awake() {
 			if (instance != null) {
@@ -80,6 +82,15 @@ public class GlobalGameManager : MonoBehaviour {
 			}
 			set { 
 				localizationManager = value;
+			}
+		}
+
+		public GameDurationTimerManager Game_Duration_Timer_Manager {
+			get { 
+				return this.gameDurationTimerManager;
+			}
+			set { 
+				gameDurationTimerManager = value;
 			}
 		}
 

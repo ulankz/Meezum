@@ -8,13 +8,19 @@ public class GameDurationTimerManager : MonoBehaviour
 {
 	private double timer;
 	private bool timerIsLaunched = false;
+	private bool appIsTerminated = false;
+
+	private AppTerminationNotification appTerminationNotification;
 
 	// Update is called once per frame
 	void Update () {
 		if (timerIsLaunched) {
 			timer -= Time.deltaTime;
 			if (timer <= 0) {
-				Application.Quit ();
+				if (appIsTerminated) {
+					Application.Quit ();
+				}
+				PopUpNotification ();
 			}
 		}
 	}
@@ -42,6 +48,13 @@ public class GameDurationTimerManager : MonoBehaviour
 		if (timer != 0) {
 			timerIsLaunched = true;
 		}
+	}
+
+	public void PopUpNotification() {
+		appIsTerminated = true;
+		timer = 2;
+		appTerminationNotification = AppTerminationNotification.Instance ();
+		appTerminationNotification.Option ("The app is about to terminate due to time expiration!");
 	}
 }
 
