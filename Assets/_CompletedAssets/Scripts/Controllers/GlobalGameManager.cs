@@ -1,10 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Localization;
 
 namespace MeezumGame{
 public class GlobalGameManager : MonoBehaviour {
-		private static GlobalGameManager instance;
+		private static GlobalGameManager instance = null;
+
+		private GlobalGameManager()
+		{
+		
+		}
+
+		public static GlobalGameManager Instance
+		{
+			get
+			{ 
+				if (instance == null) 
+				{
+					instance = new GlobalGameManager ();
+				}
+				return instance;
+			}
+		}
 
 		#region PRIVATE MEMBERS
 		[SerializeField]
@@ -17,12 +35,51 @@ public class GlobalGameManager : MonoBehaviour {
 		[SerializeField]
 		private MainUiManager mainUiManager;
 
+		[SerializeField]
+		private LocalizationManager localizationManager;
+
 		private void Awake() {
 			if (instance != null) {
 				Destroy (gameObject);
 			} else {
 				instance = this;
 				DontDestroyOnLoad (gameObject);
+			}
+		}
+
+		public PlayerManager Player_Manager {
+			get { 
+				return this.playerManager;
+			}
+			set { 
+				playerManager = value;
+			}
+		}
+
+		public MissionManager Mission_Manager {
+			get { 
+				return this.missionManager;
+			}
+			set { 
+				missionManager = value;
+			}
+		}
+
+		public MainUiManager Main_UI_Manager {
+			get { 
+				return this.mainUiManager;
+			}
+			set { 
+				mainUiManager = value;
+			}
+		}
+
+		public LocalizationManager Localization_Manager {
+			get { 
+				return this.localizationManager;
+			}
+			set { 
+				localizationManager = value;
 			}
 		}
 

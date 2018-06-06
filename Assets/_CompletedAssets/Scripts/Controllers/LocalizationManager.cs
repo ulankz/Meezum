@@ -23,6 +23,11 @@ public class LocalizationManager : MonoBehaviour {
 		
 		DontDestroyOnLoad (gameObject);
 	}
+
+	void Start() {
+		LoadLocalizedText("localizedUI_ru.json");
+		Debug.Log ("Called");
+	}
 	
 	public void LoadLocalizedText(string fileName)
 	{

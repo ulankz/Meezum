@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Missions>
+    <Mission>
+    	<id>0</id>
+    	<name>Супермаркет</name>
+    	<maze></maze>
+    	<tasks></tasks>
+    	<currentPosition></currentPosition>
+    	<currentTaskId>0</currentTaskId>
+    	<totalPossibleScores>100</totalPossibleScores>
+    </Mission>
+    <Mission>
+    	<id>1</id>
+    	<name>Миссия 2</name>
+    	<maze></maze>
+    	<tasks></tasks>
+    	<currentPosition></currentPosition>
+    	<currentTaskId>0</currentTaskId>
+    	<totalPossibleScores>100</totalPossibleScores>
+    </Mission>
+    <Mission>
+    	<id>2</id>
+    	<name>Миссия 3</name>
+    	<maze></maze>
+    	<tasks></tasks>
+    	<currentPosition></currentPosition>
+    	<currentTaskId>0</currentTaskId>
+    	<totalPossibleScores>100</totalPossibleScores>
+    </Mission>
+</Missions>

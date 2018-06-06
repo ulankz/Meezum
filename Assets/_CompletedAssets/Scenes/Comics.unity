@@ -212,6 +212,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: faf94d5144d6b4fb789e0f7effdd9029, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &191471118 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114652303376724264, guid: faf94d5144d6b4fb789e0f7effdd9029,
+    type: 2}
+  m_PrefabInternal: {fileID: 191471117}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &256032981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,7 +1348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.80700004, y: 0.517}
   m_AnchorMax: {x: 0.97581387, y: 1}
-  m_AnchoredPosition: {x: -6, y: -233}
+  m_AnchoredPosition: {x: -6, y: -232.99998}
   m_SizeDelta: {x: -22, y: -496}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1064002050
@@ -1803,9 +1809,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2a61327c81840e7bdd8edfbefbd18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 0}
-  exitButton: {fileID: 0}
-  settingsButton: {fileID: 0}
+  startButton: {fileID: 777932362}
+  exitButton: {fileID: 1702522435}
+  settingsButton: {fileID: 191471118}
 --- !u!114 &1394618535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2079,6 +2085,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84150be211140469eb5474c59d3f857c, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1702522435 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114787983307233026, guid: 84150be211140469eb5474c59d3f857c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1702522434}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1784042734
 GameObject:
   m_ObjectHideFlags: 0
