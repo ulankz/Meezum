@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
-
+namespace OLD{
 public class PlayerManager : MonoBehaviour {
 	//public static XMLManager ins;
 	public PlayerDB playerDB;
@@ -80,4 +80,4 @@ public class PlayerDB {
 	[XmlArray("Players")]
 	public List<Player> list = new List<Player> ();
 }
-
+}

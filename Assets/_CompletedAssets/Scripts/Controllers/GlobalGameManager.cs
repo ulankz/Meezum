@@ -5,6 +5,7 @@ using Localization;
 
 namespace MeezumGame{
 public class GlobalGameManager : MonoBehaviour {
+
 		private static GlobalGameManager m_instance = null;
 
 		private GlobalGameManager()
@@ -25,14 +26,14 @@ public class GlobalGameManager : MonoBehaviour {
 
 		#region PRIVATE MEMBERS
 		[SerializeField]
-		private PlayerManager playerManager;
+		public PlayerManager playerManager;
 		[SerializeField]
-		private MissionManager missionManager;
+		public MissionManager missionManager;
 		[SerializeField]
-		private Stack<UIManagable> uiManagerStack;
+		public Stack<UIManagable> uiManagerStack;
 
 		[SerializeField]
-		private MainUiManager mainUiManager;
+		public MainUiManager mainUiManager;
 
 		[SerializeField]
 		private LocalizationManager localizationManager;
@@ -46,6 +47,13 @@ public class GlobalGameManager : MonoBehaviour {
 			} else {
 				m_instance = this;
 				DontDestroyOnLoad (gameObject);
+			}
+			if (playerManager != null){
+				if (PlayerPrefs.GetInt ("InitialSave", 0) == 0) {
+					playerManager.SavePlayersToXmlInitial ();
+					PlayerPrefs.SetInt ("InitialSave",1);
+					print("INITIAL LOAD OF PLAYERS " + PlayerPrefs.GetInt ("InitialSave", 0));
+				}
 			}
 		}
 
@@ -120,7 +128,8 @@ public class GlobalGameManager : MonoBehaviour {
 		}
 			
 		#endregion
-
-
+		void OnApplicationQuit() {
+			playerManager.SaveCurrentGame ();
+		}
 }
 }

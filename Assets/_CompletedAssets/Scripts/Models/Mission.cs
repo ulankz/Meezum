@@ -4,10 +4,13 @@ using UnityEngine;
 namespace MeezumGame
 {
 	public enum Status{
+		NONE,
 		STARTED,
 		COMPLETED
+
 	}
-	public class Mission : MonoBehaviour
+	[System.Serializable]
+	public class Mission
 	{
 		#region PROTECTED MEMEBERS
 		[SerializeField]
@@ -22,7 +25,7 @@ namespace MeezumGame
 		protected int earnedScores;
 		#endregion
 		#region PPROPERTY MEMBERS
-		int Id {
+		public int Id {
 			get {
 				return this.id;
 			}
@@ -31,7 +34,7 @@ namespace MeezumGame
 			}
 		}
 
-		string Title {
+		public string Title {
 			get {
 				return this.title;
 			}
@@ -39,8 +42,15 @@ namespace MeezumGame
 				title = value;
 			}
 		}
-
-		Status Status {
+		public string Description {
+			get {
+				return this.description;
+			}
+			set {
+				description = value;
+			}
+		}
+		public Status Status {
 			get {
 				return this.status;
 			}
@@ -49,7 +59,7 @@ namespace MeezumGame
 			}
 		}
 
-		int EarnedScores {
+		public int EarnedScores {
 			get {
 				return this.earnedScores;
 			}

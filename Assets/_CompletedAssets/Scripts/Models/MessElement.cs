@@ -8,7 +8,8 @@ namespace MeezumGame
 		Disclosed,
 		Cleaned
 	}
-	public class MessElement : MonoBehaviour
+	[System.Serializable]
+	public class MessElement
 	{
 		#region PROTECTED MEMBERS
 		[SerializeField]
@@ -31,9 +32,15 @@ namespace MeezumGame
 			this.time = time;
 			this.status = status;
 		}
+		public MessElement (int id, string title, MessElementStatus status)
+		{
+			this.id = id;
+			this.title = title;
+			this.status = status;
+		}
 		#endregion
 		#region PROPERTY MEMBERS
-		int Id {
+		public int Id {
 			get {
 				return this.id;
 			}
@@ -42,7 +49,7 @@ namespace MeezumGame
 			}
 		}
 
-		string Title {
+		public string Title {
 			get {
 				return this.title;
 			}
@@ -51,7 +58,7 @@ namespace MeezumGame
 			}
 		}
 
-		string Decription {
+		public string Decription {
 			get {
 				return this.decription;
 			}
@@ -60,7 +67,7 @@ namespace MeezumGame
 			}
 		}
 
-		Time Time {
+		public Time Time {
 			get {
 				return this.time;
 			}
@@ -69,7 +76,7 @@ namespace MeezumGame
 			}
 		}
 
-		MessElementStatus Status {
+		public MessElementStatus Status {
 			get {
 				return this.status;
 			}

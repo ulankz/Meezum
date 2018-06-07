@@ -35,14 +35,16 @@ namespace MeezumGame
 		private bool
 			isActive;
 		[SerializeField]
-		private MessElement[]
+		private List<MessElement>
 			disorder;
 		[SerializeField]
 		private Language
 			language;
+		[SerializeField]
+		private int cleanedDisorders;
 		#endregion
 		#region CONSTRUCTORS
-		public Player (int id, string name, string avatar, int score, List<Mission> completedMissions, bool isActive, MessElement[] disorder, Language language)
+		public Player (int id, string name, string avatar, int score, List<Mission> completedMissions, bool isActive,int cleanedDisorders, List<MessElement> disorder, Language language)
 		{
 			this.id = id;
 			this.name = name;
@@ -50,10 +52,11 @@ namespace MeezumGame
 			this.score = score;
 			this.completedMissions = completedMissions;
 			this.isActive = isActive;
+			this.cleanedDisorders = cleanedDisorders;
 			this.disorder = disorder;
 			this.language = language;
 		}
-		public Player (int id, bool isActive, string name, string avatar, int score)
+		public Player (int id, string name,  string avatar, int score,bool isActive,int cleanedDisorders)
 		{
 			this.id = id;
 			this.isActive = isActive;
@@ -61,6 +64,7 @@ namespace MeezumGame
 			//this.age = age;
 			this.avatar = avatar;
 			this.score = score;
+			this.cleanedDisorders = cleanedDisorders;
 		}
 
 		public Player(){
@@ -114,8 +118,15 @@ namespace MeezumGame
 				score = value;
 			}
 		}
-
-		List<Mission> CompletedMissions {
+		public int CleanedDisorders {
+			get {
+				return this.cleanedDisorders;
+			}
+			set {
+				cleanedDisorders = value;
+			}
+		}
+		public List<Mission> CompletedMissions {
 			get {
 				return this.completedMissions;
 			}
@@ -134,7 +145,7 @@ namespace MeezumGame
 			}
 		}
 
-		MessElement[] Disorder {
+		public List<MessElement> Disorder {
 			get {
 				return this.disorder;
 			}
@@ -143,7 +154,7 @@ namespace MeezumGame
 			}
 		}
 
-		Language Language {
+		public Language Language {
 			get {
 				return this.language;
 			}

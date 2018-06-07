@@ -15,9 +15,9 @@ public class LoadSceneOnClick : MonoBehaviour {
 		GetComponent<AudioSource> ().Play();
 	}
 
-	void MouseUpAsButton() {
+	public void MouseUpAsButton() {
 		
 		SceneManager.LoadScene (0);
-		XMLManager.ins.SavePlayers ();
+		//XMLManager.ins.SavePlayers ();
 	}
 }

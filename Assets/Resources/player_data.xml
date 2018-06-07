@@ -2,13 +2,13 @@
 <PlayerDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Players>
     <PlayerEntry>
-      <playerName>Maya</playerName>
+      <playerName>maya</playerName>
       <age>5</age>
-      <scores>93</scores>
+      <scores>3</scores>
       <cookies>0</cookies>
       <eatenCookies>0</eatenCookies>
       <boughtCookies>0</boughtCookies>
-      <cleanedMessItems>2</cleanedMessItems>
+      <cleanedMessItems>3</cleanedMessItems>
       <messItems>
         <MessItem>
           <messItemName>mess_toycar</messItemName>
@@ -20,11 +20,11 @@
         </MessItem>
         <MessItem>
           <messItemName>mess_rabbit</messItemName>
-          <status>Queued</status>
+          <status>Cleaned</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_blanket</messItemName>
-          <status>Queued</status>
+          <status>Disclosed</status>
         </MessItem>
         <MessItem>
           <messItemName>mess_yellowpillow</messItemName>
