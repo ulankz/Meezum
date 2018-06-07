@@ -5928,7 +5928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &838418590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5951,59 +5951,32 @@ MonoBehaviour:
       cleanedMessItems: 0
       messItems:
       - messItemName: mess_toycar
-        status: 0
       - messItemName: mess_redpillow
-        status: 0
       - messItemName: mess_rabbit
-        status: 0
       - messItemName: mess_blanket
-        status: 0
       - messItemName: mess_yellowpillow
-        status: 0
       - messItemName: mess_pinkpillow
-        status: 0
       - messItemName: mess_bear
-        status: 0
       - messItemName: mess_pencils
-        status: 0
       - messItemName: mess_vase
-        status: 0
       - messItemName: mess_cw_00
-        status: 0
       - messItemName: mess_cw_02
-        status: 0
       - messItemName: mess_cw_04
-        status: 0
       - messItemName: mess_cw_06
-        status: 0
       - messItemName: mess_cw_10
-        status: 0
       - messItemName: mess_cw_11
-        status: 0
       - messItemName: mess_cw_12
-        status: 0
       - messItemName: mess_cw_14
-        status: 0
       - messItemName: mess_cup
-        status: 0
       - messItemName: mess_blotch_window_top
-        status: 0
       - messItemName: mess_blotch_window_right_bottom
-        status: 0
       - messItemName: mess_ink
-        status: 0
       - messItemName: mess_blotch_leftwall
-        status: 0
       - messItemName: mess_blotch_rightwall
-        status: 0
       - messItemName: mess_scarf
-        status: 0
       - messItemName: mess_spidernet_shelves_top
-        status: 0
       - messItemName: mess_spidernet_portrets
-        status: 0
       - messItemName: mess_spidernet_sofa
-        status: 0
 --- !u!4 &838418591
 Transform:
   m_ObjectHideFlags: 0
@@ -8524,10 +8497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f82a6b4a27f57b24690bf24ce511c3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePanel: {fileID: 0}
-  cupboardPanel: {fileID: 1394618530}
-  tvPanel: {fileID: 0}
-  optionsPanel: {fileID: 0}
+  uiTracker: {fileID: 0}
 --- !u!114 &1188170916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14194,7 +14164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6820365f609c415478fe7a0ba25b5496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  helper: {fileID: 667494268}
 --- !u!212 &2033137092
 SpriteRenderer:
   m_ObjectHideFlags: 0

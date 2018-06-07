@@ -26,7 +26,7 @@ namespace Classification
 			sprites;
 		[SerializeField]
 		private const string
-			spriteLoadPath = "GameOfWords/Alphabets";
+			spriteLoadPath = "Classification/";
 		// UI Fields
 		[SerializeField]
 		private ClassificationUIManager
@@ -197,17 +197,17 @@ namespace Classification
 		}
 		void GenerateQuestions ()
 		{
-			ClassificationQuestion q1 = new ClassificationQuestion (1, "Нажми на всех взрпослых посетителей магазина?", new int[] {
-				1,1,1,1,1,0,0,0,0,0
+			ClassificationQuestion q1 = new ClassificationQuestion (1, "Нажми на всех взрослых посетителей магазина?", new int[] {
+				1,1,1,0,0,1,1,1,0,0
 			});
 			ClassificationQuestion q2 = new ClassificationQuestion (2, "Нажми на всех мужчин посетителей магазина?", new int[] {
-				1,1,1,0,0,1,1,1,0,0
+				1,1,1,1,1,0,0,0,0,0
 			});
 			ClassificationQuestion q3 = new ClassificationQuestion (3, "Нажми на всех худых посетителей магазина?", new int[] {
 				1,0,1,0,1,1,1,0,1,1
 			});
-			ClassificationQuestion q4 = new ClassificationQuestion (4, "Нажми на всех посетителей магазина с бородой?", new int[] {
-				0,1,1,0,0,0,0,0,0,0
+			ClassificationQuestion q4 = new ClassificationQuestion (4, "Нажми на всех посетителей магазина  в желтой одежде?", new int[] {
+				0,0,0,1,0,0,1,0,0,0
 			});
 			ClassificationQuestion q5 = new ClassificationQuestion (5, "Нажми на всех посетителей магазина в очках?", new int[] {
 				0,1,1,1,0,1,1,0,0,0
