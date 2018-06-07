@@ -31,7 +31,7 @@ public class GameDurationTimerManager : MonoBehaviour
 		try {
 			timer = Convert.ToDouble(minutes.text);
 			if(timer == 30) {
-				timer = 5; // 30m = 1800s
+				timer = 1800; // 30m = 1800s
 			} else if (timer == 45) {
 				timer = 2700; // 45m = 2700s
 			} else if (timer == 60) {
@@ -64,7 +64,8 @@ public class GameDurationTimerManager : MonoBehaviour
 				break;
 			case "Comics":
 				alertFontSize = 65;
-				canvas = GameObject.Find ("ComicsCanvas");
+				canvas = GameObject.Find ("Canvas");
+				//canvas = GameObject.Find ("CanvasGeneralUI");
 				break;
 			case "Maze":
 				alertFontSize = 24;
@@ -84,7 +85,7 @@ public class GameDurationTimerManager : MonoBehaviour
 		Text message = Message.AddComponent<Text> ();
 		Message.layer = 5;
 		Message.transform.SetParent (appTerminationNotificationPanel.transform, false);
-		message.text = "The app is about to terminate due to time expiration!";
+		message.text = "Игра закроется, так как заданное Вами время истекло!";
 		message.font = Resources.GetBuiltinResource (typeof(Font), "Arial.ttf") as Font;
 		message.fontSize = alertFontSize;
 		message.color = Color.black;

@@ -184,16 +184,16 @@ public class RollerBall : MonoBehaviour {
 					// If the player enters the task portal, the notification will pop up, if ok button is clicked, it will proceed to the task.
 					switch(taskToComplete) {
 						case 1:
-							NotificationOptions ("Would you like to play the Game Of Words?");
+							NotificationOptions ("Вы хотите сыграть в Викторину?");
 							break;
 						case 2:
-							NotificationOptions ("Would you like to play the Game #2?");
+							NotificationOptions ("Вы хотите сыграть в Игру Слов?");
 							break;
 						case 3:
-							NotificationOptions ("Would you like to play the Game #3?");
+							NotificationOptions ("Вы хотите сыграть в Классификацию?");
 							break;
 						case 4:
-							NotificationOptions ("Would you like to play the Game #4?");
+							NotificationOptions ("Вы хотите сыграть в Ассоциацию?");
 							break;
 					}
 					break;
@@ -405,13 +405,13 @@ public class RollerBall : MonoBehaviour {
 	void GoToTask() {
 		switch(taskToComplete) {
 			case 1:
-				SceneManager.LoadScene (Scenes.GAME_OF_WORDS_SCENE);
+				SceneManager.LoadScene (Scenes.QUIZ_GAME_SCENE);
 				break;
 			case 2:
-				//SceneManager.LoadScene (Scenes.GAME_OF_WORDS_SCENE);
+				SceneManager.LoadScene (Scenes.GAME_OF_WORDS_SCENE);
 				break;
 			case 3:
-				//SceneManager.LoadScene (Scenes.GAME_OF_WORDS_SCENE);
+				SceneManager.LoadScene (Scenes.CLASSIFICATION_SCENE);
 				break;
 			case 4:
 				//SceneManager.LoadScene (Scenes.GAME_OF_WORDS_SCENE);

@@ -39,7 +39,6 @@ namespace MeezumGame
 		public const string CLASSIFICATION_ROOT_PANEL = "ClassificationRootPanel";
 		public const string MAZE_MANAGER = "MazeManager";
 		public const string COMICS_START_BUTTON = "ComicsStartButton";
-		public const string COMICS_EXIT_BUTTON = "ComicsExitButton";
 		public const string MENU_START_BUTTON = "StartButton";
 		public const string MENU_EXIT_BUTTON = "ExitButton";
 		public const string MENU_SETTINGS_BUTTON = "SettingsButton";
