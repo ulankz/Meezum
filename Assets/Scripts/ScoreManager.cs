@@ -1,36 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using MeezumGame;
 public class ScoreManager : MonoBehaviour {
 
 	public List<Sprite> digits;
-	private PlayerEntry player;
+	private Player player;
 
 	void Awake() {
-		player = XMLManager.ins.playerDB.list[0];
+		//player = XMLManager.ins.playerDB.list[0];
+		player = GlobalGameManager.instance.playerManager.CurrentPlayer;
 		DisplayScores ();
-	}
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	public void UpdateScores() {
-		if (player.scores < 10000) {
-			player.scores += 1;
+		if (player.Score < 10000) {
+			player.Score += 1;
 		}
 
 		DisplayScores ();
 	}
 
 	public void DisplayScores() {
-		string score = player.scores.ToString("D5");
+		string score = player.Score.ToString("D5");
 
 		for (int i = 0; i < 5; i++) {
 			//print ("digit_" + i.ToString());

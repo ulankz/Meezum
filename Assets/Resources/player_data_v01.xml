@@ -1,12 +1,8 @@
 <players>
-  <player id="0" isActive="False">
-    <name>Айгерим</name>
-    <avatar>hop</avatar>
-    <score>10</score>
-  </player>
   <player id="-1994117179" isActive="True">
-    <name>Meezum</name>
+    <name>Modesty</name>
     <avatar>rhon</avatar>
     <score>0</score>
+    <cleanedDisorders>3</cleanedDisorders>
   </player>
 </players>

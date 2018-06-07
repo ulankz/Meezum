@@ -5330,7 +5330,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &838418590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5343,69 +5343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDB:
-    list:
-    - playerName: maya
-      age: 5
-      scores: 0
-      cookies: 0
-      eatenCookies: 0
-      boughtCookies: 0
-      cleanedMessItems: 0
-      messItems:
-      - messItemName: mess_toycar
-        status: 0
-      - messItemName: mess_redpillow
-        status: 0
-      - messItemName: mess_rabbit
-        status: 0
-      - messItemName: mess_blanket
-        status: 0
-      - messItemName: mess_yellowpillow
-        status: 0
-      - messItemName: mess_pinkpillow
-        status: 0
-      - messItemName: mess_bear
-        status: 0
-      - messItemName: mess_pencils
-        status: 0
-      - messItemName: mess_vase
-        status: 0
-      - messItemName: mess_cw_00
-        status: 0
-      - messItemName: mess_cw_02
-        status: 0
-      - messItemName: mess_cw_04
-        status: 0
-      - messItemName: mess_cw_06
-        status: 0
-      - messItemName: mess_cw_10
-        status: 0
-      - messItemName: mess_cw_11
-        status: 0
-      - messItemName: mess_cw_12
-        status: 0
-      - messItemName: mess_cw_14
-        status: 0
-      - messItemName: mess_cup
-        status: 0
-      - messItemName: mess_blotch_window_top
-        status: 0
-      - messItemName: mess_blotch_window_right_bottom
-        status: 0
-      - messItemName: mess_ink
-        status: 0
-      - messItemName: mess_blotch_leftwall
-        status: 0
-      - messItemName: mess_blotch_rightwall
-        status: 0
-      - messItemName: mess_scarf
-        status: 0
-      - messItemName: mess_spidernet_shelves_top
-        status: 0
-      - messItemName: mess_spidernet_portrets
-        status: 0
-      - messItemName: mess_spidernet_sofa
-        status: 0
+    list: []
 --- !u!4 &838418591
 Transform:
   m_ObjectHideFlags: 0
@@ -14442,8 +14380,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2033137091}
-        m_MethodName: LoadByIndex
-        m_Mode: 3
+        m_MethodName: MouseUpAsButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
