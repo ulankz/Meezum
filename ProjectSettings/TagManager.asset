@@ -48,6 +48,8 @@ TagManager:
   - GameEntryStartButtonText
   - InteractiveSprite
   - Movable
+  - TimerAlarmStartButton
+  - ExpirationTimeSetupButton
   layers:
   - Default
   - TransparentFX

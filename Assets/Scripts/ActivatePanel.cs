@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using MeezumGame;
 public class ActivatePanel : MonoBehaviour {
-	
+
 	public GameObject panel;
 	public GameObject helper;
 	//public GameObject[] colliderHolders;

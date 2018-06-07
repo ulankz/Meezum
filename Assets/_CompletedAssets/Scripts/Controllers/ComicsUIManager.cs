@@ -13,13 +13,16 @@ public class ComicsUIManager : MonoBehaviour,UIManagable {
 		private Button exitButton;
 		[SerializeField]
 		private Button settingsButton;
+
+		private GlobalGameManager game;
+		private MissionManager missionManager;
 		#endregion
 
 		#region SYSTEM FUNCTIONS
 		private void Awake(){
 			startButton = GameObject.FindGameObjectWithTag (Tags.COMICS_START_BUTTON).GetComponent<Button>();
 			exitButton = GameObject.FindGameObjectWithTag (Tags.COMICS_EXIT_BUTTON).GetComponent<Button>();
-			settingsButton = GameObject.FindGameObjectWithTag (Tags.COMICS_SETTINGS_BUTTON).GetComponent<Button>();
+			settingsButton = GameObject.FindGameObjectWithTag (Tags.MENU_SETTINGS_BUTTON).GetComponent<Button>();
 		}
 		private void Start(){
 			startButton.onClick.AddListener(delegate {
@@ -31,6 +34,8 @@ public class ComicsUIManager : MonoBehaviour,UIManagable {
 			settingsButton.onClick.AddListener(delegate {
 				OpenSettings();
 			});
+			game = GlobalGameManager.Instance;
+			missionManager = game.Mission_Manager;
 		}
 		private void OnDisable(){
 			startButton.onClick.RemoveAllListeners ();
@@ -41,9 +46,6 @@ public class ComicsUIManager : MonoBehaviour,UIManagable {
 		#region PRIVATE FUNCTIONS
 		private void StartButton(){
 			Debug.Log ("START BUTTON WAS CLICKED");
-			GlobalGameManager game = GlobalGameManager.Instance;
-			MissionManager missionManager = game.Mission_Manager;
-
 			switch (missionManager.CurrentMission.Id) {
 				case 0: // Mission 1
 				case 1: // Mission 2
@@ -57,6 +59,7 @@ public class ComicsUIManager : MonoBehaviour,UIManagable {
 		}
 		private void OpenSettings(){
 			Debug.Log ("SETTINGS BUTTON WAS CLICKED");
+
 		}
 		#endregion
 }
