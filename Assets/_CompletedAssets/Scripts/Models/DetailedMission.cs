@@ -7,9 +7,15 @@ namespace MeezumGame
 	{
 		#region PRIVATE MEMBERS
 		[SerializeField]
-		private Maze maze;
+		private int id;
+		[SerializeField]
+		private string name;
+		[SerializeField]
+		private List<GameObject> maze;
 		[SerializeField]
 		private List<Task> tasks;
+		[SerializeField]
+		private Vector3 currentPosition;
 		[SerializeField]
 		private int currentTaskId;
 		[SerializeField]
@@ -17,17 +23,37 @@ namespace MeezumGame
 		#endregion
 
 		#region CONSTRUCTOR METHODS
-		public DetailedMission (Maze maze, List<Task> tasks, int currentTaskId, int totalPossibleScores)
+		public DetailedMission (int id, string name, List<GameObject> maze, List<Task> tasks, Vector3 currentPosition, int currentTaskId, int totalPossibleScores)
 		{
+			this.id = id;
 			this.maze = maze;
 			this.tasks = tasks;
+			this.currentPosition = currentPosition;
 			this.currentTaskId = currentTaskId;
 			this.totalPossibleScores = totalPossibleScores;
 		}
-		
 		#endregion
+
 		#region PROPERTY METHODS
-		Maze Maze {
+		public int Id {
+			get { 
+				return this.id;
+			}
+			set { 
+				id = value;
+			}
+		}
+
+		public string Name {
+			get { 
+				return this.name;
+			}
+			set { 
+				name = value;
+			}
+		}
+
+		public List<GameObject> Maze {
 			get {
 				return this.maze;
 			}
@@ -36,7 +62,7 @@ namespace MeezumGame
 			}
 		}
 
-		List<Task> Tasks {
+		public List<Task> Tasks {
 			get {
 				return this.tasks;
 			}
@@ -45,7 +71,16 @@ namespace MeezumGame
 			}
 		}
 
-		int CurrentTaskId {
+		public Vector3 CurrentPosition {
+			get {
+				return this.currentPosition;
+			}
+			set { 
+				currentPosition = value;
+			}
+		}
+
+		public int CurrentTaskId {
 			get {
 				return this.currentTaskId;
 			}
@@ -54,7 +89,7 @@ namespace MeezumGame
 			}
 		}
 
-		int TotalPossibleScores {
+		public int TotalPossibleScores {
 			get {
 				return this.totalPossibleScores;
 			}

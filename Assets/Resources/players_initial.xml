@@ -2,8 +2,8 @@
   <player id="-1994117179" isActive="True">
     <name>Meezum</name>
     <avatar>rhon</avatar>
-    <score>22</score>
-    <cleanedDisorders>4</cleanedDisorders>
+    <score>21</score>
+    <cleanedDisorders>3</cleanedDisorders>
     <lang>RU</lang>
     <completedMissions>
       <mission>
@@ -33,7 +33,7 @@
       <disorder>
         <id>3</id>
         <title>mess_blanket</title>
-        <status>Cleaned</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>4</id>

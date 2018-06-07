@@ -73,18 +73,26 @@ public class Maze : MonoBehaviour {
 				if(wallPlacement.WallRight){
 					tmp = Instantiate(Wall,new Vector3(x+CellWidth/2,0,z)+Wall.transform.position,Quaternion.Euler(0,90,0)) as GameObject;// right
 					tmp.transform.parent = transform;
+					tmp.GetComponent<Renderer> ().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+					tmp.GetComponent<Renderer> ().receiveShadows = false;
 				}
 				if(wallPlacement.WallFront){
 					tmp = Instantiate(Wall,new Vector3(x,0,z+CellHeight/2)+Wall.transform.position,Quaternion.Euler(0,0,0)) as GameObject;// front
 					tmp.transform.parent = transform;
+					tmp.GetComponent<Renderer> ().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+					tmp.GetComponent<Renderer> ().receiveShadows = false;
 				}
 				if(wallPlacement.WallLeft){
 					tmp = Instantiate(Wall,new Vector3(x-CellWidth/2,0,z)+Wall.transform.position,Quaternion.Euler(0,270,0)) as GameObject;// left
 					tmp.transform.parent = transform;
+					tmp.GetComponent<Renderer> ().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+					tmp.GetComponent<Renderer> ().receiveShadows = false;
 				}
 				if(wallPlacement.WallBack) {
 					tmp = Instantiate(Wall,new Vector3(x,0,z-CellHeight/2)+Wall.transform.position,Quaternion.Euler(0,180,0)) as GameObject;// back
 					tmp.transform.parent = transform;
+					tmp.GetComponent<Renderer> ().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+					tmp.GetComponent<Renderer> ().receiveShadows = false;
 				}
 			}
 		}
@@ -96,6 +104,8 @@ public class Maze : MonoBehaviour {
 					float z = row*(CellHeight+(AddGaps? .2f : 0));
 					GameObject tmp = Instantiate(Pillar,new Vector3(x-CellWidth/2,0,z-CellHeight/2),Quaternion.identity) as GameObject;
 					tmp.transform.parent = transform;
+					tmp.GetComponent<Renderer> ().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+					tmp.GetComponent<Renderer> ().receiveShadows = false;
 				}
 			}
 		}
