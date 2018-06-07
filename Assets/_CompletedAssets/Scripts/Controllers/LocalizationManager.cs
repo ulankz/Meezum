@@ -33,8 +33,21 @@ public class LocalizationManager : MonoBehaviour {
 		localizedText = new Dictionary<string, string> ();
 		string filePath = Path.Combine (Application.streamingAssetsPath, fileName);
 		
-		if (File.Exists (filePath)) {
-			string dataAsJson = File.ReadAllText (filePath);
+			string dataAsJson;
+			if(Application.platform == RuntimePlatform.Android) //Need to extract file from apk first
+			{
+				WWW reader = new WWW(filePath);
+				while (!reader.isDone) { }
+
+				dataAsJson= reader.text;
+			}
+			else
+			{
+				dataAsJson= File.ReadAllText(filePath);
+			}
+
+		
+
 			LocalizationData loadedData = JsonUtility.FromJson<LocalizationData> (dataAsJson);
 			
 			for (int i = 0; i < loadedData.items.Length; i++) 
@@ -43,10 +56,7 @@ public class LocalizationManager : MonoBehaviour {
 			}
 			
 			Debug.Log ("Data loaded, dictionary contains: " + localizedText.Count + " entries");
-		} else 
-		{
-			Debug.LogError ("Cannot find file!");
-		}
+		
 		
 		isReady = true;
 	}

@@ -64,7 +64,9 @@ namespace GameOfWords
 			letterPosOffset = 1.4f;
 		[SerializeField]
 		private const string
-			letterPrefabPath = "Assets/_CompletedAssets/Prefabs/GameOfWords/LetterPrefab.prefab";
+			letterPrefabPath = "Assets/Resources/GameOfWords/GameOfWords/LetterPrefab.prefab";
+		[SerializeField]
+		private GameObject letterPrefab;
 		[SerializeField]
 		private const string
 			spriteLoadPath = "GameOfWords/Alphabets";
@@ -258,6 +260,7 @@ namespace GameOfWords
 		void AlertViewOkButtonHandler(){
 			UIDisabled = false;
 			gameWordsUIManager.DisabeUI (true);
+			SceneManager.LoadScene ("Maze");
 		}
 		private void CreateLettersForWord (int missionId)
 		{
@@ -318,7 +321,7 @@ namespace GameOfWords
 		}
 		private GameObject CreateLetter ()
 		{
-			Object letterPrefab = Resources.Load(letterPrefabPath, typeof(GameObject));
+			//Object letterPrefab = Resources.Load(letterPrefabPath, typeof(GameObject));
 			GameObject letter = Instantiate (letterPrefab, Vector2.zero, Quaternion.identity) as GameObject;
 			letter.transform.localPosition = Vector2.zero;
 			if (letter)
@@ -508,14 +511,14 @@ namespace GameOfWords
 				int completedTasks = PlayerPrefs.GetInt ("CompletedTasks", 0);
 				PlayerPrefs.SetInt("CompletedTasks", completedTasks+1);
 			}
-			SceneManager.LoadScene ("Maze");
+
 		
 		}
 
 		private void ShowEndGameMessage ()
 		{
 			if (UIAlertView.instance.active_alert_views.Count < 1)
-				UIAlertView.instance.ShowSimpleAlertView (gameObject, UIAlertView.Hash ("title", "Game Completed", "message", "Well Done!!!", "button1title", "OK", "button1callback", "SimpleAlertCallback"));
+				UIAlertView.instance.ShowSimpleAlertView (gameObject, UIAlertView.Hash ("title", "Поздравляем!", "message", "Вы закончили задание!!!", "button1title", "OK", "button1callback", "SimpleAlertCallback"));
 		}
 		private void CheckForCellFill(int activeCells){ // Checks for fully or partially filled cells
 			

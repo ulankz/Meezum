@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using MeezumGame;
+using UnityEngine.SceneManagement;
 namespace QuizGame
 {
 	public class QuizGameManager : MonoBehaviour
@@ -11,7 +12,7 @@ namespace QuizGame
 		#region PRIVATE MEMBERS
 		[SerializeField]
 		private static int
-			questionSize = 3;
+			questionSize = 5;
 		[SerializeField]
 		private VictorinaQuestion[] questions = new VictorinaQuestion[questionSize];
 		private float nextQuestionUpdateDelay = 3f;
@@ -147,6 +148,16 @@ namespace QuizGame
 			instructionSoundManager.PlayEnd ("QuizGame");
 			ShowEndGameMessage ();
 
+			if (PlayerPrefs.GetInt ("CompletedTasks", 0) != null) {
+				int completedTasks = PlayerPrefs.GetInt ("CompletedTasks", 0);
+				PlayerPrefs.SetInt("CompletedTasks", completedTasks+1);
+			}
+			//StartCoroutine (waitForSomeTime,3);
+
+		}
+		IEnumerator waitForSomeTime(float t){
+			yield return new WaitForSeconds (t);
+			SceneManager.LoadScene ("Maze");
 		}
 		private void PlaySingleClickCallToAction(){// After single click 5 sec of inactivity
 			instructionSoundManager.PlayCallFirstClickToAction ("QuizGame");
@@ -160,6 +171,8 @@ namespace QuizGame
 		}
 		void AlertViewOkButtonHandler(){
 			quizUIManager.DisabeUI (true);
+			SceneManager.LoadScene ("Maze");
+
 		}
 		private void PlayQuestionSound(int currrentQuestionIndex){
 			soundManager.PlaySound (questions [currentQuestionIndex].QuestionSound,2);
@@ -186,7 +199,7 @@ namespace QuizGame
 		private void ShowEndGameMessage ()
 		{
 			if (UIAlertView.instance.active_alert_views.Count < 1)
-				UIAlertView.instance.ShowSimpleAlertView (gameObject, UIAlertView.Hash ("title", "Game Completed", "message", "Well Done!!!", "button1title", "OK", "button1callback", "SimpleAlertCallback"));
+				UIAlertView.instance.ShowSimpleAlertView (gameObject, UIAlertView.Hash ("title", "Поздравляем!", "message", "Вы прошли задание!!!", "button1title", "OK", "button1callback", "SimpleAlertCallback"));
 		}
 		private void CheckCurrentAnswer (int selectedId, VictorinaQuestion currentQuestion)
 		{

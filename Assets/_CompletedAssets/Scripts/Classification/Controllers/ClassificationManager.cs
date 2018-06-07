@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using Array = System.Array;
 using MeezumGame;
+using UnityEngine.SceneManagement;
 
 namespace Classification
 {
@@ -119,6 +120,7 @@ namespace Classification
 		{
 			UIDisabled = false;
 			classificationUIManager.DisabeUI (true);
+			SceneManager.LoadScene ("Maze");
 		}
 		private void ReferSceneObjects ()
 		{
@@ -271,6 +273,14 @@ namespace Classification
 		{
 			instructionSoundManager.PlayEnd ("QuizGame");
 			ShowEndGameMessage ();
+
+
+			if (PlayerPrefs.GetInt ("CompletedTasks", 0) != null) {
+				int completedTasks = PlayerPrefs.GetInt ("CompletedTasks", 0);
+				PlayerPrefs.SetInt("CompletedTasks", completedTasks+1);
+			}
+
+
 			
 		}
 		private void PlaySingleClickCallToAction ()
@@ -312,7 +322,8 @@ namespace Classification
 		private void ShowEndGameMessage ()
 		{
 			if (UIAlertView.instance.active_alert_views.Count < 1)
-				UIAlertView.instance.ShowSimpleAlertView (gameObject, UIAlertView.Hash ("title", "Game Completed", "message", "Well Done!!!", "button1title", "OK", "button1callback", "SimpleAlertCallback"));
+				UIAlertView.instance.ShowSimpleAlertView (gameObject, UIAlertView.Hash ("title", "Поздравляем!", "message", "Вы закончили задание!!!", "button1title", "OK", "button1callback", "SimpleAlertCallback"));
+			
 		}
 		private void CheckCurrentAnswer (ClassificationQuestion currentQuestion)
 		{

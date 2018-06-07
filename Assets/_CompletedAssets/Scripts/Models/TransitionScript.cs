@@ -23,6 +23,12 @@ public class TransitionScript : MonoBehaviour {
 			case "Maze":
 				SceneManager.LoadScene ("Forest");
 				break;
+		case "QuizGame":
+		case "GameOfWords":
+		case "Classification":
+			SceneManager.LoadScene ("Maze");
+			break;
+
 		}
 	}
 }
