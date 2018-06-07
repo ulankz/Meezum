@@ -34,7 +34,7 @@ public class ComicsUIManager : MonoBehaviour,UIManagable {
 			settingsButton.onClick.AddListener(delegate {
 				OpenSettings();
 			});
-			game = GlobalGameManager.Instance;
+			game = GlobalGameManager.instance;
 			missionManager = game.Mission_Manager;
 		}
 		private void OnDisable(){

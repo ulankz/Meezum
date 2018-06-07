@@ -5,21 +5,21 @@ using Localization;
 
 namespace MeezumGame{
 public class GlobalGameManager : MonoBehaviour {
-		private static GlobalGameManager instance = null;
+		private static GlobalGameManager m_instance = null;
 
 		private GlobalGameManager()
 		{
 		}
 
-		public static GlobalGameManager Instance
+		public static GlobalGameManager instance
 		{
 			get
 			{ 
-				if (instance == null) 
+				if (m_instance == null) 
 				{
-					instance = new GlobalGameManager ();
+					m_instance = new GlobalGameManager ();
 				}
-				return instance;
+				return m_instance;
 			}
 		}
 
@@ -41,10 +41,10 @@ public class GlobalGameManager : MonoBehaviour {
 		private GameDurationTimerManager gameDurationTimerManager;
 
 		private void Awake() {
-			if (instance != null) {
+			if (m_instance != null) {
 				Destroy (gameObject);
 			} else {
-				instance = this;
+				m_instance = this;
 				DontDestroyOnLoad (gameObject);
 			}
 		}
