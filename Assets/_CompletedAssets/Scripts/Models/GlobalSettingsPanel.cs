@@ -9,7 +9,9 @@ using UnityEngine.SceneManagement;
 
 public class GlobalSettingsPanel : MonoBehaviour {
 
-	public GameObject canvas;
+	public Button pnl_btn_sound;
+	public Button pnl_btn_music;
+	/*public GameObject canvas;
 	public GameObject globalSettingsPanel;
 	public GameObject general;
 	public GameObject custom_general;
@@ -19,9 +21,9 @@ public class GlobalSettingsPanel : MonoBehaviour {
 	public Button timer_quit_btn;
 	public Button timer_alarm_ok_btn;
 	private bool everythingIsSetup = false;
-	string sceneName = "", prevSceneName = "";
+	string sceneName = "", prevSceneName = "";*/
 
-	private static GlobalSettingsPanel instance = null;
+	/*private static GlobalSettingsPanel instance = null;
 
 	private GlobalSettingsPanel()
 	{
@@ -39,15 +41,6 @@ public class GlobalSettingsPanel : MonoBehaviour {
 		}
 	}
 
-	public bool everything_Is_Setup {
-		get { 
-			return this.everythingIsSetup;
-		}
-		set { 
-			everythingIsSetup = value;
-		}
-	}
-
 	private void Awake() {
 		if (instance != null) {
 			Destroy (gameObject);
@@ -55,9 +48,93 @@ public class GlobalSettingsPanel : MonoBehaviour {
 			instance = this;
 			DontDestroyOnLoad (gameObject);
 		}
+	}*/
+
+	void Start() {
+		GameObject camera = GameObject.Find ("Main Camera");
+		AudioSource bg_music = camera.GetComponent<AudioSource> ();
+		ColorBlock cb = pnl_btn_music.GetComponent<Button> ().colors;
+		if (PlayerPrefs.GetInt ("musicIsOn", 1) == 1) {
+			cb.normalColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
+			pnl_btn_music.GetComponent<Button> ().colors = cb;
+			bg_music.Play ();
+		} else {
+			cb.normalColor = new Color32(0x6F, 0x6F, 0x6F, 0xFF);
+			pnl_btn_music.GetComponent<Button> ().colors = cb;
+			bg_music.Pause ();	
+		}
+
+		pnl_btn_music.GetComponent<Button> ().onClick.AddListener (delegate {
+			if (bg_music.isPlaying) {
+				cb.normalColor = new Color32(0x6F, 0x6F, 0x6F, 0xFF);
+				pnl_btn_music.GetComponent<Button> ().colors = cb;
+				bg_music.Pause ();
+				PlayerPrefs.SetInt ("musicIsOn", 0);
+			} else {
+				cb.normalColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
+				pnl_btn_music.GetComponent<Button> ().colors = cb;
+				bg_music.Play();
+				PlayerPrefs.SetInt ("musicIsOn", 1);
+			}
+		});
+
+		string sceneName = SceneManager.GetActiveScene ().name;
+		ColorBlock cb_sound = pnl_btn_sound.GetComponent<Button> ().colors;
+		if (PlayerPrefs.GetInt ("soundIsOn", 1) == 1) {
+			cb_sound.normalColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
+			pnl_btn_sound.GetComponent<Button> ().colors = cb_sound;
+			toggleSound (sceneName, false);
+		} else {
+			cb_sound.normalColor = new Color32(0x6F, 0x6F, 0x6F, 0xFF);
+			pnl_btn_sound.GetComponent<Button> ().colors = cb_sound;
+			toggleSound (sceneName, true);
+		}
+
+		pnl_btn_sound.GetComponent<Button> ().onClick.AddListener (delegate {
+			if (PlayerPrefs.GetInt ("soundIsOn", 1) == 1) {
+				cb_sound.normalColor = new Color32(0x6F, 0x6F, 0x6F, 0xFF);
+				pnl_btn_sound.GetComponent<Button> ().colors = cb_sound;
+				toggleSound (sceneName, true);
+				PlayerPrefs.SetInt ("soundIsOn", 0);
+			} else {
+				cb_sound.normalColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
+				pnl_btn_sound.GetComponent<Button> ().colors = cb_sound;
+				toggleSound (sceneName, false);
+				PlayerPrefs.SetInt ("soundIsOn", 1);
+			}
+		});
 	}
 
-	void Update() {
+	void toggleSound(string sceneName, bool on) {
+		switch (sceneName) {
+		case "Forest":
+			GameObject.Find ("Door").GetComponent<AudioSource> ().mute = on;
+			GameObject.Find ("Star").GetComponent<AudioSource> ().mute = on;
+			break;
+		case "GuestroomSwipe":
+			for (int i = 0; i < GameObject.Find ("Constants").transform.childCount; i++) {
+				AudioSource audio = GameObject.Find ("Constants").transform.GetChild (i).gameObject.GetComponent<AudioSource> ();
+				if (audio != null) {
+					audio.mute = on;
+				}
+			}
+			for (int i = 0; i < GameObject.Find ("Characters").transform.childCount; i++) {
+				AudioSource audio = GameObject.Find ("Characters").transform.GetChild (i).gameObject.GetComponent<AudioSource> ();
+				if (audio != null) {
+					audio.mute = on;
+				}
+			}
+			for (int i = 0; i < GameObject.Find ("Mess").transform.childCount; i++) {
+				AudioSource audio = GameObject.Find ("Mess").transform.GetChild (i).gameObject.GetComponent<AudioSource> ();
+				if (audio != null) {
+					audio.mute = on;
+				}
+			}
+			break;
+		}
+	}
+
+	/*void Update() {
 		sceneName = SceneManager.GetActiveScene ().name;
 		if (sceneName != prevSceneName) {
 			everything_Is_Setup = false;
@@ -99,4 +176,13 @@ public class GlobalSettingsPanel : MonoBehaviour {
 			everything_Is_Setup = true;
 		}
 	}
+
+	public bool everything_Is_Setup {
+		get { 
+			return this.everythingIsSetup;
+		}
+		set { 
+			everythingIsSetup = value;
+		}
+	}*/
 }

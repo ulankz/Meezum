@@ -59,6 +59,7 @@ public class GameDurationTimerManager : MonoBehaviour
 		GameObject canvas = null;
 		switch (sceneName) {
 			case "Forest":
+			case "GuestroomSwipe":
 				alertFontSize = 30;
 				canvas = GameObject.Find ("CanvasGeneralUI");
 				break;

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using MeezumGame;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 //<summary>
 //Ball movement controlls and simple third-person-style camera
@@ -29,7 +30,11 @@ public class RollerBall : MonoBehaviour {
 	private int completedTasks = 0;
 	private int maxAvailableTasks = 4;
 	private GameObject enteredTask;
-	System.Collections.Generic.List<GameObject> taskPortals = new System.Collections.Generic.List<GameObject> (); // taskPortals are necessary to record all the spawned tasks within the labyrinth
+	List<GameObject> taskPortals = new List<GameObject> (); // taskPortals are necessary to record all the spawned tasks within the labyrinth
+	List<string> keysToDelete = new List<string>(
+		new string[] {"enteredLabyrinth", "RowsCount", "ColumnsCount", "Wall_At_Column", "taskLevel", 
+			"previousStep", "turnsCount", "playerPosX", "playerPosZ", "CompletedTasks", "TaskPortal"
+	});
 
 	public float moveSpeed;
 	public Joystick joystick;
@@ -275,7 +280,27 @@ public class RollerBall : MonoBehaviour {
 
 				if (moveVector.x >= -3 & moveVector.x <= 3 && moveVector.z >= -10 && moveVector.z <= -5) { // Right
 					if(playerPosZ == RowsCount -1 && playerPosX == ColumnsCount - 1) {
-						PlayerPrefs.DeleteAll (); // Once we exit from the labyrinth, we ensure that all data is deleted
+						// Once we exit from the labyrinth, we ensure that all data is deleted
+						foreach (string key in keysToDelete) {
+							if (key == "Wall_At_Column") {
+								for (int row = 0; row < RowsCount; row++) {
+									for (int column = 0; column < ColumnsCount; column++) {
+										string Wall_At_Column = "Wall_At_Column" + column.ToString () + "_Row" + row.ToString ();
+										PlayerPrefs.DeleteKey (Wall_At_Column + "_Right");
+										PlayerPrefs.DeleteKey (Wall_At_Column + "_Front");
+										PlayerPrefs.DeleteKey (Wall_At_Column + "_Left");
+										PlayerPrefs.DeleteKey (Wall_At_Column + "_Back");
+									}
+								}
+							} else if (key == "TaskPortal") {
+								for (int i = 1; i <= maxAvailableTasks; i++) {
+									PlayerPrefs.DeleteKey (key+i+"_PosX");
+									PlayerPrefs.DeleteKey (key+i+"_PosZ");
+								}
+							} else {
+								PlayerPrefs.DeleteKey (key);
+							}
+						}
 						SceneManager.LoadScene ("Exit"); // Go to the stage where final comics scene will be presented to the player
 					}
 					else if (playerPosX + 1 < ColumnsCount && !wallPlacement.WallRight) {
