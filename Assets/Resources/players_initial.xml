@@ -2,8 +2,8 @@
   <player id="-1994117179" isActive="True">
     <name>Meezum</name>
     <avatar>rhon</avatar>
-    <score>26</score>
-    <cleanedDisorders>8</cleanedDisorders>
+    <score>21</score>
+    <cleanedDisorders>3</cleanedDisorders>
     <lang>RU</lang>
     <completedMissions>
       <mission>
@@ -38,27 +38,27 @@
       <disorder>
         <id>4</id>
         <title>mess_yellowpillow</title>
-        <status>Cleaned</status>
+        <status>Queued</status>
       </disorder>
       <disorder>
         <id>5</id>
         <title>mess_pinkpillow</title>
-        <status>Cleaned</status>
+        <status>Queued</status>
       </disorder>
       <disorder>
         <id>6</id>
         <title>mess_bear</title>
-        <status>Cleaned</status>
+        <status>Queued</status>
       </disorder>
       <disorder>
         <id>7</id>
         <title>mess_pencils</title>
-        <status>Cleaned</status>
+        <status>Queued</status>
       </disorder>
       <disorder>
         <id>8</id>
         <title>mess_vase</title>
-        <status>Cleaned</status>
+        <status>Queued</status>
       </disorder>
       <disorder>
         <id>9</id>

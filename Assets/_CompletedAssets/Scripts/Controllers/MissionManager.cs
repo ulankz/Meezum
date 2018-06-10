@@ -18,17 +18,18 @@ namespace MeezumGame
 		private List<DetailedMission> missions;
 		private DetailedMission currentMission;
 		private XDocument xmlDoc;
+		private const string path = "Assets/_CompletedAssets/Resources/XML Files/missions.xml";
 		private IEnumerable<XElement> items;
 		#endregion
 
 		#region PUBLIC METHODS
 		void Start() {
-			LoadMissionsFromXML ("Assets/_CompletedAssets/Resources/XML Files/missions.xml");
+			LoadMissionsFromXML ();
 		}
 
-		public List<DetailedMission> LoadMissionsFromXML(string path){
+		public List<DetailedMission> LoadMissionsFromXML(string path = path) { // It uses optional argument, take a look at https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments
 			xmlDoc = XDocument.Load (path);
-			items = xmlDoc.Descendants ("Mission").Elements ();
+			GetMissionItemsFromXml ();
 			if (items.Count () != 0) {
 				missions = new List<DetailedMission> ();
 			}
@@ -54,12 +55,21 @@ namespace MeezumGame
 			return missions;
 		}
 
-		public void StartMisison(int id){
+		public IEnumerable<XElement> GetMissionItemsFromXml() {
+			items = xmlDoc.Descendants ("Mission").Elements ();
+			return items;
+		}
+
+		public void SaveMissions(string path = path) {
+			xmlDoc.Save (path);
+		}
+
+		public void StartMisison(int id) {
 			currentMission = missions [id];
 			SceneManager.LoadScene (Scenes.COMICS_SCENE);
 		}
 
-		public void StopMission(){
+		public void StopMission() {
 
 		}
 		#endregion
@@ -82,6 +92,15 @@ namespace MeezumGame
 				currentMission = value;
 			}
 
+		}
+
+		public XDocument XML_Doc {
+			get { 
+				return this.xmlDoc;
+			}
+			set { 
+				xmlDoc = value;
+			}
 		}
 		#endregion
 	}

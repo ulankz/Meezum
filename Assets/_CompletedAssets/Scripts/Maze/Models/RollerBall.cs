@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using MeezumGame;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Serialization;
+using System.Xml.Linq;
+using System.Linq;
+using MeezumGame;
 
 //<summary>
 //Ball movement controlls and simple third-person-style camera
@@ -24,6 +28,8 @@ public class RollerBall : MonoBehaviour {
 	string previousStep;
 	Color defaultFloorColor;
 
+	public static XElement maze;
+	public static MissionManager mManager;
 	private int turnsCount = 0;
 	private int taskLevel = 1;
 	private int taskToComplete = 1;
@@ -89,13 +95,28 @@ public class RollerBall : MonoBehaviour {
 		return false;
 	}
 
+	bool checkWallDirectionForCell(string wallDirectionKey) {
+		if (maze.Element (wallDirectionKey).Value == "0") {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	// This method is invoked several times in FixedUpdate (). It is necessary to define where already generated walls per cell were placed.
 	WallPlacement getWallDirections(string wallDirection) {
 		WallPlacement wallPlacement;
-		wallPlacement.WallRight = PlayerPrefs.GetInt(wallDirection+"_Right", 0) != 0; // This gets information whether the wall on the right side exists per cell.
-		wallPlacement.WallFront = PlayerPrefs.GetInt(wallDirection+"_Front", 0) != 0;
-		wallPlacement.WallLeft = PlayerPrefs.GetInt(wallDirection+"_Left", 0) != 0;
-		wallPlacement.WallBack = PlayerPrefs.GetInt(wallDirection+"_Back", 0) != 0;
+		if (maze.Element (wallDirection + "_Right") != null) {
+			wallPlacement.WallRight = checkWallDirectionForCell (wallDirection + "_Right"); // This gets information whether the wall on the right side exists per cell.
+			wallPlacement.WallFront = checkWallDirectionForCell (wallDirection + "_Front");
+			wallPlacement.WallLeft = checkWallDirectionForCell (wallDirection + "_Left");
+			wallPlacement.WallBack = checkWallDirectionForCell (wallDirection + "_Back");
+		} else {
+			wallPlacement.WallRight = false;
+			wallPlacement.WallFront = false;
+			wallPlacement.WallLeft = false;
+			wallPlacement.WallBack = false;
+		}
 		return wallPlacement;
 	}
 
@@ -113,7 +134,7 @@ public class RollerBall : MonoBehaviour {
 		GameObject taskPortal = GameObject.CreatePrimitive (PrimitiveType.Sphere); // this is the mesh, by which means the player can enter the task scene.
 		taskPortal.transform.position = new Vector3 (position.x, 0, position.z);
 		taskPortal.GetComponent<Renderer> ().material.color = Color.cyan;
-		taskPortal.name = "TaskPortal " + index.ToString();
+		taskPortal.name = "TaskPortal" + index.ToString();
 		taskPortals.Add (taskPortal); // we have to keep track of spawned task portals, so later we can check conditions on whether the player steps the cell containing one of those task portals.
 	}
 
@@ -124,6 +145,21 @@ public class RollerBall : MonoBehaviour {
 
 		myOkAction = new UnityAction (GoToTask); // We have to assign the function, once the "Ok" button is clicked on the Notification
 		myCancelAction = new UnityAction (CancelTask); // The same applies to "Cancel"
+
+		GlobalGameManager game = GlobalGameManager.instance;
+		mManager = game.missionManager; // For writing and reading XML we need MissionManager, so we create its instance in RollerBall once, and use it in both RollerBall and Maze. The reason we created it here is because this class is called before Maze.
+		mManager.LoadMissionsFromXML ();
+		IEnumerable<XElement> items = mManager.GetMissionItemsFromXml ();
+		maze = items.ElementAt (0).Parent.Element ("maze"); // here we assign the mission number for which XML needs updates.
+		if (maze.Element ("taskLevel") == null) {
+			maze.Add (new XElement ("taskLevel", 1));
+			maze.Add (new XElement ("previousStep", "firstStep"));
+			maze.Add (new XElement ("turnsCount", 0));
+			maze.Add (new XElement ("playerPosX", 0));
+			maze.Add (new XElement ("playerPosZ", 0));
+			maze.Add (new XElement ("CompletedTasks", 0));
+			mManager.SaveMissions ();
+		}
 	}
 
 	void FixedUpdate () {
@@ -133,27 +169,30 @@ public class RollerBall : MonoBehaviour {
 		Otherwise, worst scenario might happen. */
 
 		if (!gameHasStarted) {
-			taskLevel = PlayerPrefs.GetInt ("taskLevel", 1); // If the player makes 6 turns in the maze, the new task with an appropriate level will be spawned. So this is required to record current task level.
-			previousStep = PlayerPrefs.GetString ("previousStep", "firstStep"); // Take a look in FixedUpdate () about this variable.
-			turnsCount = PlayerPrefs.GetInt ("turnsCount", 0);
-			playerPosX = PlayerPrefs.GetInt ("playerPosX", 0);
-			playerPosZ = PlayerPrefs.GetInt ("playerPosZ", 0);
-			completedTasks = PlayerPrefs.GetInt ("CompletedTasks", 0);
+			taskLevel = Int32.Parse(maze.Element ("taskLevel").Value); // If the player makes 6 turns in the maze, the new task with an appropriate level will be spawned. So this is required to record current task level.
+			previousStep = maze.Element ("previousStep").Value; // Take a look in FixedUpdate () about this variable.
+			turnsCount = Int32.Parse(maze.Element ("turnsCount").Value);
+			playerPosX = Int32.Parse(maze.Element ("playerPosX").Value);
+			playerPosZ = Int32.Parse(maze.Element ("playerPosZ").Value);
+			completedTasks = Int32.Parse(maze.Element ("CompletedTasks").Value);
 			string startingFloorName = "Floor_Column" + playerPosX.ToString() + "_Row" + playerPosZ.ToString(); // It will get the player to the cell, where he was previously stopped, once after he entered to the task scene.
 			GameObject startingFloor = GameObject.Find(startingFloorName);
 			if (startingFloor != null) {
 				transform.position = startingFloor.transform.position;
 			}
-			if (PlayerPrefs.GetInt ("RowsCount", 0) != 0 && PlayerPrefs.GetInt ("ColumnsCount", 0) != 0) {
-				RowsCount = PlayerPrefs.GetInt ("RowsCount", 0);
-				ColumnsCount = PlayerPrefs.GetInt ("ColumnsCount", 0);
+
+			if (maze.Element ("RowsCount") != null) {
+				if (Int32.Parse(maze.Element ("RowsCount").Value) != 0 && Int32.Parse(maze.Element ("ColumnsCount").Value) != 0) {
+					RowsCount = Int32.Parse (maze.Element ("RowsCount").Value);
+					ColumnsCount = Int32.Parse (maze.Element ("ColumnsCount").Value);
+				}
 			}
 			gameHasStarted = true;
 
 			// After the player returns to the maze once again, the same portals with the same previous locations will be spawned.
 			for (int i = 1; i < taskLevel; i++) {
-				string nameIdentifier = "TaskPortal " + i;
-				initTaskPortal (new Vector3(PlayerPrefs.GetFloat (nameIdentifier + "_PosX", 0), 0, PlayerPrefs.GetFloat (nameIdentifier + "_PosZ", 0)), i);
+				string nameIdentifier = "TaskPortal" + i;
+				initTaskPortal (new Vector3((float)Double.Parse(maze.Element(nameIdentifier + "_PosX").Value), 0, (float)Double.Parse(maze.Element(nameIdentifier + "_PosZ").Value)), i);
 				GameObject taskPortal = GameObject.Find (nameIdentifier);
 				if (taskPortal != null && taskPortal.transform.position == transform.position) {
 					enteredTask = taskPortal;
@@ -221,10 +260,11 @@ public class RollerBall : MonoBehaviour {
 					allowMotion = false;
 				}
 				// The current location of the player must be recorded, so on the next session the player is spawned on the same previous location. The same applies to the previous made step and number of turns.
-				PlayerPrefs.SetString ("previousStep", previousStep);
-				PlayerPrefs.SetInt ("turnsCount", turnsCount);
-				PlayerPrefs.SetInt ("playerPosX", playerPosX);
-				PlayerPrefs.SetInt ("playerPosZ", playerPosZ);
+				maze.Element("previousStep").Value = previousStep;
+				maze.Element ("turnsCount").Value = turnsCount.ToString();
+				maze.Element ("playerPosX").Value = playerPosX.ToString();
+				maze.Element ("playerPosZ").Value = playerPosZ.ToString();
+				mManager.SaveMissions ();
 			}
 
 			if (timer <= 0 && !allowMotion) {
@@ -286,21 +326,22 @@ public class RollerBall : MonoBehaviour {
 								for (int row = 0; row < RowsCount; row++) {
 									for (int column = 0; column < ColumnsCount; column++) {
 										string Wall_At_Column = "Wall_At_Column" + column.ToString () + "_Row" + row.ToString ();
-										PlayerPrefs.DeleteKey (Wall_At_Column + "_Right");
-										PlayerPrefs.DeleteKey (Wall_At_Column + "_Front");
-										PlayerPrefs.DeleteKey (Wall_At_Column + "_Left");
-										PlayerPrefs.DeleteKey (Wall_At_Column + "_Back");
+										maze.Element (Wall_At_Column + "_Right").Remove ();
+										maze.Element (Wall_At_Column + "_Front").Remove ();
+										maze.Element (Wall_At_Column + "_Left").Remove ();
+										maze.Element (Wall_At_Column + "_Back").Remove ();
 									}
 								}
 							} else if (key == "TaskPortal") {
 								for (int i = 1; i <= maxAvailableTasks; i++) {
-									PlayerPrefs.DeleteKey (key+i+"_PosX");
-									PlayerPrefs.DeleteKey (key+i+"_PosZ");
+									maze.Element (key+i+"_PosX").Remove ();
+									maze.Element (key+i+"_PosZ").Remove ();
 								}
 							} else {
-								PlayerPrefs.DeleteKey (key);
+								maze.Element (key).Remove ();
 							}
 						}
+						mManager.SaveMissions ();
 						SceneManager.LoadScene ("Exit"); // Go to the stage where final comics scene will be presented to the player
 					}
 					else if (playerPosX + 1 < ColumnsCount && !wallPlacement.WallRight) {
@@ -384,9 +425,10 @@ public class RollerBall : MonoBehaviour {
 						initTaskPortal (nextFloor.transform.position, taskLevel);
 						GameObject taskPortal = taskPortals[taskPortals.Count-1]; // It will get the last created task portal, and record its location & taskLevel.
 						taskLevel++;
-						PlayerPrefs.SetFloat (taskPortal.name+"_PosX", taskPortal.transform.position.x);
-						PlayerPrefs.SetFloat (taskPortal.name+"_PosZ", taskPortal.transform.position.z);
-						PlayerPrefs.SetInt ("taskLevel", taskLevel);
+						maze.Add(new XElement (taskPortal.name + "_PosX", taskPortal.transform.position.x.ToString()));
+						maze.Add(new XElement (taskPortal.name + "_PosZ", taskPortal.transform.position.z.ToString()));
+						maze.Element ("taskLevel").Value = taskLevel.ToString ();
+						mManager.SaveMissions ();
 					}
 				}
 
