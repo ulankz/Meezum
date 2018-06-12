@@ -20,10 +20,10 @@ namespace MeezumGame
 		private XDocument xmlDoc;
 		private IEnumerable<XElement> items;
 		#endregion
-
+		string fileName = "missions.xml";
 		#region PUBLIC METHODS
 		void Start() {
-			LoadMissionsFromXML ("Assets/_CompletedAssets/Resources/XML Files/missions.xml");
+			LoadMissionsFromXML (getPath());//Assets/_CompletedAssets/Resources/missions.xml
 		}
 
 		public List<DetailedMission> LoadMissionsFromXML(string path){
@@ -53,7 +53,17 @@ namespace MeezumGame
 			}
 			return missions;
 		}
-
+		public string getPath(){
+			#if UNITY_EDITOR
+			return Application.dataPath +"/Resources/"+fileName;
+			#elif UNITY_ANDROID
+			return Application.persistentDataPath+fileName;
+			#elif UNITY_IPHONE
+			return Application.persistentDataPath+"/"+fileName;
+			#else
+			return Application.dataPath +"/"+ fileName;
+			#endif
+			}
 		public void StartMisison(int id){
 			currentMission = missions [id];
 			SceneManager.LoadScene (Scenes.COMICS_SCENE);

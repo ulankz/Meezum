@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Localization;
-
+using System.Linq;
+using System;
 namespace MeezumGame{
 public class GlobalGameManager : MonoBehaviour {
 
@@ -51,7 +52,6 @@ public class GlobalGameManager : MonoBehaviour {
 			if (playerManager != null){
 				if (PlayerPrefs.GetInt ("InitialSave", 0) == 0) {
 					playerManager.SavePlayersToXmlInitial ();
-					PlayerPrefs.SetInt ("InitialSave",1);
 					print("INITIAL LOAD OF PLAYERS " + PlayerPrefs.GetInt ("InitialSave", 0));
 				}
 			}
@@ -105,11 +105,13 @@ public class GlobalGameManager : MonoBehaviour {
 		void OnEnable() {
 			MainUiManager.OnRegOkClickEvent += CreateNewPlayer;
 			MainUiManager.OnChooseClickEvent += GetListOfPlayerInfo;
+			MainUiManager.OnChangeCurrentUsersClickEvent+=ChangeCurrentUser;
 		}
 
-		void OnDesable() {
+		void OnDisable() {
 			MainUiManager.OnRegOkClickEvent -= CreateNewPlayer;
 			MainUiManager.OnChooseClickEvent -= GetListOfPlayerInfo;
+			MainUiManager.OnChangeCurrentUsersClickEvent-=ChangeCurrentUser;
 		}
 
 		void CreateNewPlayer(string name, string ava) {
@@ -117,19 +119,28 @@ public class GlobalGameManager : MonoBehaviour {
 
 			playerManager.CreatePlayer (name, ava, 0);
 		}
+		private void ChangeCurrentUser(Int32 id){
+			playerManager.ChoosePlayer (id);
+			Debug.Log ("PLAYER IS CHANGED TO " + id);
+		}
 
-		List<string> GetListOfPlayerInfo() {
-			List<string> plInfo = new List<string> ();
-			foreach (Player pl in playerManager.Players) {
-				plInfo.Add (pl.Id + " " + pl.Name + " " + pl.Avatar);
-			}
+		List<Player> GetListOfPlayerInfo() {
+			//List<Player> plInfo = new List<Player> ();
+			//foreach (Player pl in playerManager.Players) {
+				//plInfo.Add (pl.Id + " " + pl.Name + " " + pl.Avatar);
+				//print (pl.Id + " " + pl.Name + " " + pl.Avatar);
+			//}
 
-			return plInfo;
+			return playerManager.Players;
 		}
 			
 		#endregion
 		void OnApplicationQuit() {
 			playerManager.SaveCurrentGame ();
+		}
+		private void PlayerListChangedHandler(object sender,System.ComponentModel.PropertyChangedEventArgs e){
+			print ("PLAYER LIST IS CHANGED " + e.PropertyName);
+	
 		}
 }
 }

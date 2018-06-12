@@ -11,6 +11,8 @@ public class GlobalSettingsPanel : MonoBehaviour {
 
 	public Button pnl_btn_sound;
 	public Button pnl_btn_music;
+	[SerializeField]
+	private GameObject PanelMissions;
 	/*public GameObject canvas;
 	public GameObject globalSettingsPanel;
 	public GameObject general;
@@ -23,7 +25,7 @@ public class GlobalSettingsPanel : MonoBehaviour {
 	private bool everythingIsSetup = false;
 	string sceneName = "", prevSceneName = "";*/
 
-	/*private static GlobalSettingsPanel instance = null;
+	private static GlobalSettingsPanel instance = null;
 
 	private GlobalSettingsPanel()
 	{
@@ -48,7 +50,7 @@ public class GlobalSettingsPanel : MonoBehaviour {
 			instance = this;
 			DontDestroyOnLoad (gameObject);
 		}
-	}*/
+	}
 
 	void Start() {
 		GameObject camera = GameObject.Find ("Main Camera");
@@ -185,4 +187,26 @@ public class GlobalSettingsPanel : MonoBehaviour {
 			everythingIsSetup = value;
 		}
 	}*/
+	void OnEnable(){
+		SceneManager.sceneLoaded += OnLevelFinishedLoading;
+	}
+	void OnDisable(){
+		SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+	}
+	public void HidePanelMissions(bool flag){
+		PanelMissions.gameObject.SetActive (!flag );
+	}
+
+	private void OnLevelFinishedLoading(Scene scene,LoadSceneMode mode){
+		Debug.Log ("LEVEL LOADED " + scene.name + " " + mode);
+		switch(scene.name){
+		case Scenes.GUEST_ROOM_SCENE:
+			HidePanelMissions (true);
+			break;
+		default:
+			HidePanelMissions(false);
+			break;
+		}
+
+	}
 }

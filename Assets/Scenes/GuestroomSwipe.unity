@@ -2780,7 +2780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce00446d2e47cd4dadb5fb2c16be604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 778058739}
+  panelCG: {fileID: 0}
+  currentPanelCG: {fileID: 0}
   helper: {fileID: 1873030465}
 --- !u!1 &369474110
 GameObject:
@@ -3583,7 +3584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce00446d2e47cd4dadb5fb2c16be604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 778058739}
+  panelCG: {fileID: 0}
+  currentPanelCG: {fileID: 0}
   helper: {fileID: 1873030465}
 --- !u!61 &501522342
 BoxCollider2D:
@@ -4422,19 +4424,6 @@ MonoBehaviour:
   cupboardPanel: {fileID: 1394618530}
   tvPanel: {fileID: 778058739}
   optionsPanel: {fileID: 1940504204}
---- !u!114 &674016538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 674016535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b01419d099726b3428e49ce841d83dec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pnl_btn_sound: {fileID: 982870376}
-  pnl_btn_music: {fileID: 982870375}
 --- !u!224 &674016540 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224194914223196178, guid: 81ef55370d7f08e45b288b9e2ac9bd6b,
@@ -5328,48 +5317,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!1 &838418589
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 838418591}
-  - component: {fileID: 838418590}
-  m_Layer: 0
-  m_Name: PlayerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &838418590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 838418589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b336bad383e4bb458cef065471b45f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerDB:
-    list: []
---- !u!4 &838418591
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 838418589}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &841600545
 GameObject:
   m_ObjectHideFlags: 0
@@ -7088,22 +7035,14 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -76
       objectReference: {fileID: 0}
+    - target: {fileID: 1246260077681522, guid: 81ef55370d7f08e45b288b9e2ac9bd6b, type: 2}
+      propertyPath: m_Name
+      value: IngameCanvas
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114680952717199886, guid: 81ef55370d7f08e45b288b9e2ac9bd6b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 81ef55370d7f08e45b288b9e2ac9bd6b, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &982870375 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114189942361103676, guid: 81ef55370d7f08e45b288b9e2ac9bd6b,
-    type: 2}
-  m_PrefabInternal: {fileID: 982870374}
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!114 &982870376 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114790573653649434, guid: 81ef55370d7f08e45b288b9e2ac9bd6b,
-    type: 2}
-  m_PrefabInternal: {fileID: 982870374}
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &987920303
 GameObject:
   m_ObjectHideFlags: 0
@@ -10014,7 +9953,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce00446d2e47cd4dadb5fb2c16be604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 1394618530}
+  panelCG: {fileID: 0}
+  currentPanelCG: {fileID: 0}
   helper: {fileID: 1346316741}
 --- !u!1 &1527681170
 GameObject:
@@ -10237,7 +10177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce00446d2e47cd4dadb5fb2c16be604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 1643368806}
+  panelCG: {fileID: 0}
+  currentPanelCG: {fileID: 0}
   helper: {fileID: 198779348}
 --- !u!61 &1529060120
 BoxCollider2D:
@@ -10719,7 +10660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce00446d2e47cd4dadb5fb2c16be604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 1643368806}
+  panelCG: {fileID: 0}
+  currentPanelCG: {fileID: 0}
   helper: {fileID: 198779348}
 --- !u!1 &1593506387
 GameObject:
@@ -14315,7 +14257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce00446d2e47cd4dadb5fb2c16be604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 1394618530}
+  panelCG: {fileID: 0}
+  currentPanelCG: {fileID: 0}
   helper: {fileID: 1346316741}
 --- !u!82 &1977101450
 AudioSource:

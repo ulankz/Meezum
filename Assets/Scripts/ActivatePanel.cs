@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 using MeezumGame;
 public class ActivatePanel : MonoBehaviour {
 
-	public GameObject panel;
+	public CanvasGroup panelCG;
+	public CanvasGroup currentPanelCG;
 	public GameObject helper;
 	//public GameObject[] colliderHolders;
 	private InteractiveSpriteTracker movableGO;
@@ -16,12 +17,16 @@ public class ActivatePanel : MonoBehaviour {
 		movableGO = GameObject.FindGameObjectWithTag (Tags.MOVABLE_OBJECT).GetComponent<InteractiveSpriteTracker> ();
 		//colliderHolders = GameObject.FindGameObjectsWithTag (Tags.INTERACTIVE_SPRITE);
 		optionsButton = GameObject.FindGameObjectWithTag(Tags.MENU_SETTINGS_BUTTON).GetComponent<Button>();
+		currentPanelCG = transform.parent.GetComponent<CanvasGroup> ();
 	}
 
 	public void OpenPanel() {
 		//if (!EventSystem.current.IsPointerOverGameObject ()) {
-			if (panel) {
-				panel.SetActive (true);
+		if (panelCG) {
+			panelCG.alpha = 1;
+			panelCG.transform.SetAsLastSibling ();
+			if (currentPanelCG)
+				currentPanelCG.alpha = 0;
 				if(gameObject.GetComponent<AudioSource>()!= null)
 					gameObject.GetComponent<AudioSource> ().Play ();
 				if(helper)
@@ -38,8 +43,9 @@ public class ActivatePanel : MonoBehaviour {
 	}
 	public void ClosePanel() {
 		//if (!EventSystem.current.IsPointerOverGameObject ()) {
-		if (panel) {
-			panel.SetActive (false);
+		if (panelCG) {
+			panelCG.alpha = 0;
+			panelCG.transform.SetAsFirstSibling ();
 			if(gameObject.GetComponent<AudioSource>()!= null)
 				gameObject.GetComponent<AudioSource> ().Play ();
 			if(helper)

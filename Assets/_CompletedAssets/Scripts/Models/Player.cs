@@ -56,15 +56,15 @@ namespace MeezumGame
 			this.disorder = disorder;
 			this.language = language;
 		}
-		public Player (int id, string name,  string avatar, int score,bool isActive,int cleanedDisorders)
+		public Player (int id, string name,  string avatar,bool isActive)
 		{
 			this.id = id;
 			this.isActive = isActive;
 			this.name = name;
 			//this.age = age;
 			this.avatar = avatar;
-			this.score = score;
-			this.cleanedDisorders = cleanedDisorders;
+			//this.score = score;
+			//this.cleanedDisorders = cleanedDisorders;
 		}
 
 		public Player(){

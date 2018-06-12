@@ -48,5 +48,8 @@ namespace MeezumGame
 		public const string MOVABLE_OBJECT = "Movable";
 		public const string EXPIRATION_TIME_SETUP_BUTTON = "ExpirationTimeSetupButton";
 		public const string TIMER_ALARM_START_BUTTON = "TimerAlarmStartButton";
+		public const string CHOICE_PANEL_PLAYER_BUTTON = "ChoicePanelPlayerButton";
+		public const string CHOICE_PANEL = "ChoicePanel";
+		public const string CONFIRM_CHANGE_CURRENT_USER =  "ChangeCurrentUserOkButton";
 	}
 }

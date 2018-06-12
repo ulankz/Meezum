@@ -10,7 +10,7 @@ public class XmlTestAndroid : MonoBehaviour {
 	private int command;
 	void Update () {
 		if (command == 0)
-			GetComponent<Text> ().text = System.IO.File.Exists (GlobalGameManager.instance.playerManager.getPath ()).ToString ();
+			GetComponent<Text> ().text = GlobalGameManager.instance.playerManager.CurrentPlayer.Name;//System.IO.File.Exists (GlobalGameManager.instance.playerManager.getPath()).ToString ();
 		else {
 			GetComponent<Text> ().text = GlobalGameManager.instance.playerManager.getPath ();
 		}

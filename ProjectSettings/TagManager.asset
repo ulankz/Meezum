@@ -50,6 +50,9 @@ TagManager:
   - Movable
   - TimerAlarmStartButton
   - ExpirationTimeSetupButton
+  - ChoicePanelPlayerButton
+  - ChoicePanel
+  - ChangeCurrentUserOkButton
   layers:
   - Default
   - TransparentFX

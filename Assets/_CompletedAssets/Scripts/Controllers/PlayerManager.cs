@@ -4,8 +4,9 @@ using UnityEngine;
 using System.Xml;
 using System.IO;
 using System;
+using System.ComponentModel;
 namespace MeezumGame{
-public class PlayerManager : MonoBehaviour {
+	public class PlayerManager : MonoBehaviour,INotifyPropertyChanged {
 		#region PRIVATE MEMBERS
 		[SerializeField]
 		private List<Player> players;
@@ -22,7 +23,7 @@ public class PlayerManager : MonoBehaviour {
 		public Player LoadCurrentPlayer(){
 			Player currentPlayer = null;
 
-			foreach (Player pl in players) {
+			foreach (Player pl in Players) {
 				if (pl.IsActive == true) {
 					currentPlayer = pl;
 					break;
@@ -92,13 +93,14 @@ public class PlayerManager : MonoBehaviour {
 					}
 					//int id, string name, string avatar, int score, List<Mission> completedMissions, bool isActive,int cleanedDisorders, MessElement[] disorder, Language language
 					//Debug.Log ("User data: " +id.ToString()+" "+isActive.ToString()+" "+ name+" "+ ava+" "+ score.ToString() + " " + cleanedDisorders);
-					players.Add (new Player (id, name, ava, score, completedMissions, isActive, cleanedDisorders, disorders, lang));
+					Players.Add (new Player (id, name, ava, score, completedMissions, isActive, cleanedDisorders, disorders, lang));
 				}
 				reader.Close ();
-				Debug.Log ("User count: " + players.Count);
-				if (loadCompleteDelegate != null)
+				Debug.Log ("User count: " + Players.Count);
+				if (loadCompleteDelegate != null) {
 					loadCompleteDelegate ();
-				print ("INITIAL LOAD IS COMPLETED ");
+					print ("INITIAL LOAD IS COMPLETED ");
+				}
 			}
 		}
 
@@ -107,14 +109,18 @@ public class PlayerManager : MonoBehaviour {
 			path = getPath ();
 
 			if (PlayerPrefs.GetInt ("InitialSave", 0) == 0) {
-				players = GenerateInitialPlayerList ();
-			}	
-			
+				Players = GenerateInitialPlayerList ();
+	
+				Debug.Log("INITIAL SAVE " + PlayerPrefs.GetInt ("InitialSave", 0));
+			}
+
+			print ("DEFAULT SAVE METHOD ");
 			XmlDocument xmlDoc = new XmlDocument ();
 			XmlNode rootNode = xmlDoc.CreateElement ("players");
 			xmlDoc.AppendChild (rootNode);
 
-			foreach (Player pl in players) {
+			foreach (Player pl in Players) {
+				print ( "PLAYER NAME FROM SavePlayersToXML " +  pl.Name);
 				XmlNode playerNode = xmlDoc.CreateElement ("player");
 				XmlAttribute id = xmlDoc.CreateAttribute ("id");
 				XmlAttribute isActive = xmlDoc.CreateAttribute ("isActive");
@@ -183,6 +189,7 @@ public class PlayerManager : MonoBehaviour {
 			}
 
 			xmlDoc.Save (path);
+			PlayerPrefs.SetInt ("InitialSave",1);
 		}
 
 		public void SavePlayersToXml() {
@@ -225,9 +232,15 @@ public class PlayerManager : MonoBehaviour {
 		private List<Player> GenerateInitialPlayerList(){
 			List<Player> players = new List<Player> ();
 			int id = -1994117179;
-			string name = "Meezum";
+			string name = "Aruna";
 			string ava = "rhon";
-			int score = 21;
+			bool isActive = true;
+			players.Add (GenerateDefaultAttributesForNewPlayer(id,name,ava,isActive));
+			print ("INITIAL PLAYER LIST IS GENERATED WITH " + players.Count);
+			return players;
+		}
+		private Player GenerateDefaultAttributesForNewPlayer(int id,string name,string ava,bool isActive){
+			Player p = new Player (id,name,ava,isActive);
 			List<Mission> completedMissions = new List<Mission> ();
 			int mId = 0;
 			string title = "Supermarket";
@@ -236,7 +249,6 @@ public class PlayerManager : MonoBehaviour {
 			int earnedScores = 0;
 			Mission m = new Mission (mId, title, description, mStatus, earnedScores);
 			completedMissions.Add (m);
-			bool isActive = true;
 			int cleanedDisorders = 3;
 			Language lang = Language.RU;
 			List<MessElement> disorders = new List<MessElement> ();
@@ -269,10 +281,15 @@ public class PlayerManager : MonoBehaviour {
 			disorders.Add(new MessElement(26,"mess_spidernet_sofa",MessElementStatus.Queued));
 
 
-			Player p = new Player (id, name, ava, score, completedMissions, isActive, cleanedDisorders, disorders, lang);
-			players.Add (p);
-			print ("INITIAL PLAYER LIST IS GENERATED WITH " + players.Count);
-			return players;
+			//Player p = new Player (id, name, ava, score, completedMissions, isActive, cleanedDisorders, disorders, lang);
+			p.Score = 0;
+			p.CompletedMissions = completedMissions;
+			p.IsActive = isActive;
+			p.CleanedDisorders = cleanedDisorders;
+			p.Disorder = disorders;
+			p.Language = lang;
+
+			return p;
 		}
 		public bool CreatePlayer(string name, string avatar, int score){
 			// Check if the number of users do not exceeds maxNumOfPlayers=6
@@ -283,13 +300,13 @@ public class PlayerManager : MonoBehaviour {
 
 			int maxNumOfPlayers = 6;
 
-			int numOfPlayers = players.Count;
+			int numOfPlayers = Players.Count;
 			if (numOfPlayers >= maxNumOfPlayers) {
 				Debug.Log ("Number of players has reached the maximum!");
 				return false;
 			} 
 
-			foreach (Player pl in players) {
+			foreach (Player pl in Players) {
 				if (pl.Name.Equals(name)) {
 					Debug.Log ("A user with the same name exists!");
 					return false;
@@ -303,17 +320,17 @@ public class PlayerManager : MonoBehaviour {
 
 			bool isActive = true;
 			//int id, string name,  string avatar, int score,bool isActive,int cleanedDisorders
-			Player player = new Player(id,name,avatar,score,isActive,0);
+			Player player = GenerateDefaultAttributesForNewPlayer(id,name,avatar,isActive);//new Player(id,name,avatar,isActive);
 			currentPlayer = player;
-			players.Add (player);
+			Players.Add (player);
 			Debug.Log ("New player has been added!");
-
+			//SaveCurrentGame ();
 			return true;
 		}
 
 		private void DeactivatePlayer() {
 			// Mark an active player as inactive
-			foreach(Player pl in players) {
+			foreach(Player pl in Players) {
 				if (pl.Id==currentPlayer.Id){
 					pl.IsActive=false;
 					break;
@@ -323,10 +340,10 @@ public class PlayerManager : MonoBehaviour {
 
 		private void ActivatePlayer(int id) {
 			// Mark a player with the specified id as active
-			foreach(Player pl in players) {
+			foreach(Player pl in Players) {
 				if (pl.Id==id){
 					pl.IsActive=true;
-					LoadCurrentPlayer ();
+					CurrentPlayer = LoadCurrentPlayer ();
 					break;
 				}
 			}
@@ -343,14 +360,6 @@ public class PlayerManager : MonoBehaviour {
 		#endregion
 
 		#region PROPERTY MEMBERS
-		public List<Player> Players {
-			get {
-				return this.players;
-			}
-			set {
-				players = value;
-			}
-		}
 
 		public Player CurrentPlayer {
 			get {
@@ -363,11 +372,11 @@ public class PlayerManager : MonoBehaviour {
 		#endregion
 
 		void Start() {
-			players = new List<Player> ();
+			Players = new List<Player> ();
 			//SavePlayersToXmlInitial ();
-			print("INITIAL SAVE " + PlayerPrefs.GetInt ("InitialSave", 0));
 			if (PlayerPrefs.GetInt ("InitialSave", 0) == 1) {
 				LoadPlayersFromXml ();
+				print("GAME IS INITIALLY SAVED AND WE START TO LOAD");
 			//Debug.Log (players.Count);
 			//currentPlayer = LoadCurrentPlayer ();
 			}
@@ -391,7 +400,7 @@ public class PlayerManager : MonoBehaviour {
 				//SavePlayersToXml ();
 		}
 		public void SaveCurrentGame(){
-			if (players.Count!=0)
+			if (Players.Count!=0)
 			    SavePlayersToXml ();
 		}
 		public string getPath(){
@@ -411,8 +420,23 @@ public class PlayerManager : MonoBehaviour {
 		void OnDisable(){
 			loadCompleteDelegate -= OnLoadCompletedHandler;
 		}
-			private void OnLoadCompletedHandler(){
+		private void OnLoadCompletedHandler(){
 			currentPlayer = LoadCurrentPlayer();
+		}
+			public event PropertyChangedEventHandler PropertyChanged;
+			private void NotifyChanged(PropertyChangedEventArgs e){
+			if (PropertyChanged != null)
+				PropertyChanged (this,e);
+			}
+			private static PropertyChangedEventArgs playerArgs = new PropertyChangedEventArgs ("Players");
+			public List<Player> Players{
+			get{ 
+				return this.players;
+			}
+			set{ 
+				this.players = value;
+				NotifyChanged (playerArgs);
+			}
 			}
 }
 }

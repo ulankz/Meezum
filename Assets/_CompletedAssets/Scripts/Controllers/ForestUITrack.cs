@@ -9,13 +9,17 @@ namespace MeezumGame{
 	[SerializeField]
 	private GameObject optionsPanel;
 	// Use this for initialization
+	[SerializeField]
+	private CanvasGroup optionsPanelCanvas;
+	private CanvasGroup missionsPanelcanvas;
 	void Start () {
-		
+		optionsPanelCanvas = optionsPanel.GetComponent<CanvasGroup> ();
+		missionsPanelcanvas = missionsPanel.GetComponent<CanvasGroup> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-			isHidden = (!missionsPanel.activeSelf && !optionsPanel.activeSelf);
+			isHidden = (missionsPanelcanvas.alpha!=1 && optionsPanelCanvas.alpha != 1);
 	}
 }
 }

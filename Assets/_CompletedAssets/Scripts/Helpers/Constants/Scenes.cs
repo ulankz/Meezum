@@ -6,8 +6,8 @@ namespace MeezumGame
 {
 	public class Scenes
 	{
-		public const string MAIN_MENU_SCENE = "MainMenu";
-		public const string GUEST_ROOM_SCENE = "Guestroom";
+		public const string MAIN_MENU_SCENE = "Forest";
+		public const string GUEST_ROOM_SCENE = "GuestroomSwipe";
 		public const string GAME_ENTRY_SCENE = "GameEntry";
 		public const string COMICS_SCENE = "Comics";
 		public const string MAZE_SCENE = "Maze";
