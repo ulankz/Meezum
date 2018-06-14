@@ -60,5 +60,8 @@ namespace MeezumGame
 		public const string TV_MIRROR_PANEL=  "TVMirrorPanel";
 		public const string CUPBOARD_PANEL=  "CupboardPanel";
 		public const string CHOOSE_MISSION_BUTTON=  "ChooseMissionButton";
+		public const string COMICS_PANEL = "ComicsUIManager";
+		public const string MAZE_CAMERA = "MazeCamera";
+		public const string MAZE_PANEL = "MazePanel";
 	}
 }

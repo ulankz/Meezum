@@ -54,11 +54,22 @@ namespace GameOfWords
 
 		}
 		void OnEnable(){
+			ActivatePanel.onUIStateChanged += OnUIStateChangedhandler;
 		}
 		void OnDisable(){
+			ActivatePanel.onUIStateChanged -= OnUIStateChangedhandler;
 		}
 		#endregion
 
+		private void OnUIStateChangedhandler(bool open){
+			if (open) {
+				questionPanel.SetActive (false);
+				cellsContainer.gameObject.SetActive(false);
+			} else {
+				questionPanel.SetActive (true);
+				cellsContainer.gameObject.SetActive(true);
+			}
+		}
 //		public void buttonDoubleClickHandler(string id){
 //			if (buttonDoubleClickDelegate != null) {
 //				buttonDoubleClickDelegate(id);

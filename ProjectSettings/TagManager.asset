@@ -62,6 +62,8 @@ TagManager:
   - TVMirrorPanel
   - CupboardPanel
   - ChooseMissionButton
+  - MazeCamera
+  - MazePanel
   layers:
   - Default
   - TransparentFX

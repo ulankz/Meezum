@@ -14,6 +14,8 @@ public class ActivatePanel : MonoBehaviour {
 
 	public delegate void ChangeInteractiveColliderState(bool activate);
 	public static event ChangeInteractiveColliderState onInteractiveColliderChanged;
+	public delegate void UIStateChanged(bool open);
+	public static event UIStateChanged onUIStateChanged;
 	Button optionsButton;
 	void Start() {
 	//	movableGO = GameObject.FindGameObjectWithTag (Tags.MOVABLE_OBJECT).GetComponent<InteractiveSpriteTracker> ();
@@ -24,6 +26,8 @@ public class ActivatePanel : MonoBehaviour {
 
 	public void OpenPanel ()
 	{
+		if (onUIStateChanged != null)
+			onUIStateChanged (true);
 		//if (!EventSystem.current.IsPointerOverGameObject ()) {
 		if (currentPanelCG != null) {
 			currentPanelCG.alpha = 0;
@@ -55,6 +59,8 @@ public class ActivatePanel : MonoBehaviour {
 			
 	}
 	public void ClosePanel() {
+		if (onUIStateChanged != null)
+			onUIStateChanged (false);
 		//if (!EventSystem.current.IsPointerOverGameObject ()) {
 		if (optionsButton)
 			optionsButton.enabled = true;

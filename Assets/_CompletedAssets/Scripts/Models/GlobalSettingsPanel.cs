@@ -24,7 +24,9 @@ public class GlobalSettingsPanel : MonoBehaviour {
 	public Button timer_alarm_ok_btn;
 	private bool everythingIsSetup = false;
 	string sceneName = "", prevSceneName = "";*/
-
+	public GameObject camera;
+	public AudioSource bg_music;
+	public string sceneName;
 	[SerializeField]
 	private Canvas generalCanvas;
 	private static GlobalSettingsPanel instance = null;
@@ -57,8 +59,10 @@ public class GlobalSettingsPanel : MonoBehaviour {
 
 	void Start() {
 		
-		GameObject camera = GameObject.Find ("Main Camera");
-		AudioSource bg_music = camera.GetComponent<AudioSource> ();
+		camera = GlobalGameManager.instance.gameObject;//GameObject.Find ("Main Camera");
+		Debug.Log ("GLOBAL SETTINGS PANEL START IS CALLED");
+
+		bg_music = camera.GetComponent<AudioSource> ();
 		ColorBlock cb = pnl_btn_music.GetComponent<Button> ().colors;
 		if (PlayerPrefs.GetInt ("musicIsOn", 1) == 1) {
 			cb.normalColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
@@ -84,7 +88,7 @@ public class GlobalSettingsPanel : MonoBehaviour {
 			}
 		});
 
-		string sceneName = SceneManager.GetActiveScene ().name;
+		 sceneName = SceneManager.GetActiveScene ().name;
 		ColorBlock cb_sound = pnl_btn_sound.GetComponent<Button> ().colors;
 		if (PlayerPrefs.GetInt ("soundIsOn", 1) == 1) {
 			cb_sound.normalColor = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
@@ -137,7 +141,10 @@ public class GlobalSettingsPanel : MonoBehaviour {
 				}
 			}
 			break;
+		default:
+			break;
 		}
+
 	}
 
 	/*void Update() {

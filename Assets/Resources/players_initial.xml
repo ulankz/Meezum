@@ -2,8 +2,8 @@
   <player id="-1994117179" isActive="False">
     <name>Aruna</name>
     <avatar>rhon</avatar>
-    <score>41</score>
-    <cleanedDisorders>17</cleanedDisorders>
+    <score>42</score>
+    <cleanedDisorders>18</cleanedDisorders>
     <lang>RU</lang>
     <completedMissions>
       <mission>
@@ -118,7 +118,7 @@
       <disorder>
         <id>20</id>
         <title>mess_ink</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>21</id>
@@ -152,11 +152,11 @@
       </disorder>
     </disorders>
   </player>
-  <player id="-1994117799" isActive="False">
+  <player id="-1994117799" isActive="True">
     <name>Meezam</name>
     <avatar>talky</avatar>
-    <score>5</score>
-    <cleanedDisorders>8</cleanedDisorders>
+    <score>11</score>
+    <cleanedDisorders>14</cleanedDisorders>
     <lang>RU</lang>
     <completedMissions>
       <mission>
@@ -206,12 +206,12 @@
       <disorder>
         <id>7</id>
         <title>mess_pencils</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>8</id>
         <title>mess_vase</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>9</id>
@@ -221,12 +221,12 @@
       <disorder>
         <id>10</id>
         <title>mess_cw_02</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>11</id>
         <title>mess_cw_04</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>12</id>
@@ -241,12 +241,12 @@
       <disorder>
         <id>14</id>
         <title>mess_cw_11</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>15</id>
         <title>mess_cw_12</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>16</id>
@@ -261,22 +261,22 @@
       <disorder>
         <id>18</id>
         <title>mess_blotch_window_top</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>19</id>
         <title>mess_blotch_window_right_bottom</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>20</id>
         <title>mess_ink</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>21</id>
         <title>mess_blotch_leftwall</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>22</id>
@@ -308,8 +308,8 @@
   <player id="2017195293" isActive="False">
     <name>Chakky</name>
     <avatar>hip</avatar>
-    <score>0</score>
-    <cleanedDisorders>3</cleanedDisorders>
+    <score>1</score>
+    <cleanedDisorders>4</cleanedDisorders>
     <lang>RU</lang>
     <completedMissions>
       <mission>
@@ -339,7 +339,7 @@
       <disorder>
         <id>3</id>
         <title>mess_blanket</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>4</id>
@@ -458,7 +458,7 @@
       </disorder>
     </disorders>
   </player>
-  <player id="84279" isActive="True">
+  <player id="84279" isActive="False">
     <name>Tor</name>
     <avatar>ult</avatar>
     <score>1</score>

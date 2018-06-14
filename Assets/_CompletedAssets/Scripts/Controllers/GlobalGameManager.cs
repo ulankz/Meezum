@@ -39,7 +39,8 @@ public class GlobalGameManager : MonoBehaviour {
 
 		[SerializeField]
 		private LocalizationManager localizationManager;
-
+		[SerializeField]
+		private IdleCheck notificationManager;
 		[SerializeField]
 		private GameDurationTimerManager gameDurationTimerManager;
 

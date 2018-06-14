@@ -60,7 +60,7 @@ namespace GameOfWords
 			userInput = "";
 		private string answer;
 		[SerializeField]
-		private float
+		public float
 			letterPosOffset = 1.4f;
 		[SerializeField]
 		private const string
@@ -81,8 +81,8 @@ namespace GameOfWords
 		private InstructionSoundManager instructionSoundManager;
 		[SerializeField]
 		private SoundManager soundManager;
-		[SerializeField]
-		private IdleCheck notificationManager;
+		//[SerializeField]
+		//private IdleCheck notificationManager;
 		[SerializeField]
 		private int
 			currentQuestionIndex = 0;
@@ -132,7 +132,7 @@ namespace GameOfWords
 			gameWordsUIManager = GameObject.FindGameObjectWithTag (Tags.GAME_WORDS_UI_MANAGER).GetComponent<GameWordsUIManager> ();
 			instructionSoundManager = GameObject.FindGameObjectWithTag (Tags.INSTRUCTIONS_SOUND_MANAGER).GetComponent<InstructionSoundManager> ();
 			soundManager = GameObject.FindGameObjectWithTag (Tags.SOUND_MANAGER).GetComponent<SoundManager> ();
-			notificationManager = GameObject.FindGameObjectWithTag (Tags.NOTIFICATION_MANAGER).GetComponent<IdleCheck> ();
+			//notificationManager = GameObject.FindGameObjectWithTag (Tags.NOTIFICATION_MANAGER).GetComponent<IdleCheck> ();
 			if (gameWordsUIManager == null)
 				Debug.LogError ("QUIZ_UI_MANAGER IS NULL !!");
 			GenerateWords ();
@@ -260,7 +260,7 @@ namespace GameOfWords
 		void AlertViewOkButtonHandler(){
 			UIDisabled = false;
 			gameWordsUIManager.DisabeUI (true);
-			SceneManager.LoadScene ("Maze");
+			StartCoroutine ("waitToLoadScene",4f);
 		}
 		private void CreateLettersForWord (int missionId)
 		{
@@ -522,6 +522,10 @@ namespace GameOfWords
 		}
 		private void CheckForCellFill(int activeCells){ // Checks for fully or partially filled cells
 			
+		}
+		IEnumerator waitToLoadScene(float t){
+			yield return new WaitForSeconds (t);
+			SceneManager.LoadScene ("Maze");
 		}
 	#endregion
 	}

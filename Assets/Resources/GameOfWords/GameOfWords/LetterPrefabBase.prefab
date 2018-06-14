@@ -168,6 +168,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a7ebf14479e4884b678f0b3b34382f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingPosition: {x: 0, y: 0}
+  touchingCells: []
+  myParent: {fileID: 0}
+  pickUpScale: {x: 1.1, y: 1.1, z: 1.1}
+  dropScale: {x: 1, y: 1, z: 1}
 --- !u!212 &212430460233454356
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -199,7 +204,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1166769925
   m_SortingLayer: 3
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 021b54a770d84d641825057c501fe596, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

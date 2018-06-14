@@ -72,12 +72,12 @@ namespace GameOfWords
 		{
 			Debug.Log ("PICKUP IS CALLED");
 			transform.localScale = pickUpScale;
-			gameObject.GetComponent<SpriteRenderer> ().sortingOrder = 4;
+			gameObject.GetComponent<SpriteRenderer> ().sortingOrder = 6;
 		}
 		public void Drop ()
 		{
 			transform.localScale = dropScale;
-			gameObject.GetComponent<SpriteRenderer> ().sortingOrder = 3;
+			gameObject.GetComponent<SpriteRenderer> ().sortingOrder = 5;
 			Vector2 newPosition;
 			if (touchingCells.Count == 0) { // If the tile is not placed in any cell then move the tile to original place
 				transform.position = startingPosition;

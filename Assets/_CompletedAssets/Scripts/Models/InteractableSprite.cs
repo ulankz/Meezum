@@ -98,6 +98,7 @@ public class InteractableSprite : MonoBehaviour,IPointerClickHandler,IPointerEnt
 		switch (gameObject.name) {
 		case "Star":
 			activatePanel.panelCG = GlobalGameManager.instance.Main_UI_Manager.missionsPanelCG;
+		//	GlobalGameManager.instance.Main_UI_Manager.optionsButton.enabled = false;
 			activatePanel.OpenPanel ();
 			break;
 		case "toybox":
