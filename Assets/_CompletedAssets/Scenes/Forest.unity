@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 856}
   m_Layer: 5
   m_Name: pnlMissions
-  m_TagString: Untagged
+  m_TagString: MissionsPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 845}
   m_Layer: 5
   m_Name: pnlOptions
-  m_TagString: Untagged
+  m_TagString: OptionsPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 635}
   m_Layer: 5
   m_Name: pnl_btn_mission3
-  m_TagString: Untagged
+  m_TagString: ChooseMissionButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1043,10 +1043,10 @@ GameObject:
   - component: {fileID: 330}
   - component: {fileID: 681}
   - component: {fileID: 680}
-  - component: {fileID: 682}
+  - component: {fileID: 256}
   m_Layer: 5
   m_Name: msn_pnl_btn_quit
-  m_TagString: Untagged
+  m_TagString: ExitButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1421,8 +1421,7 @@ GameObject:
   - component: {fileID: 242}
   - component: {fileID: 705}
   - component: {fileID: 245}
-  - component: {fileID: 706}
-  - component: {fileID: 618}
+  - component: {fileID: 255}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1603,7 +1602,7 @@ GameObject:
   - component: {fileID: 717}
   m_Layer: 5
   m_Name: btn_store
-  m_TagString: Untagged
+  m_TagString: StoreButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1947,7 +1946,7 @@ GameObject:
   - component: {fileID: 742}
   m_Layer: 5
   m_Name: pnl_btn_mission2
-  m_TagString: Untagged
+  m_TagString: ChooseMissionButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2158,9 +2157,10 @@ GameObject:
   - component: {fileID: 755}
   - component: {fileID: 754}
   - component: {fileID: 844}
+  - component: {fileID: 302}
   m_Layer: 5
   m_Name: CanvasGeneralUI
-  m_TagString: Untagged
+  m_TagString: GeneralCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2304,24 +2304,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &133
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 542}
-  - component: {fileID: 383}
-  - component: {fileID: 761}
-  - component: {fileID: 762}
-  m_Layer: 5
-  m_Name: test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2726,7 +2708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelCG: {fileID: 847}
-  currentPanelCG: {fileID: 0}
+  currentPanelCG: {fileID: 852}
   helper: {fileID: 0}
 --- !u!1 &157
 GameObject:
@@ -2897,7 +2879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelCG: {fileID: 850}
-  currentPanelCG: {fileID: 0}
+  currentPanelCG: {fileID: 847}
   helper: {fileID: 0}
 --- !u!1 &167
 GameObject:
@@ -3217,7 +3199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelCG: {fileID: 847}
-  currentPanelCG: {fileID: 0}
+  currentPanelCG: {fileID: 850}
   helper: {fileID: 0}
 --- !u!1 &185
 GameObject:
@@ -3286,10 +3268,10 @@ GameObject:
   - component: {fileID: 428}
   - component: {fileID: 830}
   - component: {fileID: 829}
-  - component: {fileID: 255}
+  - component: {fileID: 311}
   m_Layer: 5
   m_Name: pnl_btn_mission1
-  m_TagString: Untagged
+  m_TagString: ChooseMissionButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4206,7 +4188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelCG: {fileID: 851}
-  currentPanelCG: {fileID: 0}
+  currentPanelCG: {fileID: 847}
   helper: {fileID: 0}
 --- !u!82 &244
 AudioSource:
@@ -4484,7 +4466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelCG: {fileID: 847}
-  currentPanelCG: {fileID: 0}
+  currentPanelCG: {fileID: 851}
   helper: {fileID: 0}
 --- !u!95 &250
 Animator:
@@ -4576,14 +4558,30 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 188}
+  m_GameObject: {fileID: 83}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 727ff666d6eda7d46bd29a7f18831dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHidden: 1
+  missionsPanel: {fileID: 0}
+  optionsPanel: {fileID: 0}
+  optionsPanelCanvas: {fileID: 0}
+  missionsPanelcanvas: {fileID: 0}
+--- !u!114 &256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 62}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ce00446d2e47cd4dadb5fb2c16be604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelCG: {fileID: 856}
-  currentPanelCG: {fileID: 0}
+  panelCG: {fileID: 0}
+  currentPanelCG: {fileID: 856}
   helper: {fileID: 0}
 --- !u!104 &257
 RenderSettings:
@@ -5785,6 +5783,17 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 20}
+--- !u!114 &302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87634bdfe35e97845ae26619fe224e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &303
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5840,6 +5849,17 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 32}
+--- !u!114 &311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87634bdfe35e97845ae26619fe224e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &312
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6313,12 +6333,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130}
---- !u!222 &383
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 133}
 --- !u!222 &384
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6771,7 +6785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
+  m_AnchoredPosition: {x: -0.000015258789, y: 0}
   m_SizeDelta: {x: 594, y: 148.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &444
@@ -6827,7 +6841,7 @@ RectTransform:
   - {fileID: 510}
   - {fileID: 554}
   m_Father: {fileID: 478}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7393,7 +7407,6 @@ RectTransform:
   m_Children:
   - {fileID: 363878132}
   - {fileID: 456}
-  - {fileID: 542}
   - {fileID: 524}
   - {fileID: 511}
   - {fileID: 446}
@@ -8023,7 +8036,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 478}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -8272,7 +8285,7 @@ RectTransform:
   m_LocalScale: {x: 1.0001999, y: 1.0001999, z: 1.0001999}
   m_Children: []
   m_Father: {fileID: 478}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -8608,24 +8621,6 @@ RectTransform:
   m_AnchoredPosition: {x: -66.5, y: -158.99995}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &542
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 133}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 478}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 29}
-  m_SizeDelta: {x: 600, y: 30}
-  m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &543
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9353,7 +9348,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 478}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -10186,17 +10181,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 83}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87634bdfe35e97845ae26619fe224e60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11091,7 +11075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelCG: {fileID: 847}
-  currentPanelCG: {fileID: 0}
+  currentPanelCG: {fileID: 851}
   helper: {fileID: 0}
 --- !u!114 &654
 MonoBehaviour:
@@ -11233,7 +11217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f82a6b4a27f57b24690bf24ce511c3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiTracker: {fileID: 706}
+  uiTracker: {fileID: 255}
 --- !u!114 &659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11333,6 +11317,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   swapSprites: 1
+  activatePanel: {fileID: 0}
 --- !u!114 &662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11625,8 +11610,25 @@ MonoBehaviour:
   pnlChoosePlayer: {fileID: 644}
   playerAvatarButtons: []
   avatarSprites: []
+  avatarSpritesPath: GeneralUI
   confirmChangeCurrentUser: {fileID: 0}
+  missionsPanel: {fileID: 0}
+  chooseMissionButtons: []
+  missionsPanelCG: {fileID: 0}
+  optionsButton: {fileID: 0}
+  exitButton: {fileID: 0}
+  optionsPanel: {fileID: 0}
+  optionsPanelCG: {fileID: 0}
+  inGameUIObjects: []
   choosenPlayerName: 
+  canvas: {fileID: 0}
+  generalCanvas: {fileID: 0}
+  tvPanel: {fileID: 0}
+  tvPanelCG: {fileID: 0}
+  miniGamePanel: {fileID: 0}
+  miniGamePanelCG: {fileID: 0}
+  cupboardPanel: {fileID: 0}
+  cupboardPanelCG: {fileID: 0}
 --- !u!114 &673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11918,7 +11920,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 682}
+      - m_Target: {fileID: 256}
         m_MethodName: ClosePanel
         m_Mode: 1
         m_Arguments:
@@ -11958,20 +11960,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 62}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ce00446d2e47cd4dadb5fb2c16be604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelCG: {fileID: 856}
-  currentPanelCG: {fileID: 0}
-  helper: {fileID: 0}
 --- !u!114 &683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12215,7 +12203,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 485}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.466
+  m_Size: 0.46600002
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12427,7 +12415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelCG: {fileID: 847}
-  currentPanelCG: {fileID: 0}
+  currentPanelCG: {fileID: 850}
   helper: {fileID: 0}
 --- !u!114 &698
 MonoBehaviour:
@@ -12691,21 +12679,6 @@ MonoBehaviour:
   bg_night: {fileID: 0}
   main_tree_night: {fileID: 0}
   dayTimeSpan: {x: 7, y: 19}
---- !u!114 &706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 83}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 727ff666d6eda7d46bd29a7f18831dec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isHidden: 1
-  missionsPanel: {fileID: 9}
-  optionsPanel: {fileID: 22}
-  optionsPanelCanvas: {fileID: 0}
 --- !u!114 &707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14421,51 +14394,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0412\u042B\u0411\u0420\u0410\u0422\u042C \u042F\u0417\u042B\u041A:"
---- !u!114 &761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: a1fd463b8e55f314ab8688180e17b229, type: 3}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: New Text
---- !u!114 &762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78e82423788eb174ab7cb59ec52aebfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  command: 1
 --- !u!114 &763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14688,7 +14616,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 809}
   m_HandleRect: {fileID: 576}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -14762,8 +14690,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 783}
   m_HandleRect: {fileID: 557}
   m_Direction: 0
-  m_Value: 0.5
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15617,7 +15545,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 604}
   m_HandleRect: {fileID: 441}
   m_Direction: 2
-  m_Value: 0.9999999
+  m_Value: 1
   m_Size: 0.516
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -15874,18 +15802,7 @@ MonoBehaviour:
   sRenderer: {fileID: 0}
   onMouseDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 811}
-        m_MethodName: OpenPanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   onMouseEnter:
@@ -15899,6 +15816,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   swapSprites: 1
+  activatePanel: {fileID: 0}
 --- !u!114 &811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15910,7 +15828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce00446d2e47cd4dadb5fb2c16be604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelCG: {fileID: 856}
+  panelCG: {fileID: 0}
   currentPanelCG: {fileID: 0}
   helper: {fileID: 0}
 --- !u!114 &812
@@ -16473,18 +16391,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 830}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 618}
-        m_MethodName: moveToScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &830
@@ -16941,6 +16848,7 @@ MonoBehaviour:
   pnl_btn_sound: {fileID: 818}
   pnl_btn_music: {fileID: 631}
   PanelMissions: {fileID: 9}
+  generalCanvas: {fileID: 0}
 --- !u!225 &845
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -17041,7 +16949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelCG: {fileID: 846}
-  currentPanelCG: {fileID: 0}
+  currentPanelCG: {fileID: 847}
   helper: {fileID: 0}
 --- !u!114 &854
 MonoBehaviour:
@@ -17069,7 +16977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelCG: {fileID: 852}
-  currentPanelCG: {fileID: 0}
+  currentPanelCG: {fileID: 847}
   helper: {fileID: 0}
 --- !u!225 &856
 CanvasGroup:
@@ -17079,7 +16987,7 @@ CanvasGroup:
   m_GameObject: {fileID: 9}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &41199270
@@ -19099,52 +19007,52 @@ Prefab:
     - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 490.9
+      value: -0.00015258789
       objectReference: {fileID: 0}
     - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 256.6
+      value: -0.00012207031
       objectReference: {fileID: 0}
     - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 82
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 82
+      value: 58
       objectReference: {fileID: 0}
     - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
         type: 2}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
         type: 2}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1947600262162180, guid: f130f6d6f043617429dc54556f123a01, type: 2}
       propertyPath: m_Name
@@ -19155,6 +19063,29 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 131}
+    - target: {fileID: 1947600262162180, guid: f130f6d6f043617429dc54556f123a01, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224105720279738342, guid: f130f6d6f043617429dc54556f123a01,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947600262162180, guid: f130f6d6f043617429dc54556f123a01, type: 2}
+      propertyPath: m_TagString
+      value: ExitButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f130f6d6f043617429dc54556f123a01, type: 2}
   m_IsPrefabParent: 0

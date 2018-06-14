@@ -25,6 +25,8 @@ public class GlobalSettingsPanel : MonoBehaviour {
 	private bool everythingIsSetup = false;
 	string sceneName = "", prevSceneName = "";*/
 
+	[SerializeField]
+	private Canvas generalCanvas;
 	private static GlobalSettingsPanel instance = null;
 
 	private GlobalSettingsPanel()
@@ -50,9 +52,11 @@ public class GlobalSettingsPanel : MonoBehaviour {
 			instance = this;
 			DontDestroyOnLoad (gameObject);
 		}
+		generalCanvas = GetComponent<Canvas> ();
 	}
 
 	void Start() {
+		
 		GameObject camera = GameObject.Find ("Main Camera");
 		AudioSource bg_music = camera.GetComponent<AudioSource> ();
 		ColorBlock cb = pnl_btn_music.GetComponent<Button> ().colors;
@@ -187,26 +191,41 @@ public class GlobalSettingsPanel : MonoBehaviour {
 			everythingIsSetup = value;
 		}
 	}*/
-	void OnEnable(){
+
+	/*void OnEnable(){
 		SceneManager.sceneLoaded += OnLevelFinishedLoading;
 	}
 	void OnDisable(){
 		SceneManager.sceneLoaded -= OnLevelFinishedLoading;
 	}
-	public void HidePanelMissions(bool flag){
-		PanelMissions.gameObject.SetActive (!flag );
+	public void HidePanelMissions(int flag){
+		PanelMissions.gameObject.GetComponent<CanvasGroup> ().alpha = flag;
 	}
 
 	private void OnLevelFinishedLoading(Scene scene,LoadSceneMode mode){
 		Debug.Log ("LEVEL LOADED " + scene.name + " " + mode);
 		switch(scene.name){
 		case Scenes.GUEST_ROOM_SCENE:
-			HidePanelMissions (true);
+
+			canvas = GameObject.FindGameObjectWithTag (Tags.CANVAS).GetComponent<Canvas> ();
+			//Debug.Log ("NUMBER OF CHILD ELEMENTS INSIDE CANVAS " + canvas.transform.childCount);
+			//for (int i = 0; i < canvas.transform.childCount; i++) {
+			//	canvas.transform.GetChild (i).SetParent (generalCanvas.transform);
+			//}
+			//Camera camera = Camera.main;
+			//generalCanvas.worldCamera = camera;
+			HidePanelMissions (0);
+
+			break;
+		case Scenes.MAIN_MENU_SCENE:
+			
+			//generalCanvas.worldCamera = Camera.main;
 			break;
 		default:
-			HidePanelMissions(false);
+			//HidePanelMissions(1);
 			break;
 		}
 
 	}
+*/
 }

@@ -53,6 +53,15 @@ TagManager:
   - ChoicePanelPlayerButton
   - ChoicePanel
   - ChangeCurrentUserOkButton
+  - Canvas
+  - GeneralCanvas
+  - StoreButton
+  - OptionsPanel
+  - MissionsPanel
+  - MiniGamePanel
+  - TVMirrorPanel
+  - CupboardPanel
+  - ChooseMissionButton
   layers:
   - Default
   - TransparentFX

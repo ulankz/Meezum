@@ -19,4 +19,21 @@ public class InteractiveSpriteTracker : MonoBehaviour {
 			item.enabled = true;
 		}
 	}
+
+	private void OnEnable(){
+		ActivatePanel.onInteractiveColliderChanged += OnColliderChangedHandler;
+	}
+	private void OnDisable(){
+		ActivatePanel.onInteractiveColliderChanged -= OnColliderChangedHandler;
+	}
+	private void OnColliderChangedHandler(bool flag){
+		switch (flag) {
+		case true:
+			ActivateColliders ();
+			break;
+		case false:
+			DeactivateColliders ();
+			break;
+		}
+	}
 }

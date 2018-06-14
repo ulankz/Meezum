@@ -20,14 +20,17 @@ public class InteractableSprite : MonoBehaviour,IPointerClickHandler,IPointerEnt
 	private UnityEvent onMouseEnter;
 	[SerializeField]
 	private UnityEvent onMouseExit;
-	private InteractiveSpriteTracker movableGO;
+	//private InteractiveSpriteTracker movableGO;
 	// Use this for initialization
 	[SerializeField]
 	private bool swapSprites = true;
+	[SerializeField]
+	private ActivatePanel activatePanel;
 	void Start () {
 		sRenderer = GetComponent<SpriteRenderer> ();
 		addPhysics2DRaycaster ();
-		movableGO = GameObject.FindGameObjectWithTag(Tags.MOVABLE_OBJECT).GetComponent<InteractiveSpriteTracker>();
+		//movableGO = GameObject.FindGameObjectWithTag(Tags.MOVABLE_OBJECT).GetComponent<InteractiveSpriteTracker>();
+		activatePanel = gameObject.GetComponent<ActivatePanel>();
 	}
 	/*void OnMouseEnter(){
 		//if (IsPointerOverGameObject()) return;
@@ -65,6 +68,7 @@ public class InteractableSprite : MonoBehaviour,IPointerClickHandler,IPointerEnt
 		if(swapSprites)
 		sRenderer.sprite = onPressed;
 		onMouseDown.Invoke ();
+		onPointerClickHandler ();
 	}
 	public void OnPointerEnter(PointerEventData eventData)
 	{
@@ -90,4 +94,29 @@ public class InteractableSprite : MonoBehaviour,IPointerClickHandler,IPointerEnt
 
 		return EventSystem.current.IsPointerOverGameObject(fingerId);
 	}
+	private void onPointerClickHandler(){
+		switch (gameObject.name) {
+		case "Star":
+			activatePanel.panelCG = GlobalGameManager.instance.Main_UI_Manager.missionsPanelCG;
+			activatePanel.OpenPanel ();
+			break;
+		case "toybox":
+			activatePanel.panelCG = GlobalGameManager.instance.Main_UI_Manager.miniGamePanelCG;
+			activatePanel.OpenPanel ();
+			break;
+
+		case "tvmirror":
+			activatePanel.panelCG = GlobalGameManager.instance.Main_UI_Manager.tvPanelCG;
+			activatePanel.OpenPanel ();
+			break;
+
+		case "cupboard":
+			activatePanel.panelCG = GlobalGameManager.instance.Main_UI_Manager.cupboardPanelCG;
+			activatePanel.OpenPanel ();
+			break;
+		}
+
+
+	}
+
 }

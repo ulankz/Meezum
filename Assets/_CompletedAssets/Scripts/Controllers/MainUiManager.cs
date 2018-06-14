@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Linq;
 using System;
 using MeezumGame;
+using UnityEngine.SceneManagement;
 public class MainUiManager : MonoBehaviour,UIManagable {
 
 	#region PRIVATE MEMBERS
@@ -15,17 +16,28 @@ public class MainUiManager : MonoBehaviour,UIManagable {
 	public Button pnlRegOkBtn;
 	public Text pnlRegNameTxt;
 	[SerializeField]
-	private GameObject player_choice_pnl;
+	public GameObject player_choice_pnl;
 	public Button pnlChoosePlayer;
 	[SerializeField]
-	private Button[] playerAvatarButtons;
+	public Button[] playerAvatarButtons;
 	[SerializeField]
-	private Sprite[] avatarSprites;
-	private string avatarSpritesPath = "GeneralUI";
+	public Sprite[] avatarSprites;
+	public string avatarSpritesPath = "GeneralUI";
 	[SerializeField]
-	private Button confirmChangeCurrentUser;
-	#endregion
+	public Button confirmChangeCurrentUser;
+	[SerializeField]
+	public GameObject missionsPanel;
+	[SerializeField]
+	Button[] chooseMissionButtons;
+	public CanvasGroup missionsPanelCG;
+	public Button optionsButton;
+	public Button exitButton;
+	public GameObject optionsPanel;
 
+	public CanvasGroup optionsPanelCG;
+	#endregion
+	[SerializeField]
+	public Transform[] inGameUIObjects;
 	public delegate void ClickAction(string plName, string ava);
 	public static event ClickAction OnRegOkClickEvent;
 
@@ -36,6 +48,24 @@ public class MainUiManager : MonoBehaviour,UIManagable {
 	[SerializeField]
 	string choosenPlayerName;
 	// Use this for initialization
+
+	[SerializeField]
+	public Canvas canvas;
+	[SerializeField]
+	public Canvas generalCanvas;
+
+	[SerializeField]
+	public GameObject tvPanel;
+	public CanvasGroup tvPanelCG;
+
+	[SerializeField]
+	public GameObject miniGamePanel;
+	public CanvasGroup miniGamePanelCG;
+	[SerializeField]
+	public GameObject cupboardPanel;
+	public CanvasGroup cupboardPanelCG;
+
+
 	void Start () {
 
 		// -------------Registration-------------
@@ -63,13 +93,7 @@ public class MainUiManager : MonoBehaviour,UIManagable {
 		});
 
 
-		player_choice_pnl = GameObject.FindGameObjectWithTag (Tags.CHOICE_PANEL);
-		if (player_choice_pnl != null) {
-			playerAvatarButtons = GameObject.FindGameObjectsWithTag (Tags.CHOICE_PANEL_PLAYER_BUTTON).Select (b => b.GetComponent<Button> ()).ToArray ();
-			Array.Sort(playerAvatarButtons,delegate(Button b1, Button b2) {
-				return b1.gameObject.name.CompareTo(b2.gameObject.name);
-			});
-		}
+
 		avatarSprites = Resources.LoadAll<Sprite> (avatarSpritesPath);
 		if (avatarSprites.Count() > 0) {
 			//print ("Sprites are loaded");
@@ -77,17 +101,35 @@ public class MainUiManager : MonoBehaviour,UIManagable {
 			print ("Sprites are not loaded");
 
 		}
-		confirmChangeCurrentUser = GameObject.FindGameObjectWithTag (Tags.CONFIRM_CHANGE_CURRENT_USER).GetComponent<Button>();
-		confirmChangeCurrentUser.onClick.AddListener (delegate{
-			ChangeCurrentUser();
-		});
-		for(int i =0; i <  playerAvatarButtons.Count(); i++){
-			Button b = playerAvatarButtons[i];
+
+			//	playerAvatarButtons = new Button[6];
+			playerAvatarButtons = GameObject.FindGameObjectsWithTag (Tags.CHOICE_PANEL_PLAYER_BUTTON).Select (b => b.GetComponent<Button> ()).ToArray ();
+			Array.Sort (playerAvatarButtons, delegate(Button b1, Button b2) {
+				return b1.gameObject.name.CompareTo (b2.gameObject.name);
+			});
+
+		for (int i = 0; i < playerAvatarButtons.Count (); i++) {
+			Button b = playerAvatarButtons [i];
 			b.interactable = false;
-			b.onClick.AddListener (delegate{
-				SelectPlayerButton(b);
+			print ("Adds button clock listener");
+			b.onClick.AddListener (delegate {
+				SelectPlayerButton (b);
 			});
 		}
+
+		generalCanvas.worldCamera = Camera.main;
+		for (int i = 0; i < playerAvatarButtons.Count (); i++) {
+			Button b = playerAvatarButtons [i];
+			b.interactable = false;
+			print ("Adds button clock listener");
+			b.onClick.AddListener (delegate {
+				SelectPlayerButton (b);
+			});
+		}
+		optionsButton = GameObject.FindGameObjectWithTag (Tags.MENU_SETTINGS_BUTTON).GetComponent<Button>();
+		exitButton = GameObject.FindGameObjectWithTag (Tags.MENU_EXIT_BUTTON).GetComponent<Button>();
+		exitButton.image.enabled = false;
+		Debug.Log ("START IS CALLED FROM MAIN_UI_MANAGER");
 	}
 	private void SelectPlayerButton(Button b){
 		choosenPlayerName = b.name;
@@ -164,8 +206,98 @@ public class MainUiManager : MonoBehaviour,UIManagable {
 		}
 		return null;
 	}
-	private void UpdatePlayerAvatar(){
-		
-	}
 
+
+	private void OnLevelFinishedLoading(Scene scene,LoadSceneMode mode){
+		
+		switch(scene.name){
+		case Scenes.GUEST_ROOM_SCENE:
+			Debug.Log ("LEVEL LOADED " + scene.name + " " + mode);
+			canvas = GameObject.FindGameObjectWithTag (Tags.CANVAS).GetComponent<Canvas> ();
+			Camera camera = Camera.main;
+			generalCanvas.worldCamera = camera;
+			/*
+			exitButton.image.enabled = false;
+			optionsButton.gameObject.GetComponent<RectTransform> ().anchorMin = new Vector2 (0, 1);
+			optionsButton.gameObject.GetComponent<RectTransform> ().anchorMax = new Vector2 (0, 1);
+			optionsButton.gameObject.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0,0);
+			optionsButton.gameObject.GetComponent<RectTransform> ().pivot = new Vector2 (0,1);
+*/
+			//inGameUIObjects = new Transform[canvas.transform.childCount];
+
+			Debug.Log ("NUMBER OF CHILD ELEMENTS INSIDE CANVAS " + canvas.transform.childCount);
+
+			tvPanel = GameObject.FindGameObjectWithTag (Tags.TV_MIRROR_PANEL);
+			tvPanelCG = tvPanel.GetComponent<CanvasGroup> ();
+			tvPanel.transform.SetParent (generalCanvas.transform);
+			tvPanel.transform.SetAsFirstSibling ();
+			miniGamePanel = GameObject.FindGameObjectWithTag (Tags.MINI_GAME_PANEL);
+			miniGamePanelCG = miniGamePanel.GetComponent<CanvasGroup> ();
+			miniGamePanel.transform.SetParent (generalCanvas.transform);
+			miniGamePanel.transform.SetAsFirstSibling ();
+			cupboardPanel = GameObject.FindGameObjectWithTag (Tags.CUPBOARD_PANEL);
+			cupboardPanelCG = cupboardPanel.GetComponent<CanvasGroup> ();
+			cupboardPanel.transform.SetParent (generalCanvas.transform);
+			cupboardPanel.transform.SetAsFirstSibling ();
+						//HidePanelMissions (true);
+			break;
+		case Scenes.MAIN_MENU_SCENE:
+			Debug.Log ("LEVEL LOADED " + scene.name + " " + mode);
+			generalCanvas = GameObject.FindGameObjectWithTag (Tags.GENERAL_CANVAS).GetComponent<Canvas> ();
+			generalCanvas.worldCamera = Camera.main;
+			player_choice_pnl = GameObject.FindGameObjectWithTag (Tags.CHOICE_PANEL);
+			optionsButton = GameObject.FindGameObjectWithTag (Tags.MENU_SETTINGS_BUTTON).GetComponent<Button> ();
+			exitButton = GameObject.FindGameObjectWithTag (Tags.MENU_EXIT_BUTTON).GetComponent<Button> ();
+			exitButton.image.enabled = false;
+			optionsButton.gameObject.GetComponent<RectTransform> ().anchorMin = new Vector2 (1, 0);
+			optionsButton.gameObject.GetComponent<RectTransform> ().anchorMax = new Vector2 (1, 0);
+			optionsButton.gameObject.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (-60,0);
+			optionsButton.gameObject.GetComponent<RectTransform> ().pivot = new Vector2 (1,0);
+
+			confirmChangeCurrentUser = GameObject.FindGameObjectWithTag (Tags.CONFIRM_CHANGE_CURRENT_USER).GetComponent<Button> ();
+			confirmChangeCurrentUser.onClick.AddListener (delegate {
+				ChangeCurrentUser ();
+			});
+			for (int i = 0; i < playerAvatarButtons.Count (); i++) {
+				Button b = playerAvatarButtons [i];
+				b.interactable = false;
+				print ("Adds button clock listener");
+				b.onClick.AddListener (delegate {
+					SelectPlayerButton (b);
+				});
+			}
+			if (miniGamePanel != null)
+				DestroyImmediate (miniGamePanel);
+			if (tvPanel != null)
+				DestroyImmediate (tvPanel);
+			if (cupboardPanel != null)
+				DestroyImmediate (cupboardPanel);
+			
+			optionsPanel = GameObject.FindGameObjectWithTag (Tags.OPTIONS_PANEL);
+			optionsPanelCG = optionsPanel.GetComponent<CanvasGroup>();
+			missionsPanel = GameObject.FindGameObjectWithTag (Tags.MISSION_PANEL);
+			missionsPanelCG = missionsPanel.GetComponent<CanvasGroup>();
+			chooseMissionButtons = GameObject.FindGameObjectsWithTag (Tags.CHOOSE_MISSION_BUTTON).Select (b => b.GetComponent<Button> ()).ToArray ();
+			foreach (Button b in chooseMissionButtons) {
+				b.onClick.AddListener (delegate{
+					
+					missionsPanelCG.alpha = 0;
+					missionsPanelCG.blocksRaycasts = false;
+					missionsPanel.transform.SetAsFirstSibling ();
+					generalCanvas.GetComponent<TransitionScript>().moveToScene();
+				});
+			}
+			break;
+		default:
+			//HidePanelMissions(false);
+			break;
+		}
+
+	}
+	void OnEnable(){
+		SceneManager.sceneLoaded += OnLevelFinishedLoading;
+	}
+	void OnDisable(){
+		SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+	}
 }

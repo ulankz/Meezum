@@ -51,5 +51,14 @@ namespace MeezumGame
 		public const string CHOICE_PANEL_PLAYER_BUTTON = "ChoicePanelPlayerButton";
 		public const string CHOICE_PANEL = "ChoicePanel";
 		public const string CONFIRM_CHANGE_CURRENT_USER =  "ChangeCurrentUserOkButton";
+		public const string CANVAS =  "Canvas";
+		public const string GENERAL_CANVAS=  "GeneralCanvas";
+		public const string STORE_BUTTON=  "StoreButton";
+		public const string OPTIONS_PANEL=  "OptionsPanel";
+		public const string MISSION_PANEL=  "MissionsPanel";
+		public const string MINI_GAME_PANEL=  "MiniGamePanel";
+		public const string TV_MIRROR_PANEL=  "TVMirrorPanel";
+		public const string CUPBOARD_PANEL=  "CupboardPanel";
+		public const string CHOOSE_MISSION_BUTTON=  "ChooseMissionButton";
 	}
 }

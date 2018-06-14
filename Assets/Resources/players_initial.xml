@@ -1,9 +1,9 @@
 <players>
-  <player id="-1994117179" isActive="True">
+  <player id="-1994117179" isActive="False">
     <name>Aruna</name>
     <avatar>rhon</avatar>
-    <score>10</score>
-    <cleanedDisorders>13</cleanedDisorders>
+    <score>41</score>
+    <cleanedDisorders>17</cleanedDisorders>
     <lang>RU</lang>
     <completedMissions>
       <mission>
@@ -58,12 +58,12 @@
       <disorder>
         <id>8</id>
         <title>mess_vase</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>9</id>
         <title>mess_cw_00</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>10</id>
@@ -78,12 +78,12 @@
       <disorder>
         <id>12</id>
         <title>mess_cw_06</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>13</id>
         <title>mess_cw_10</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>14</id>
@@ -98,7 +98,7 @@
       <disorder>
         <id>16</id>
         <title>mess_cw_14</title>
-        <status>Disclosed</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>17</id>
@@ -143,7 +143,7 @@
       <disorder>
         <id>25</id>
         <title>mess_spidernet_portrets</title>
-        <status>Cleaned</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>26</id>
@@ -155,8 +155,8 @@
   <player id="-1994117799" isActive="False">
     <name>Meezam</name>
     <avatar>talky</avatar>
-    <score>2</score>
-    <cleanedDisorders>5</cleanedDisorders>
+    <score>5</score>
+    <cleanedDisorders>8</cleanedDisorders>
     <lang>RU</lang>
     <completedMissions>
       <mission>
@@ -196,67 +196,67 @@
       <disorder>
         <id>5</id>
         <title>mess_pinkpillow</title>
-        <status>Queued</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>6</id>
         <title>mess_bear</title>
-        <status>Queued</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>7</id>
         <title>mess_pencils</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>8</id>
         <title>mess_vase</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>9</id>
         <title>mess_cw_00</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>10</id>
         <title>mess_cw_02</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>11</id>
         <title>mess_cw_04</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>12</id>
         <title>mess_cw_06</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>13</id>
         <title>mess_cw_10</title>
-        <status>Queued</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>14</id>
         <title>mess_cw_11</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>15</id>
         <title>mess_cw_12</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>16</id>
         <title>mess_cw_14</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>17</id>
         <title>mess_cup</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>18</id>
@@ -458,11 +458,11 @@
       </disorder>
     </disorders>
   </player>
-  <player id="84279" isActive="False">
+  <player id="84279" isActive="True">
     <name>Tor</name>
     <avatar>ult</avatar>
-    <score>0</score>
-    <cleanedDisorders>3</cleanedDisorders>
+    <score>1</score>
+    <cleanedDisorders>4</cleanedDisorders>
     <lang>RU</lang>
     <completedMissions>
       <mission>
@@ -497,17 +497,17 @@
       <disorder>
         <id>4</id>
         <title>mess_yellowpillow</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>5</id>
         <title>mess_pinkpillow</title>
-        <status>Queued</status>
+        <status>Cleaned</status>
       </disorder>
       <disorder>
         <id>6</id>
         <title>mess_bear</title>
-        <status>Queued</status>
+        <status>Disclosed</status>
       </disorder>
       <disorder>
         <id>7</id>

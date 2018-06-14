@@ -4,6 +4,7 @@ using UnityEngine;
 using Localization;
 using System.Linq;
 using System;
+using UnityEngine.SceneManagement;
 namespace MeezumGame{
 public class GlobalGameManager : MonoBehaviour {
 
