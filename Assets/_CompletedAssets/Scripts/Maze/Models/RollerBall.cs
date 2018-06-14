@@ -42,8 +42,8 @@ public class RollerBall : MonoBehaviour {
 			"previousStep", "turnsCount", "playerPosX", "playerPosZ", "CompletedTasks", "TaskPortal"
 	});
 
-	public float moveSpeed;
 	public Joystick joystick;
+	public float moveSpeed;
 	public Vector3 viewCameraPosition;
 	private double timer = 1.0;
 	private bool allowMotion = false;
@@ -200,6 +200,7 @@ public class RollerBall : MonoBehaviour {
 					enteredTask.GetComponent<Collider> ().enabled = false; // and also turn off its collider, so ball won't bounce off, once hits it.
 				}
 			}
+				
 		}
 
 		string wallDirection = "Wall_At_Column" + playerPosX.ToString() + "_Row" + playerPosZ.ToString();
@@ -278,11 +279,14 @@ public class RollerBall : MonoBehaviour {
 				if (previousStep == null) {
 					previousStep = "firstStep";
 				}
-				Vector3 moveVector = (Vector3.back * joystick.Horizontal + Vector3.right * joystick.Vertical).normalized * moveSpeed;
+
+				Debug.Log (joystick.InputVector);
+
+				Vector2 moveVector = joystick.InputVector;
 
 				// The maze is defined in x and z manner. So z++ means the player goes up, z-- down, x++ right, x-- left.
 
-				if (moveVector.x >= 5 & moveVector.x <= 10 && moveVector.z >= -3 && moveVector.z <= 3) { // The player moves joystick upwards
+				if (moveVector.x == 0 && moveVector.y == 1) { // The player moves joystick upwards
 					if (playerPosZ + 1 < RowsCount && !wallPlacement.WallFront) { // If the player makes his move to upper cell, we must ensure, that no wall in front exists, and the boundary is kept, so the system won't throw an error.
 						floor.GetComponent<Renderer> ().material.color = defaultFloorColor; // If the player moves to the next cell, the previous cell will change its color to its default.
 						if (taskLevel <= maxAvailableTasks && previousStep != "firstStep" && previousStep != "up" && previousStep != "down") { // Take a look to all available turns of the player above. If and only the tasks are not completed the turns will be counted. "firstStep", iterative turns, reversed turns are not counted as a turn.
@@ -299,7 +303,7 @@ public class RollerBall : MonoBehaviour {
 						timer = 1.0;
 						checkForEnteredTask (floor);
 					}
-				} else if (moveVector.x >= -10 & moveVector.x <= -5 && moveVector.z >= -3 && moveVector.z <= 3) { // Downwards
+				} else if (moveVector.x == 0 && moveVector.y == -1) { // Downwards
 					if (playerPosZ - 1 > -1 && !wallPlacement.WallBack) {
 						floor.GetComponent<Renderer> ().material.color = defaultFloorColor;
 						if (taskLevel <= maxAvailableTasks && previousStep != "firstStep" && previousStep != "down" && previousStep != "up") {
@@ -318,7 +322,7 @@ public class RollerBall : MonoBehaviour {
 					}
 				}
 
-				if (moveVector.x >= -3 & moveVector.x <= 3 && moveVector.z >= -10 && moveVector.z <= -5) { // Right
+				if (moveVector.x == 1 && moveVector.y == 0) { // Right
 					if(playerPosZ == RowsCount -1 && playerPosX == ColumnsCount - 1) {
 						// Once we exit from the labyrinth, we ensure that all data is deleted
 						foreach (string key in keysToDelete) {
@@ -360,7 +364,7 @@ public class RollerBall : MonoBehaviour {
 						timer = 1.0;
 						checkForEnteredTask (floor);
 					}
-				} else if (moveVector.x >= -3 & moveVector.x <= 3 && moveVector.z >= 5 && moveVector.z <= 10) { // Left
+				} else if (moveVector.x == -1 && moveVector.y == 0) { // Left
 					if (playerPosX - 1 > -1 && !wallPlacement.WallLeft) {
 						floor.GetComponent<Renderer> ().material.color = defaultFloorColor;
 						if (taskLevel <= maxAvailableTasks && previousStep != "firstStep" && previousStep != "left" && previousStep != "right") {
