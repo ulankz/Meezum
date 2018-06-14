@@ -31,7 +31,7 @@ public class RollerBall : MonoBehaviour {
 	public static XElement maze;
 	public static MissionManager mManager;
 	private int turnsCount = 0;
-	private int taskLevel = 1;
+	private int taskLevel = 0;
 	private int taskToComplete = 1;
 	private int completedTasks = 0;
 	private int maxAvailableTasks = 4;
@@ -152,7 +152,7 @@ public class RollerBall : MonoBehaviour {
 		IEnumerable<XElement> items = mManager.GetMissionItemsFromXml ();
 		maze = items.ElementAt (0).Parent.Element ("maze"); // here we assign the mission number for which XML needs updates.
 		if (maze.Element ("taskLevel") == null) {
-			maze.Add (new XElement ("taskLevel", 1));
+			maze.Add (new XElement ("taskLevel", 0));
 			maze.Add (new XElement ("previousStep", "firstStep"));
 			maze.Add (new XElement ("turnsCount", 0));
 			maze.Add (new XElement ("playerPosX", 0));
@@ -190,7 +190,7 @@ public class RollerBall : MonoBehaviour {
 			gameHasStarted = true;
 
 			// After the player returns to the maze once again, the same portals with the same previous locations will be spawned.
-			for (int i = 1; i < taskLevel; i++) {
+			for (int i = 1; i <= taskLevel; i++) {
 				string nameIdentifier = "TaskPortal" + i;
 				initTaskPortal (new Vector3((float)Double.Parse(maze.Element(nameIdentifier + "_PosX").Value), 0, (float)Double.Parse(maze.Element(nameIdentifier + "_PosZ").Value)), i);
 				GameObject taskPortal = GameObject.Find (nameIdentifier);
@@ -280,8 +280,6 @@ public class RollerBall : MonoBehaviour {
 					previousStep = "firstStep";
 				}
 
-				Debug.Log (joystick.InputVector);
-
 				Vector2 moveVector = joystick.InputVector;
 
 				// The maze is defined in x and z manner. So z++ means the player goes up, z-- down, x++ right, x-- left.
@@ -289,7 +287,7 @@ public class RollerBall : MonoBehaviour {
 				if (moveVector.x == 0 && moveVector.y == 1) { // The player moves joystick upwards
 					if (playerPosZ + 1 < RowsCount && !wallPlacement.WallFront) { // If the player makes his move to upper cell, we must ensure, that no wall in front exists, and the boundary is kept, so the system won't throw an error.
 						floor.GetComponent<Renderer> ().material.color = defaultFloorColor; // If the player moves to the next cell, the previous cell will change its color to its default.
-						if (taskLevel <= maxAvailableTasks && previousStep != "firstStep" && previousStep != "up" && previousStep != "down") { // Take a look to all available turns of the player above. If and only the tasks are not completed the turns will be counted. "firstStep", iterative turns, reversed turns are not counted as a turn.
+						if (taskLevel < maxAvailableTasks && previousStep != "firstStep" && previousStep != "up" && previousStep != "down") { // Take a look to all available turns of the player above. If and only the tasks are not completed the turns will be counted. "firstStep", iterative turns, reversed turns are not counted as a turn.
 							turnsCount++;
 						}
 						previousStep = "up";
@@ -306,7 +304,7 @@ public class RollerBall : MonoBehaviour {
 				} else if (moveVector.x == 0 && moveVector.y == -1) { // Downwards
 					if (playerPosZ - 1 > -1 && !wallPlacement.WallBack) {
 						floor.GetComponent<Renderer> ().material.color = defaultFloorColor;
-						if (taskLevel <= maxAvailableTasks && previousStep != "firstStep" && previousStep != "down" && previousStep != "up") {
+						if (taskLevel < maxAvailableTasks && previousStep != "firstStep" && previousStep != "down" && previousStep != "up") {
 							turnsCount++;
 						}
 						previousStep = "down";
@@ -337,7 +335,7 @@ public class RollerBall : MonoBehaviour {
 									}
 								}
 							} else if (key == "TaskPortal") {
-								for (int i = 1; i <= maxAvailableTasks; i++) {
+								for (int i = 1; i <= taskLevel; i++) {
 									maze.Element (key+i+"_PosX").Remove ();
 									maze.Element (key+i+"_PosZ").Remove ();
 								}
@@ -350,7 +348,7 @@ public class RollerBall : MonoBehaviour {
 					}
 					else if (playerPosX + 1 < ColumnsCount && !wallPlacement.WallRight) {
 						floor.GetComponent<Renderer> ().material.color = defaultFloorColor;
-						if (taskLevel <= maxAvailableTasks && previousStep != "firstStep" && previousStep != "right" && previousStep != "left") {
+						if (taskLevel < maxAvailableTasks && previousStep != "firstStep" && previousStep != "right" && previousStep != "left") {
 							turnsCount++;
 						}
 						previousStep = "right";
@@ -367,7 +365,7 @@ public class RollerBall : MonoBehaviour {
 				} else if (moveVector.x == -1 && moveVector.y == 0) { // Left
 					if (playerPosX - 1 > -1 && !wallPlacement.WallLeft) {
 						floor.GetComponent<Renderer> ().material.color = defaultFloorColor;
-						if (taskLevel <= maxAvailableTasks && previousStep != "firstStep" && previousStep != "left" && previousStep != "right") {
+						if (taskLevel < maxAvailableTasks && previousStep != "firstStep" && previousStep != "left" && previousStep != "right") {
 							turnsCount++;
 						}
 						previousStep = "left";
@@ -426,13 +424,13 @@ public class RollerBall : MonoBehaviour {
 
 					if (turnsCount == 5) {
 						turnsCount = 0;
-						initTaskPortal (nextFloor.transform.position, taskLevel);
-						GameObject taskPortal = taskPortals[taskPortals.Count-1]; // It will get the last created task portal, and record its location & taskLevel.
 						taskLevel++;
-						maze.Add(new XElement (taskPortal.name + "_PosX", taskPortal.transform.position.x.ToString()));
-						maze.Add(new XElement (taskPortal.name + "_PosZ", taskPortal.transform.position.z.ToString()));
+						string identification = "TaskPortal" + taskLevel;
+						maze.Add(new XElement (identification + "_PosX", nextFloor.transform.position.x.ToString()));
+						maze.Add(new XElement (identification + "_PosZ", nextFloor.transform.position.z.ToString()));
 						maze.Element ("taskLevel").Value = taskLevel.ToString ();
 						mManager.SaveMissions ();
+						initTaskPortal (nextFloor.transform.position, taskLevel);
 					}
 				}
 
