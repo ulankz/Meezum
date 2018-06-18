@@ -158,6 +158,10 @@ public class RollerBall : MonoBehaviour {
 			maze.Add (new XElement ("playerPosX", 0));
 			maze.Add (new XElement ("playerPosZ", 0));
 			maze.Add (new XElement ("CompletedTasks", 0));
+			maze.Add (new XElement ("ClassificationComplete", 0));
+			maze.Add (new XElement ("GameOfWordsComplete", 0));
+			maze.Add (new XElement ("QuizGameComplete", 0));
+			maze.Add (new XElement ("AssociationComplete", 0));
 			mManager.SaveMissions ();
 		}
 	}

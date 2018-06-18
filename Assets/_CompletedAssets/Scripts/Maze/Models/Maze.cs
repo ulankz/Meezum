@@ -86,6 +86,14 @@ public class Maze : MonoBehaviour {
 				tmp.transform.parent = transform;
 				tmp.name = "Floor_Column" + column.ToString() + "_Row" + row.ToString();
 
+				if (column == 0 && row == 0) {
+					tmp.GetComponent<Renderer> ().material.color = Color.red;
+				}
+
+				if (column == Columns - 1 && row == Rows - 1) {
+					tmp.GetComponent<Renderer> ().material.color = Color.yellow;
+				}
+
 				string wallDirection = "Wall_At_Column" + column.ToString() + "_Row" + row.ToString();
 				if (!enteredLabyrinth) { // this is required to save directions of walls per cell.
 					MazeCell cell = mMazeGenerator.GetMazeCell (row, column);

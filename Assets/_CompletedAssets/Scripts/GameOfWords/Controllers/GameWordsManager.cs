@@ -1,14 +1,17 @@
-﻿
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 //using UnityEditor;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using Array = System.Array;
 using MeezumGame;
 using UnityEngine.SceneManagement;
+using System.Xml;
+using System.Xml.Serialization;
+using System.Xml.Linq;
+using System.Linq;
 
 namespace GameOfWords
 {
@@ -507,12 +510,11 @@ namespace GameOfWords
 		{
 			instructionSoundManager.PlayEnd ("GameWords");
 			ShowEndGameMessage ();
-			if (PlayerPrefs.GetInt ("CompletedTasks", 0) != null) {
-				int completedTasks = PlayerPrefs.GetInt ("CompletedTasks", 0);
-				PlayerPrefs.SetInt("CompletedTasks", completedTasks+1);
+			XElement maze = RollerBall.maze;
+			if (maze.Element ("GameOfWordsComplete").Value == "0") {
+				maze.Element ("GameOfWordsComplete").Value = 1.ToString(); //completed
+				maze.Element ("CompletedTasks").Value = (Int32.Parse(maze.Element ("CompletedTasks").Value) + 1).ToString();
 			}
-
-		
 		}
 
 		private void ShowEndGameMessage ()
